@@ -1,0 +1,3 @@
+FUNCTION-POOL ZGFI_ITEM_FINANCEIRO.         "MESSAGE-ID ..
+
+* INCLUDE LZGFI_ITEM_FINANCEIROD...          " Local class definition

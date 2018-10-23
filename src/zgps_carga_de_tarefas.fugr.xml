@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <INCLUDES>
+    <SOBJ_NAME>LZGPS_CARGA_DE_TAREFASF01</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CARGA_DE_TAREFASTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGPS_CARGA_DE_TAREFAS</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>BAPI_CRIAR_TAREFAS</FUNCNAME>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>P_I_DIAG_REDE</PARAMETER>
+       <TYP>NW_AUFNR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_TAREFAS</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_BAPI_BUS2002_ACT_NEW</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_CAMPOS_ZS</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_BAPI_TE_NETWORK_ACTIVITY</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_SERVICOS</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_SERVICOS</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TESTRUN</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>BAPIE1GLOBAL_DATA-TESTRUN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>P_E_TI_RETURN</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>BAPIRET2_TAB</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>P_I_DIAG_REDE</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_TAREFAS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_CAMPOS_ZS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_SERVICOS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TESTRUN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_E_TI_RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 006</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZFPS_SHDB_CN22</FUNCNAME>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>P_I_DIAG_REDE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>NW_AUFNR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_TAREFAS</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_BAPI_BUS2002_ACT_NEW</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_SERVICOS</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_SERVICOS</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TESTRUN</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>BAPIE1GLOBAL_DATA-TESTRUN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>P_E_TI_RETURN</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>BAPIRET2_TAB</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>P_I_DIAG_REDE</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_TAREFAS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_SERVICOS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TESTRUN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_E_TI_RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

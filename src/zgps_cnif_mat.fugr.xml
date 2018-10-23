@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <INCLUDES>
+    <SOBJ_NAME>LZGPS_CNIF_MATF01</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CNIF_MATF50</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CNIF_MATF51</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CNIF_MATF52</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CNIF_MATF53</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CNIF_MATFXX</SOBJ_NAME>
+    <SOBJ_NAME>LZGPS_CNIF_MATTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGPS_CNIF_MAT</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>BAPI_ZNETWORK_ZCOMP_ZADD</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Add to BOR Object Network, Subobject Material Component Method</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_ADD</PARAMETER>
+       <DBSTRUCT>ZEPS_BAPI_NETWORK_COMP_ADD</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <DBSTRUCT>BAPI_METH_MESSAGE</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_ADD</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for Adding Material Components</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Message Table for BAPIs (Project System)</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>BAPI_ZNETWORK_ZCOMP_ZCHANGE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Change to BOR Object Network, Subobject Material Component Method</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_CHANGE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_CHANGE</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_CHANGE_UPDATE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_CNG_UPD</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <DBSTRUCT>BAPI_METH_MESSAGE</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_CHANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for Material Components Update</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_CHANGE_UPDATE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for Material Component Update (Change Toolbar)</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Message Table for BAPIs (Project System)</STEXT>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>BAPI_ZNETWORK_ZCOMP_ZGETDETAIL</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>GetDetail for BOR Object Network, Subobject Material Component Method</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>MAX_ROWS</PARAMETER>
+       <DBFIELD>BAPIF4A-MAX_ROWS</DBFIELD>
+       <DEFAULT>0</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_ACTIVITY_RANGE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_ACT_RNG</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_ID</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_ID</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_COMPONENTS_DETAIL</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_DETAIL</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>MAX_ROWS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Maximum Number of Lines of Hits</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_ACTIVITY_RANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Interface Structure for Network Activity Ranges</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_ID</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Material Components Key</STEXT>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_COMPONENTS_DETAIL</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>List of Network Components with Detail Information</STEXT>
+       <INDEX> 006</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>BAPI_ZNETWORK_ZCOMP_ZGETLIST</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>GetList for BOR Object Network, Subobject Material Component Method</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>MAX_ROWS</PARAMETER>
+       <DBFIELD>BAPIF4A-MAX_ROWS</DBFIELD>
+       <DEFAULT>0</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_ACTIVITY_RANGE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_ACT_RNG</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_COMPONENTS_LIST</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_LIST</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>MAX_ROWS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Maximum Number of Lines of Hits</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_ACTIVITY_RANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Interface Structure for Network Activity Ranges</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_COMPONENTS_LIST</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>List of Network Components with Short Text</STEXT>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>BAPI_ZNETWORK_ZCOMP_ZREMOVE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Remove for BOR Object Network, Subobject Material Component Method</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_REMOVE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_ID</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <DBSTRUCT>BAPI_METH_MESSAGE</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_REMOVE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Material Components Key</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Message table for BAPIs (Project System)</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZMAP2E_RESBDGET_TO_COMP_DETAIL</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>RESBDGET</PARAMETER>
+       <DBFIELD>RESBDGET</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSIMP>
+     </IMPORT>
+     <CHANGING>
+      <RSCHA>
+       <PARAMETER>BAPI_NETWORK_COMP_DETAIL</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_COMP_DETAIL</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSCHA>
+     </CHANGING>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>RESBDGET</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>RESBD structure (material component) with update indicator</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>BAPI_NETWORK_COMP_DETAIL</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for Material Component: Detail</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZMAP2I_BAPI_COMPS_ADD_TO_RESBD</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>BAPI_NETWORK_COMP_ADD</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZEPS_BAPI_NETWORK_COMP_ADD</TYP>
+      </RSIMP>
+     </IMPORT>
+     <CHANGING>
+      <RSCHA>
+       <PARAMETER>RESBD</PARAMETER>
+       <DBFIELD>RESBD</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSCHA>
+     </CHANGING>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>ERROR_CONVERTING_ISO_CODE</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>BAPI_NETWORK_COMP_ADD</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for the Material Component: Add</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESBD</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Reservation/Dependent requirements</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR_CONVERTING_ISO_CODE</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZMAP2I_BAPI_COMPS_CHG_TO_RESBD</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>BAPI_NETWORK_COMP_CHANGE</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_COMP_CHANGE</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSIMP>
+     </IMPORT>
+     <CHANGING>
+      <RSCHA>
+       <PARAMETER>RESBD</PARAMETER>
+       <DBFIELD>RESBD</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSCHA>
+     </CHANGING>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>ERROR_CONVERTING_ISO_CODE</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>BAPI_NETWORK_COMP_CHANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for the Material Component: Change</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESBD</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Reservation/Dependent requirements</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR_CONVERTING_ISO_CODE</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZMAP2I_BAPI_COMP_CHG_TO_UPDATE</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>BAPI_NETWORK_COMP_CNG_UPD</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_COMP_CNG_UPD</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSIMP>
+     </IMPORT>
+     <CHANGING>
+      <RSCHA>
+       <PARAMETER>RESBD_CHANGE</PARAMETER>
+       <DBFIELD>RESBD_CHANGE</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSCHA>
+     </CHANGING>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>BAPI_NETWORK_COMP_CNG_UPD</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Struct. for the Mat. Component: Change (Change Toolbar)</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESBD_CHANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Update Bar RESBD (for BAPI Processing)</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZRFC_NETWORK_COMP_CHANGE</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_MESG</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>BAPIRET2_T</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_CHANGE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_CHANGE</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_CHANGE_UPDATE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_CNG_UPD</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <DBSTRUCT>BAPI_METH_MESSAGE</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>EXTENSIONIN</PARAMETER>
+       <DBSTRUCT>BAPIPAREX</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>EXTENSIONOUT</PARAMETER>
+       <DBSTRUCT>BAPIPAREX</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>ET_RETURN</PARAMETER>
+       <DBSTRUCT>BAPIRET2</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_MESG</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter Table</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_CHANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Structure for the Material Component: Change</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_CHANGE_UPDATE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Struct. for the Mat. Component: Change (Change Toolbar)</STEXT>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MESSAGE_TABLE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Message table for BAPIs (Project System)</STEXT>
+       <INDEX> 006</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EXTENSIONIN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Ref. structure for BAPI parameter ExtensionIn/ExtensionOut</STEXT>
+       <INDEX> 007</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EXTENSIONOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Ref. structure for BAPI parameter ExtensionIn/ExtensionOut</STEXT>
+       <INDEX> 008</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 009</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZRFC_NETWORK_COMP_GETDETAIL</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>GetDetail for BOR Object Network, Subobject Material Component Method</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>NUMBER</PARAMETER>
+       <DBFIELD>BAPI_NETWORK_LIST-NETWORK</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>MAX_ROWS</PARAMETER>
+       <DBFIELD>BAPIF4A-MAX_ROWS</DBFIELD>
+       <DEFAULT>0</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBFIELD>BAPIRET2</DBFIELD>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>ET_MESG</PARAMETER>
+       <TYP>BAPIRET2_T</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>I_ACTIVITY_RANGE</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_ACT_RNG</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>I_COMPONENTS_ID</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_ID</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>E_COMPONENTS_DETAIL</PARAMETER>
+       <DBSTRUCT>BAPI_NETWORK_COMP_DETAIL</DBSTRUCT>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>EXTENSIONIN</PARAMETER>
+       <DBSTRUCT>BAPIPAREX</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>EXTENSIONOUT</PARAMETER>
+       <DBSTRUCT>BAPIPAREX</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>NUMBER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>MAX_ROWS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Maximum Number of Lines of Hits</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_MESG</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Return Parameter Table</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_ACTIVITY_RANGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>BAPI Interface Structure for Network Activity Ranges</STEXT>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_COMPONENTS_ID</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Material Components Key</STEXT>
+       <INDEX> 006</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_COMPONENTS_DETAIL</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>List of Network Components with Detail Information</STEXT>
+       <INDEX> 007</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EXTENSIONIN</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Ref. structure for BAPI parameter ExtensionIn/ExtensionOut</STEXT>
+       <INDEX> 008</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EXTENSIONOUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Ref. structure for BAPI parameter ExtensionIn/ExtensionOut</STEXT>
+       <INDEX> 009</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

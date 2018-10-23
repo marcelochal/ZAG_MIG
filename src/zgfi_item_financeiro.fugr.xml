@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <INCLUDES>
+    <SOBJ_NAME>LZGFI_ITEM_FINANCEIROTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGFI_ITEM_FINANCEIRO</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZFFI_FM_COMITEM_UPDATE</FUNCNAME>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>I_FIKRS</PARAMETER>
+       <DBFIELD>FMCI-FIKRS</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_GJAHR</PARAMETER>
+       <DBFIELD>FMCI-GJAHR</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FLG_COMMIT</PARAMETER>
+       <DBFIELD>FMDY-XFELD</DBFIELD>
+       <DEFAULT>SPACE</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>T_FMCI</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>FMCI_T</TYP>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_FMCIT</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>PFM_T_FMCIT</TYP>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_FMHICI</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>ZTFI_FMHICI</TYP>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_FMZUBSP</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>ZTFI_FMZUBSP</TYP>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBSTRUCT>BAPIRET2</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>I_FIKRS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_GJAHR</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FLG_COMMIT</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_FMCI</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_FMCIT</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_FMHICI</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 006</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_FMZUBSP</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 007</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 008</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

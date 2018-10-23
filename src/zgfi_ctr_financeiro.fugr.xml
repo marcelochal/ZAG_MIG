@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <INCLUDES>
+    <SOBJ_NAME>LZGFI_CTR_FINANCEIROTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGFI_CTR_FINANCEIRO</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZFFI_FM_FUNDS_CTR_CREATE</FUNCNAME>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>I_FIKRS</PARAMETER>
+       <DBFIELD>FMFCTR-FIKRS</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FISTL</PARAMETER>
+       <DBFIELD>FMFCTR-FICTR</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_HIVARNT</PARAMETER>
+       <DBFIELD>FMHISV-HIVARNT</DBFIELD>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FMFCTR</PARAMETER>
+       <TYP>GENFM_T_FMFCTR</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FMFCTRT</PARAMETER>
+       <TYP>ZTFI_FMFCTRT</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FMHISV</PARAMETER>
+       <TYP>ZTFI_FMHISV</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FLG_TEST</PARAMETER>
+       <DBFIELD>FMDY-XFELD</DBFIELD>
+       <DEFAULT>&apos; &apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FLG_NO_ENQUEUE</PARAMETER>
+       <DBFIELD>FMDY-XFELD</DBFIELD>
+       <DEFAULT>&apos; &apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>I_FLG_COMMIT</PARAMETER>
+       <DBFIELD>FMDY-XFELD</DBFIELD>
+       <DEFAULT>&apos; &apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBSTRUCT>BAPIRET2</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>I_FIKRS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FISTL</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_HIVARNT</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FMFCTR</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FMFCTRT</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FMHISV</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 006</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FLG_TEST</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 007</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FLG_NO_ENQUEUE</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 008</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>I_FLG_COMMIT</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 009</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 010</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

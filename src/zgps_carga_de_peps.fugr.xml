@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <INCLUDES>
+    <SOBJ_NAME>LZGPS_CARGA_DE_PEPSTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGPS_CARGA_DE_PEPS</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>BAPI_CRIAR_PEPS</FUNCNAME>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>P_I_DEF_PROJETO</PARAMETER>
+       <TYP>PS_PSPID</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_PEPS</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_MC_WBS_ELEMENT</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TI_CAMPOS_ZS</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTPS_BAPI_TE_WBS_ELEMENT</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>P_I_TESTRUN</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>BAPIE1GLOBAL_DATA-TESTRUN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>P_E_TI_RETURN</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>BAPIRET2_TAB</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>P_I_DEF_PROJETO</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_PEPS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TI_CAMPOS_ZS</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_I_TESTRUN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>P_E_TI_RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
