@@ -71,27 +71,23 @@ FUNCTION zfps_shdb_cn22.
                         CHANGING ti_bdcdata,
              z_fill_bdc USING ' ' 'BDC_OKCODE' '/00'
                         CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'BDC_CURSOR' 'AFVGD-BEDNR(01)'
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-SORTL(01)' wa_tarefa-sorted_by
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-MATKL(01)' wa_tarefa-matl_group
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-EKGRP(01)' wa_tarefa-pur_group
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-WEMPF(01)' wa_tarefa-gr_rcpt
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-ABLAD(01)' wa_tarefa-unload_pt
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-AFNAM(01)' wa_tarefa-preq_name
-                        CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'AFVGD-BEDNR(01)' wa_tarefa-trackingno
+             z_fill_bdc USING ' ' 'BDC_CURSOR' 'RC27X-FLG_SERV(01)'
                         CHANGING ti_bdcdata,
              z_fill_bdc USING ' ' 'AFVGD-VORNR(01)' wa_tarefa-activity
                         CHANGING ti_bdcdata,
              z_fill_bdc USING ' ' 'RC27X-FLG_SERV(01)' 'X'
                         CHANGING ti_bdcdata,
              z_fill_bdc USING ' ' 'AFVGD-LTXA1(01)' wa_tarefa-description
+                        CHANGING ti_bdcdata.
+
+*---------------------------------------------------------------------*
+    PERFORM: z_fill_bdc USING 'X' 'SAPLMLSP' '0200'
+                        CHANGING ti_bdcdata,
+             z_fill_bdc USING ' ' 'BDC_OKCODE' '=BZE'
+                        CHANGING ti_bdcdata,
+             z_fill_bdc USING ' ' 'BDC_CURSOR' 'ESLL-KTEXT1(01)'
+                        CHANGING ti_bdcdata,
+             z_fill_bdc USING ' ' 'RM11P-NEW_ROW' '10'
                         CHANGING ti_bdcdata.
 
 *---------------------------------------------------------------------*
@@ -103,6 +99,8 @@ FUNCTION zfps_shdb_cn22.
                z_fill_bdc USING ' ' 'BDC_OKCODE' '/00'
                           CHANGING ti_bdcdata,
                z_fill_bdc USING ' ' 'BDC_CURSOR' 'ESLL-KSTAR(01)'
+                          CHANGING ti_bdcdata,
+               z_fill_bdc USING ' ' 'RM11P-NEW_ROW' '  '
                           CHANGING ti_bdcdata,
                z_fill_bdc USING ' ' 'ESLL-EXTROW(01)' wa_servico-extrow
                           CHANGING ti_bdcdata,
@@ -131,7 +129,7 @@ FUNCTION zfps_shdb_cn22.
                         CHANGING ti_bdcdata,
              z_fill_bdc USING ' ' 'BDC_OKCODE' '=BU'
                         CHANGING ti_bdcdata,
-             z_fill_bdc USING ' ' 'BDC_CURSOR' 'AFVGD-BEDNR(01)'
+             z_fill_bdc USING ' ' 'BDC_CURSOR' 'RC27X-FLG_SERV(01)'
                         CHANGING ti_bdcdata.
 
   ENDLOOP.

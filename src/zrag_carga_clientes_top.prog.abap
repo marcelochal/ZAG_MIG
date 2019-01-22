@@ -272,12 +272,14 @@ DATA:
 
 * Structure to identify the relation of BP with client, created or not
   BEGIN OF s_bp_numbers,
-    bp_number    TYPE bu_partner,
-    bp_guid      TYPE bu_partner_guid,
-    kunnr        TYPE kunnr,
-    task         TYPE bus_ei_object_task,
-    errors_found TYPE errors_found,
-    contact      TYPE ty_t_contact_numbers,
+    bp_number       TYPE bu_partner,
+    bp_guid         TYPE bu_partner_guid,
+    kunnr           TYPE kunnr,
+    task_bp         TYPE bus_ei_object_task,
+    task_customer   TYPE bus_ei_object_task,
+    create_customer TYPE boole_d,
+    errors_found    TYPE errors_found,
+    contact         TYPE ty_t_contact_numbers,
   END OF s_bp_numbers.
 
 *----------------------------------------------------------------------

@@ -729,4 +729,8 @@ FUNCTION zmap2i_alm_me_order_head_to_c.
   MOVE p_i_wa_campos_ad_cabecalho-warpl
     TO caufvd-warpl.
 
+*------------------------------------------------------*
+  MOVE alm_me_order_header-orderid
+    TO caufvd-aufnr.
+
 ENDFUNCTION.

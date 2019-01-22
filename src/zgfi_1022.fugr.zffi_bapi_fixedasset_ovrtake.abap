@@ -1,4 +1,4 @@
-FUNCTION zffi_bapi_fixedasset_ovrtake .
+FUNCTION ZFFI_BAPI_FIXEDASSET_OVRTAKE.
 *"----------------------------------------------------------------------
 *"*"Interface local:
 *"  IMPORTING
@@ -113,10 +113,11 @@ FUNCTION zffi_bapi_fixedasset_ovrtake .
 *"      POSTINGHEADERS STRUCTURE  BAPI1022_POSTINGHEADER OPTIONAL
 *"----------------------------------------------------------------------
 
-  DATA: ti_extensionin  TYPE TABLE OF bapiparex,
-        e_extensionin   TYPE bapiparex,
-        e_bapi_te_anlu  TYPE bapi_te_anlu,
-        lc_valuepart    TYPE valuepart.
+  DATA: ti_extensionin        TYPE TABLE OF bapiparex,
+        e_extensionin         TYPE bapiparex,
+        e_bapi_te_anlu        TYPE bapi_te_anlu,
+        lc_valuepart          TYPE valuepart,
+        ls_depreciationareasx TYPE bapi1022_dep_areasx.
 
   "Montar parâmetro EXENSIONIN
   MOVE 'BAPI_TE_ANLU' TO e_extensionin-structure.
@@ -133,10 +134,31 @@ FUNCTION zffi_bapi_fixedasset_ovrtake .
         OTHERS                 = 2.
 
     MOVE lc_valuepart TO e_extensionin-valuepart1.
-    CONCATENATE sy-mandt e_extensionin-valuepart1 INTO e_extensionin-valuepart1.
+*There is no need to include the mandt
+*    CONCATENATE sy-mandt e_extensionin-valuepart1 INTO e_extensionin-valuepart1.
 
     APPEND e_extensionin TO ti_extensionin.
 
+  ENDLOOP.
+
+  PERFORM f_handle_cost_center USING timedependentdata key-companycode .
+
+
+  PERFORM f_compare_data: USING generaldata         CHANGING generaldatax,
+                          USING inventory           CHANGING inventoryx,
+                          USING postinginformation  CHANGING postinginformationx,
+                          USING timedependentdata   CHANGING timedependentdatax.
+
+  CLEAR depreciationareasx[].
+
+  LOOP AT depreciationareas ASSIGNING FIELD-SYMBOL(<fs_depreciationareas>).
+    CLEAR ls_depreciationareasx.
+    PERFORM f_compare_data USING    <fs_depreciationareas>
+                           CHANGING ls_depreciationareasx.
+
+    MOVE <fs_depreciationareas>-area TO ls_depreciationareasx-area.
+
+    APPEND ls_depreciationareasx TO depreciationareasx.
   ENDLOOP.
 
   CALL FUNCTION 'BAPI_FIXEDASSET_OVRTAKE_CREATE'

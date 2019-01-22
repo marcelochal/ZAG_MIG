@@ -45,6 +45,7 @@ FUNCTION bapi_criar_materiais.
         wa_message     TYPE bapi_meth_message,
         ti_campos_zs   TYPE tt_it_netw_ext_in,
         ti_return      TYPE bapiret2_tab,
+        ti_return_pc   TYPE bapiret2_tab,
         ti_return_fim  TYPE bapiret2_tab,
         ti_materiais   TYPE ztps_bapi_network_comp_add,
         ti_messages    TYPE rpm_bapi_meth_messages.
@@ -87,7 +88,15 @@ FUNCTION bapi_criar_materiais.
 * Se for execução em teste.
   IF p_i_testrun EQ abap_true.
 
-* =====> Não faz nada.
+*   Se tudo OK
+    IF lc_erro IS INITIAL.
+
+      wa_return-type    = 'S'.
+      wa_return-message = 'Simulação OK'.
+      APPEND wa_return TO ti_return_fim.
+      CLEAR  wa_return.
+
+    ENDIF.
 
 * Se for execução valendo.
   ELSE.
@@ -97,11 +106,23 @@ FUNCTION bapi_criar_materiais.
 
       CALL FUNCTION 'BAPI_PS_PRECOMMIT'
         TABLES
-          et_return = ti_return.
+          et_return = ti_return_pc.
 
-      APPEND LINES OF ti_return TO ti_return_fim.
+      LOOP AT ti_return_pc INTO wa_return.
 
-      READ TABLE ti_return WITH KEY type = 'E' TRANSPORTING NO FIELDS.
+        IF ( wa_return-type   EQ 'I'       ) AND
+           ( wa_return-id     EQ 'CNIF_PI' ) AND
+           ( wa_return-number EQ '032'     ).
+
+        ELSE.
+
+          APPEND  wa_return TO ti_return_fim.
+
+        ENDIF.
+
+      ENDLOOP.
+
+      READ TABLE ti_return_pc WITH KEY type = 'E' TRANSPORTING NO FIELDS.
       IF sy-subrc = 0.
         lc_erro = abap_true.
       ENDIF.
@@ -116,7 +137,16 @@ FUNCTION bapi_criar_materiais.
             return = wa_return.
 
         IF NOT wa_return IS INITIAL.
+
           APPEND wa_return TO ti_return_fim.
+
+        ELSE.
+
+          wa_return-type    = 'S'.
+          wa_return-message = 'Execução OK'.
+          APPEND wa_return TO ti_return_fim.
+          CLEAR  wa_return.
+
         ENDIF.
 
       ENDIF.

@@ -1453,6 +1453,11 @@ FORM bapi_fixedasset USING p_i_testrun TYPE testrun.
   APPEND gt_extensionin.
   CLEAR: gt_return[], gv_return.
 
+  PERFORM f_compare_data:
+    USING gv_bapi1022_feglg001  CHANGING gv_bapi1022_feglg001x,
+    USING gv_bapi1022_feglg002  CHANGING gv_bapi1022_feglg002x,
+    USING gv_bapi1022_feglg003  CHANGING gv_bapi1022_feglg003x.
+
 
   CALL FUNCTION 'BAPI_FIXEDASSET_OVRTAKE_CREATE'
     EXPORTING
@@ -1759,4 +1764,97 @@ FORM fi_document_change USING p_anln1 .
       ENDIF.
     ENDIF.
   ENDLOOP.
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form f_compare_data
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+FORM f_compare_data USING     p_s_data    TYPE any
+                    CHANGING  ch_s_data_x TYPE any.
+
+  DATA:
+    lo_table_descr  TYPE REF TO cl_abap_tabledescr,
+    lo_struct_descr TYPE REF TO cl_abap_structdescr,
+    lo_data         TYPE REF TO data,
+    it_columns      TYPE abap_compdescr_tab.
+
+  CREATE DATA lo_data LIKE p_s_data.
+
+  lo_struct_descr ?= cl_abap_structdescr=>describe_by_data_ref( lo_data ).
+  it_columns = lo_struct_descr->components.
+
+  LOOP AT it_columns ASSIGNING FIELD-SYMBOL(<fs_field>).
+
+    ASSIGN COMPONENT <fs_field>-name OF STRUCTURE p_s_data TO FIELD-SYMBOL(<fs_comp_data>).
+    ASSIGN COMPONENT <fs_field>-name OF STRUCTURE ch_s_data_x  TO FIELD-SYMBOL(<fs_comp_x>).
+
+    CHECK:
+        <fs_comp_data>   IS ASSIGNED,
+*        <fs_comp_source>    IS ASSIGNED,
+        <fs_comp_x>         IS ASSIGNED.
+
+    IF <fs_comp_data> IS NOT INITIAL.
+      <fs_comp_x> = abap_true.
+    ELSE.
+      <fs_comp_x> = abap_false.
+    ENDIF.
+
+    UNASSIGN:  <fs_comp_data>, <fs_comp_x>.
+
+  ENDLOOP.
+
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form F_HANDLE_COST_CENTER
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*&      --> TIMEDEPENDENTDATA
+*&---------------------------------------------------------------------*
+FORM f_handle_cost_center  USING p_s_timedependentdata TYPE bapi1022_feglg003
+                                 p_v_bukrs             TYPE bukrs.
+
+  DATA:
+    lv_kokrs TYPE tka02-kokrs,
+    lt_csks  TYPE STANDARD TABLE OF csks_ex.
+
+  CALL FUNCTION 'KOKRS_GET_FROM_BUKRS'
+    EXPORTING
+      i_bukrs        = p_v_bukrs
+    IMPORTING
+      e_kokrs        = lv_kokrs
+    EXCEPTIONS
+      no_kokrs_found = 1
+      OTHERS         = 2.
+  IF sy-subrc EQ 0.
+
+    CALL FUNCTION 'K_COSTCENTER_SELECT_SINGLE'
+      EXPORTING
+        kokrs           = lv_kokrs
+        kostl           = p_s_timedependentdata-costcenter
+        date_from       = sy-datum
+      TABLES
+        it_csks_ex      = lt_csks
+      EXCEPTIONS
+        no_record_found = 1
+        OTHERS          = 2.
+    IF sy-subrc EQ 0.
+
+      LOOP AT lt_csks ASSIGNING FIELD-SYMBOL(<fs_csks>).
+
+*        p_s_timedependentdata-profit_ctr = <fs_csks>-prctr.
+        p_s_timedependentdata-bus_area   = <fs_csks>-gsber.
+
+        EXIT.
+
+      ENDLOOP.
+
+    ENDIF.
+  ENDIF.
+
+
 ENDFORM.

@@ -76,6 +76,9 @@ ENDCLASS.
 CLASS lcl_bupa DEFINITION FINAL FRIENDS lcl_file lcl_messages .
   PUBLIC SECTION.
 
+    CONSTANTS:
+        co_exec1 TYPE c LENGTH 6 VALUE '&EXEC1'.
+
     DATA:
       o_file  TYPE REF TO lcl_file,
       t_alv   TYPE TABLE OF ty_s_alv  WITH NON-UNIQUE SORTED KEY key_kunnr COMPONENTS kunnr,
@@ -128,7 +131,6 @@ CLASS lcl_bupa DEFINITION FINAL FRIENDS lcl_file lcl_messages .
           ch_v_bp_guid         TYPE bu_partner_guid OPTIONAL
           ch_v_bp_number       TYPE bu_partner      OPTIONAL.
 
-
     METHODS:
 *      remove_agents ,
       change_icon_alv_status
@@ -174,7 +176,6 @@ CLASS lcl_bupa DEFINITION FINAL FRIENDS lcl_file lcl_messages .
           VALUE(im_t_bapiretm) TYPE bapiretm
         CHANGING
           ch_s_bp_numbers      LIKE s_bp_numbers,
-
 *      get_bukrs_list,
       get_bp_from_data_base,
       set_rollback,
@@ -223,7 +224,10 @@ CLASS lcl_bupa DEFINITION FINAL FRIENDS lcl_file lcl_messages .
           ch_s_data_x  TYPE any,
       check_customer_iu_successfully
         IMPORTING
-          im_s_bp_numbers LIKE s_bp_numbers.
+          im_s_bp_numbers LIKE s_bp_numbers,
+      check_customer_exists
+        CHANGING
+          ch_s_bp_numbers LIKE s_bp_numbers.
 
 ENDCLASS.                       "lcl_bupa
 
@@ -435,11 +439,11 @@ CLASS lcl_bupa IMPLEMENTATION .
 *&----------------------------------------------------------------------*
   METHOD set_rollback.
     CALL FUNCTION 'BAPI_TRANSACTION_ROLLBACK'.
-  ENDMETHOD.                  "set_commit
+  ENDMETHOD.                  "set_rollback
 
 
 *&----------------------------------------------------------------------*
-*& METHOD GET_BP_FROM_CODIGO
+*& METHOD GET_BP_FROM_DATA_BASE
 *&----------------------------------------------------------------------*
   METHOD get_bp_from_data_base.
 
@@ -453,7 +457,6 @@ CLASS lcl_bupa IMPLEMENTATION .
       ls_bp_numbers      LIKE LINE OF it_bp_numbers,
       ls_alv             LIKE LINE OF me->t_alv,
       lv_tabix           LIKE syst-tabix.
-
 
     FIELD-SYMBOLS :
       <fs_relationship> LIKE LINE OF lt_relationship.
@@ -483,6 +486,8 @@ CLASS lcl_bupa IMPLEMENTATION .
           ex_v_bp_number = ls_bp_numbers-bp_number.
 
       IF ls_bp_numbers-bp_number IS NOT INITIAL.
+
+        ls_bp_numbers-task_bp = cc_object_task_update.
 
         GET TIME STAMP FIELD lv_valid_time.
 
@@ -519,36 +524,51 @@ CLASS lcl_bupa IMPLEMENTATION .
 *         <fs_relationship>-partner1 TO s_bp_numbers-bp_number, "filled
            <fs_relationship>-partner2 TO ls_contact_numbers-number_bp_contact.
 
-          lcl_bupa=>get_bp_numbers(
+          CALL METHOD lcl_bupa=>get_bp_numbers(
             CHANGING
               ch_v_bp_number = ls_contact_numbers-number_bp_contact
-              ch_v_bp_guid   = ls_contact_numbers-guid_bp_contact   ).
+              ch_v_bp_guid   = ls_contact_numbers-guid_bp_contact ).
 
           APPEND ls_contact_numbers TO ls_bp_numbers-contact.
         ENDLOOP.
 
+      ELSE.
+*   The business partner does not exist and needs to be created
+        ls_bp_numbers-task_bp   = cc_object_task_insert.
+        ls_bp_numbers-bp_guid   = lcl_bupa=>get_guid( ).
+
       ENDIF. "bp_number IS NOT INITIAL.
+
+*      Check the customer already exists
+      CALL METHOD me->check_customer_exists(
+        CHANGING
+          ch_s_bp_numbers = ls_bp_numbers ).
+
+      IF ls_bp_numbers-create_customer IS INITIAL.
+*    cliente &1 já existe
+        MESSAGE ID 'CVI_MAPPING' TYPE 'S' NUMBER '042'
+          WITH ls_bp_numbers-kunnr INTO DATA(lv_dummy).
+
+        CALL METHOD lcl_messages=>store( ls_bp_numbers-kunnr ).
+
+        CALL METHOD me->change_icon_alv_status
+          EXPORTING
+            im_v_icon  = icon_led_green
+            im_v_kunnr = ls_bp_numbers-kunnr.
+      ELSE.
+
+        MESSAGE ID 'F2' TYPE 'W' NUMBER '153'
+        WITH ls_bp_numbers-kunnr INTO DATA(lv_dummy2).
+        CALL METHOD lcl_messages=>store( ls_bp_numbers-kunnr ).
+
+      ENDIF.
 
       APPEND ls_bp_numbers TO it_bp_numbers.
 
-    ENDLOOP.
+    ENDLOOP. "AT o_file->upload_data-central_data ASSIGNING FIELD-SYMBOL(<fs_customer>).
 
+*    Move BP number to ALV
     MOVE-CORRESPONDING it_bp_numbers TO me->t_alv.
-
-    LOOP AT it_bp_numbers ASSIGNING FIELD-SYMBOL(<fs_bp_numbers>) WHERE bp_number IS NOT INITIAL.
-
-      MESSAGE ID 'CVI_MAPPING' TYPE 'S' NUMBER '042'
-        WITH <fs_bp_numbers>-kunnr INTO DATA(lv_dummy).
-
-*      CALL METHOD lcl_messages=>store( sy-tabix ).
-      CALL METHOD lcl_messages=>store( <fs_bp_numbers>-kunnr ).
-
-      CALL METHOD me->change_icon_alv_status
-        EXPORTING
-          im_v_icon  = icon_led_green
-          im_v_kunnr = <fs_bp_numbers>-kunnr.
-
-    ENDLOOP.
 
   ENDMETHOD.
 
@@ -593,7 +613,6 @@ CLASS lcl_bupa IMPLEMENTATION .
       lt_cvis_ei_extern TYPE cvis_ei_extern_t,
       lt_return_map     TYPE mdg_bs_bp_msgmap_t,
       ls_taxnumber      TYPE LINE OF bus_ei_bupa_taxnumber_t,
-      lv_object_task    TYPE bus_ei_object_task,
       lv_tabix          TYPE syst_tabix,
       lv_text           TYPE string,
       lv_time           TYPE string.
@@ -603,7 +622,7 @@ CLASS lcl_bupa IMPLEMENTATION .
       <fs_return_map> LIKE LINE OF lt_return_map.
 
 
-    LOOP AT it_bp_numbers ASSIGNING <fs_bp_numbers>. "WHERE bp_number IS INITIAL.
+    LOOP AT me->it_bp_numbers ASSIGNING <fs_bp_numbers>. "WHERE bp_number IS INITIAL.
 
       lv_tabix = syst-tabix.
 
@@ -614,31 +633,20 @@ CLASS lcl_bupa IMPLEMENTATION .
       READ TABLE me->o_file->upload_data-central_data ASSIGNING FIELD-SYMBOL(<fs_central_data>)
       WITH TABLE KEY key_kunnr COMPONENTS kunnr = <fs_bp_numbers>-kunnr .
 
-**      READ TABLE me->t_alv ASSIGNING FIELD-SYMBOL(<fs_alv>)
-**      WITH TABLE KEY key_kunnr COMPONENTS kunnr = <fs_bp_numbers>-kunnr .
-
 *    Verifica se é uma inclusão ou atualização, condição se encontrou o cadastro do BP no sistema
       IF <fs_bp_numbers>-bp_number IS INITIAL.
-        lv_object_task                                  = cc_object_task_insert. "I=Incluir
-        <fs_bp_numbers>-bp_guid                         = lcl_bupa=>get_guid( ).
-        ls_cvis_ei_extern-ensure_create-create_customer = abap_true.
         IF me->get_test( ) IS INITIAL.
           lv_text = |{ 'Criando PN para o cliente:_'(m03) }{ <fs_bp_numbers>-kunnr ALPHA = OUT }|.
         ELSE.
           lv_text = |{ 'Val. novo PN para o cliente:_'(m04) }{ <fs_bp_numbers>-kunnr ALPHA = OUT }|.
         ENDIF.
-
       ELSE.
-        lv_object_task = cc_object_task_update.                   "U=Update,
-
         IF me->get_test( ) IS INITIAL.
           lv_text = |{ 'Atualizando cadastro do PN:_'(m05) }{ <fs_bp_numbers>-bp_number ALPHA = OUT }|.
         ELSE.
           lv_text = |{ 'Verificando atualização do PN:_'(m06) }{ <fs_bp_numbers>-bp_number ALPHA = OUT }|.
         ENDIF.
       ENDIF.
-
-      <fs_bp_numbers>-task = lv_object_task.
 
       TRANSLATE lv_text USING '_ '. "ABAP BUGS!
 
@@ -653,8 +661,7 @@ CLASS lcl_bupa IMPLEMENTATION .
 *----------------------------------------------------------------------
 *    Dados centrais do Parceiro de Negocios
 *----------------------------------------------------------------------
-      ls_cvis_ei_extern-partner-header-object_task = lv_object_task. "I=Incluir, U=Update, D=Deletar
-
+      ls_cvis_ei_extern-partner-header-object_task                                      = <fs_bp_numbers>-task_bp.
       ls_cvis_ei_extern-partner-header-object_instance-bpartnerguid                     = <fs_bp_numbers>-bp_guid.
       ls_cvis_ei_extern-partner-header-object_instance-bpartner                         = <fs_bp_numbers>-bp_number.
       ls_cvis_ei_extern-partner-header-object_instance-identificationnumber             = <fs_bp_numbers>-kunnr.
@@ -666,13 +673,6 @@ CLASS lcl_bupa IMPLEMENTATION .
 
       "Set BP Roles Category
       ls_cvis_ei_extern-partner-central_data-role-roles = me->set_rolecategory( <fs_bp_numbers>-kunnr ).
-
-*----------------------------------------------------------------------
-*    Contact persons
-*----------------------------------------------------------------------
-*      CALL METHOD me->create_contact
-*        CHANGING
-*          ch_s_bp_numbers = <fs_bp_numbers>.
 
 *----------------------------------------------------------------------
 *    Name data
@@ -704,13 +704,11 @@ CLASS lcl_bupa IMPLEMENTATION .
 *----------------------------------------------------------------------
 *    Business Partner Customer role data
 *----------------------------------------------------------------------
-*      ls_cvis_ei_extern-ensure_create-create_customer = abap_true.
-      ls_cvis_ei_extern-customer-header-object_task = lv_object_task .
-      ls_cvis_ei_extern-customer-header-object_instance-kunnr = <fs_bp_numbers>-kunnr.
-
-      ls_cvis_ei_extern-customer-company_data-company = me->fill_company_data( <fs_bp_numbers>-kunnr ).
-
-      ls_cvis_ei_extern-customer-sales_data-sales = me->fill_sales_data( <fs_bp_numbers>-kunnr ).
+      ls_cvis_ei_extern-ensure_create-create_customer           = <fs_bp_numbers>-create_customer.
+      ls_cvis_ei_extern-customer-header-object_task             = <fs_bp_numbers>-task_customer.
+      ls_cvis_ei_extern-customer-header-object_instance-kunnr   = <fs_bp_numbers>-kunnr.
+      ls_cvis_ei_extern-customer-company_data-company           = me->fill_company_data( <fs_bp_numbers>-kunnr ).
+      ls_cvis_ei_extern-customer-sales_data-sales               = me->fill_sales_data( <fs_bp_numbers>-kunnr ).
 
       "Definir logica para cada tipo de cliente
       ls_cvis_ei_extern-customer-central_data-central-data-icmstaxpay = 'NO'. "Contribuinte Normal
@@ -769,7 +767,6 @@ CLASS lcl_bupa IMPLEMENTATION .
         MESSAGE ID 'BUPA_DIALOG_JOEL' TYPE 'S' NUMBER '108' INTO DATA(lv_msgdummy).
 
         "store messages
-*        CALL METHOD lcl_messages=>store( lv_tabix ).
         CALL METHOD lcl_messages=>store( <fs_bp_numbers>-kunnr ).
 
         CLEAR lt_cvis_ei_extern.
@@ -1289,7 +1286,6 @@ CLASS lcl_bupa IMPLEMENTATION .
                     <fs_object_msg>-message_v4
         INTO lv_msgdummy.
 
-*        CALL METHOD lcl_messages=>store( lv_tabix ).
         CALL METHOD lcl_messages=>store( ch_s_bp_numbers-kunnr ).
 
         IF <fs_object_msg>-type CA 'AE'.
@@ -1301,7 +1297,6 @@ CLASS lcl_bupa IMPLEMENTATION .
     ENDLOOP. "LOOP AT im_t_bapiretm ASSIGNING <fs_bapiretm>.
 
     CALL METHOD me->check_customer_iu_successfully( ch_s_bp_numbers ).
-
 
   ENDMETHOD.
 
@@ -1686,18 +1681,34 @@ CLASS lcl_bupa IMPLEMENTATION .
           OTHERS          = 4.
 
       IF sy-subrc EQ 1.
-
-        ls_cmds_ei_sales-task = cc_object_task_insert. " I Insert
-
+        ls_cmds_ei_sales-task       = cc_object_task_insert. " I Insert
+        ls_cmds_ei_functions-task   = cc_object_task_insert. " I Insert
       ELSE.
-
-        ls_cmds_ei_sales-task = cc_object_task_update.  " U Update
-
+        ls_cmds_ei_sales-task       = cc_object_task_update.  " U Update
+        ls_cmds_ei_functions-task   = cc_object_task_update.  " U Update
       ENDIF.
 
       MOVE-CORRESPONDING:
-      <fs_sales_data> TO ls_cmds_ei_sales-data_key,
-      <fs_sales_data> TO ls_cmds_ei_sales-data.
+      <fs_sales_data>       TO ls_cmds_ei_sales-data_key,
+      <fs_sales_data>       TO ls_cmds_ei_sales-data.
+
+      ls_cmds_ei_functions-data-partner   = <fs_sales_data>-kunnr.
+
+      ls_cmds_ei_functions-data_key-parvw = 'AG'.   "SP Emissor da ordem
+*      ls_cmds_ei_functions-data_key-parza = '001'.
+      APPEND ls_cmds_ei_functions TO ls_cmds_ei_sales-functions-functions.
+
+      ls_cmds_ei_functions-data_key-parvw = 'RE'.   "BP Recebedor da fatura
+*      ls_cmds_ei_functions-data_key-parza = '002'.
+      APPEND ls_cmds_ei_functions TO ls_cmds_ei_sales-functions-functions.
+
+      ls_cmds_ei_functions-data_key-parvw = 'RG'.   "PY Pagador
+*      ls_cmds_ei_functions-data_key-parza = '003'.
+      APPEND ls_cmds_ei_functions TO ls_cmds_ei_sales-functions-functions.
+
+      ls_cmds_ei_functions-data_key-parvw = 'WE'.   "SH Receb.mercad.
+*      ls_cmds_ei_functions-data_key-parza = '004'.
+      APPEND ls_cmds_ei_functions TO ls_cmds_ei_sales-functions-functions.
 
       APPEND ls_cmds_ei_sales TO r_result.
 
@@ -1772,8 +1783,7 @@ CLASS lcl_bupa IMPLEMENTATION .
   ENDMETHOD.
 
 *&----------------------------------------------------------------------*
-*&  METHOD EFFECTIVE_LOAD
-*&
+*&  METHOD compare_data
 *&----------------------------------------------------------------------*
   METHOD compare_data.
 
@@ -1786,8 +1796,6 @@ CLASS lcl_bupa IMPLEMENTATION .
     CREATE DATA lo_data LIKE im_s_current.
 
     lo_struct_descr ?= cl_abap_structdescr=>describe_by_data_ref( lo_data ).
-*    lo_table_descr ?= cl_abap_typedescr=>describe_by_data( it_knb1 ).
-*    lo_struct_descr ?= lo_table_descr->get_table_line_type( ).
     it_columns = lo_struct_descr->components.
 
     LOOP AT it_columns ASSIGNING FIELD-SYMBOL(<fs_field>).
@@ -1822,7 +1830,6 @@ CLASS lcl_bupa IMPLEMENTATION .
       cc_msg_num_exists_org       TYPE syst-msgno VALUE '155', "Cliente &1 já foi criado para empresa &2, área de vendas &3
       cc_msg_num_created_bukrs    TYPE syst-msgno VALUE '171', "O cliente &1 foi criado na empresa &2..
       cc_msg_num_created_org      TYPE syst-msgno VALUE '173'. "O cliente &1 foi criado na organização de compras &2.
-
 
     DATA:
       vl_msg_num TYPE syst-msgno VALUE IS INITIAL,
@@ -1902,7 +1909,7 @@ CLASS lcl_bupa IMPLEMENTATION .
 
         ELSE. "OK
 
-          IF im_s_bp_numbers-task EQ cc_object_task_insert.
+          IF im_s_bp_numbers-task_customer EQ cc_object_task_insert.
 
             "O cliente &1 foi criado na empresa &2
             vl_msg_num = cc_msg_num_created_bukrs.
@@ -1925,7 +1932,6 @@ CLASS lcl_bupa IMPLEMENTATION .
         ENDIF.
       ENDLOOP.
 
-
       LOOP AT me->o_file->upload_data-sales_data ASSIGNING FIELD-SYMBOL(<fs_sales_data>)
               USING KEY key_kunnr WHERE kunnr = im_s_bp_numbers-kunnr.
 
@@ -1935,8 +1941,8 @@ CLASS lcl_bupa IMPLEMENTATION .
             i_vkorg         = <fs_sales_data>-vkorg  " Sales Organization
             i_vtweg         = <fs_sales_data>-vtweg  " Distribution Channel
             i_spart         = <fs_sales_data>-spart  " Division
-            i_reset_buffer  = abap_true                 " Clear Buffer? (Yes = X)
-*           i_bypassing_buffer =                  " Process Buffer? (No = X)
+            i_reset_buffer  = abap_true              " Clear Buffer? (Yes = X)
+*           i_bypassing_buffer =                     " Process Buffer? (No = X)
 *           i_cvp_behavior  =
           EXCEPTIONS
             not_found       = 1                " No Entry Found
@@ -1972,6 +1978,33 @@ CLASS lcl_bupa IMPLEMENTATION .
       ENDLOOP.
 
     ENDIF.
+
+  ENDMETHOD.
+
+  METHOD check_customer_exists.
+
+    CALL FUNCTION 'KNA1_SINGLE_READ'
+      EXPORTING
+        kzrfb         = abap_true               " Indicator: Refresh Buffer Entry
+        kna1_kunnr    = ch_s_bp_numbers-kunnr   " Customer Number
+*       cvp_behavior  =                  " Behavior for API
+      EXCEPTIONS
+        not_found     = 1
+        kunnr_blocked = 2
+        OTHERS        = 3.
+
+    IF sy-subrc EQ 1.
+*    Customer does not exist
+      ch_s_bp_numbers-create_customer = abap_true.
+      ch_s_bp_numbers-task_customer   = cc_object_task_insert.
+
+
+    ELSE.
+*    Customer already exists
+      ch_s_bp_numbers-create_customer = abap_false.
+      ch_s_bp_numbers-task_customer   = cc_object_task_update.
+    ENDIF.
+
 
   ENDMETHOD.
 
