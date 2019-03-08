@@ -150,21 +150,27 @@ FUNCTION bapi_criar_tarefas.
 *     Se tudo OK
       IF wa_return IS INITIAL.
 
-        IF NOT ti_tarefas_serv[] IS INITIAL.
+*       Se é execução valendo.
+*       A simulação no SHDB não funciona.
+        IF p_i_testrun EQ abap_false.
 
-          REFRESH ti_return.
+          IF NOT ti_tarefas_serv[] IS INITIAL.
 
-*         Criar as tarefas de serviço via SHDB na CN22
-          CALL FUNCTION 'ZFPS_SHDB_CN22'
-            EXPORTING
-              p_i_diag_rede   = p_i_diag_rede
-              p_i_ti_tarefas  = ti_tarefas_serv[]
-              p_i_ti_servicos = p_i_ti_servicos[]
-              p_i_testrun     = p_i_testrun
-            IMPORTING
-              p_e_ti_return   = ti_return[].
+            REFRESH ti_return.
 
-          APPEND LINES OF ti_return TO ti_return_fim.
+*           Criar as tarefas de serviço via SHDB na CN22
+            CALL FUNCTION 'ZFPS_SHDB_CN22'
+              EXPORTING
+                p_i_diag_rede   = p_i_diag_rede
+                p_i_ti_tarefas  = ti_tarefas_serv[]
+                p_i_ti_servicos = p_i_ti_servicos[]
+                p_i_testrun     = p_i_testrun
+              IMPORTING
+                p_e_ti_return   = ti_return[].
+
+            APPEND LINES OF ti_return TO ti_return_fim.
+
+          ENDIF.
 
         ENDIF.
 

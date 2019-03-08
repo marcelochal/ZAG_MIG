@@ -37,6 +37,16 @@ FUNCTION bapi_criar_materiais.
 *"     REFERENCE(P_E_TI_RETURN) TYPE  BAPIRET2_TAB
 *"----------------------------------------------------------------------
 
+  TYPES: BEGIN OF ty_resb,
+           aufnr TYPE aufnr, "DR
+           vornr TYPE vornr, "Operação
+           posnr TYPE aposn, "Item
+           matnr TYPE matnr, "Material
+         END OF ty_resb.
+
+  TYPES: ty_it_resb TYPE SORTED TABLE OF ty_resb
+                    WITH NON-UNIQUE KEY aufnr vornr posnr.
+
   DATA: lc_valuepart   TYPE valuepart,
         lc_erro        TYPE c,
         wa_return	     TYPE bapiret2,
@@ -48,7 +58,12 @@ FUNCTION bapi_criar_materiais.
         ti_return_pc   TYPE bapiret2_tab,
         ti_return_fim  TYPE bapiret2_tab,
         ti_materiais   TYPE ztps_bapi_network_comp_add,
-        ti_messages    TYPE rpm_bapi_meth_messages.
+        wa_material    TYPE zeps_bapi_network_comp_add,
+        ti_materiais_2 TYPE STANDARD TABLE OF ty_resb,
+        wa_material_2  TYPE ty_resb,
+        ti_messages    TYPE rpm_bapi_meth_messages,
+        ti_resb        TYPE ty_it_resb,
+        wa_resb        TYPE ty_resb.
 
 *-------------------------------------------------------------------*
 *-------------------------------------------------------------------*
@@ -153,8 +168,99 @@ FUNCTION bapi_criar_materiais.
 
     ENDIF.
 
+*-----------------------------------------------------*
+    LOOP AT ti_materiais INTO wa_material.
+      wa_material_2-aufnr = p_i_diag_rede.
+      wa_material_2-vornr = wa_material-activity.
+      wa_material_2-posnr = wa_material-item_number.
+      wa_material_2-matnr = wa_material-material.
+      APPEND wa_material_2 TO ti_materiais_2.
+      CLEAR  wa_material_2.
+    ENDLOOP.
+
+    SELECT
+          aufnr "DR
+          vornr "Operação
+          posnr "Item
+          matnr "Material
+          FROM resb
+          INTO TABLE ti_resb
+          FOR ALL ENTRIES IN ti_materiais_2
+              WHERE matnr EQ ti_materiais_2-matnr
+                AND aufnr EQ ti_materiais_2-aufnr
+                AND vornr EQ ti_materiais_2-vornr
+                AND posnr EQ ti_materiais_2-posnr.
+
+    IF sy-subrc EQ 0.
+
+      LOOP AT ti_materiais INTO wa_material.
+
+        READ TABLE ti_resb INTO wa_resb WITH TABLE KEY aufnr = p_i_diag_rede
+                                                       vornr = wa_material-activity
+                                                       posnr = wa_material-item_number.
+
+        IF sy-subrc EQ 0.
+
+          IF wa_resb-matnr(18) NE wa_material-material.
+
+            wa_return-type    = 'E'.
+
+            CONCATENATE p_i_diag_rede
+                        wa_material-activity
+                        wa_material-item_number
+                        wa_material-material
+                        'Não carregado'
+                        INTO wa_return-message
+                        SEPARATED BY space.
+
+            APPEND wa_return TO ti_return_fim.
+            CLEAR  wa_return.
+
+          ENDIF.
+
+        ELSE.
+
+          wa_return-type    = 'E'.
+
+          CONCATENATE p_i_diag_rede
+                      wa_material-activity
+                      wa_material-item_number
+                      wa_material-material
+                      'Não carregado'
+                      INTO wa_return-message
+                      SEPARATED BY space.
+
+          APPEND wa_return TO ti_return_fim.
+          CLEAR  wa_return.
+
+        ENDIF.
+
+      ENDLOOP.
+
+    ELSE.
+
+      LOOP AT ti_materiais INTO wa_material.
+
+        wa_return-type    = 'E'.
+
+        CONCATENATE p_i_diag_rede
+                    wa_material-activity
+                    wa_material-item_number
+                    wa_material-material
+                    'Não carregado'
+                    INTO wa_return-message
+                    SEPARATED BY space.
+
+        APPEND wa_return TO ti_return_fim.
+        CLEAR  wa_return.
+
+      ENDLOOP.
+
+    ENDIF.
+
   ENDIF.
 
+*-----------------------------------------------------*
   IF NOT ti_return_fim[] IS INITIAL.
     p_e_ti_return[] = ti_return_fim[].
   ENDIF.

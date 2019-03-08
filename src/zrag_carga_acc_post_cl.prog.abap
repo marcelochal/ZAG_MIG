@@ -19,12 +19,6 @@
 *& INCLUDE ZRAG_CARGA_ACC_POST_CL
 *&---------------------------------------------------------------------*
 
-CLASS cx_dyn_t100 DEFINITION INHERITING FROM cx_dynamic_check.
-  PUBLIC SECTION.
-    INTERFACES if_t100_dyn_msg.
-    ALIASES msgty FOR if_t100_dyn_msg~msgty.
-ENDCLASS.
-
 *&---------------------------------------------------------------------*
 *& CLASS DEFINITION LCL_PROGRESS_INDICATOR
 *&---------------------------------------------------------------------*
@@ -51,7 +45,8 @@ CLASS lcl_progress_indicator DEFINITION.
 
     DATA:
       total TYPE i,
-      ratio TYPE decfloat16.
+      ratio TYPE decfloat16,
+      rtime TYPE i.
 
 ENDCLASS.
 
@@ -123,10 +118,12 @@ CLASS lcl_file DEFINITION.
       END OF ty_serialize.
 
     CONSTANTS:
-      cc_parameter_id1 TYPE memoryid      VALUE 'ZFILE_01',
-      c_memory_id1     TYPE memoryid      VALUE 'ZRAG_01',
-      cc_msg_error     TYPE smesg-msgty   VALUE 'E', "Type of message (E)
-      c_currency_brl   TYPE c LENGTH 3    VALUE 'BRL'.
+      c_memory_id1   TYPE memoryid      VALUE 'ZRAG_01',
+      cc_msg_error   TYPE smesg-msgty   VALUE 'E', "Type of message (E)
+      c_currency_brl TYPE c LENGTH 3    VALUE 'BRL',
+      c_rb1_id       TYPE memoryid      VALUE 'ZMIG_CARGARB1',
+      c_rb2_id       TYPE memoryid      VALUE 'ZMIG_CARGARB2',
+      c_rb3_id       TYPE memoryid      VALUE 'ZMIG_CARGARB3'.
 
 * Interface required to serialize the object
     INTERFACES:
@@ -149,15 +146,27 @@ CLASS lcl_file DEFINITION.
           im_b_onli TYPE abap_bool OPTIONAL,
       set_parameter,
       get_parameter,
-      get_object_from_memory.
+      get_object_from_memory,
+      set_obj_to_memory,
+      upload_to_server,
+      export_model_zcl_excel
+        IMPORTING
+          VALUE(im_model)       TYPE any
+          VALUE(im_v_file_name) TYPE string,
+      set_table_model
+        IMPORTING
+          im_o_excel     TYPE REF TO zcl_excel
+          im_v_plan_name TYPE zexcel_sheet_title
+          im_t_table     TYPE ANY TABLE
+          p_first        TYPE abap_bool.
 
     METHODS:
       constructor
         IMPORTING
           im_v_file_path TYPE any,
-      set_parameter_id
-        IMPORTING
-          im_v_file TYPE rlgrap-filename,
+*      set_parameter_id
+*        IMPORTING
+*          im_v_file TYPE rlgrap-filename,
       get_file_path
         RETURNING
           VALUE(r_result) TYPE rlgrap-filename,
@@ -185,7 +194,10 @@ CLASS lcl_file DEFINITION.
           upload_date_not_found,
       upload_zcl_excel
         CHANGING
-          ch_s_converted_data TYPE any,
+          ch_s_converted_data TYPE any
+        EXCEPTIONS
+          conversion_failed
+          upload_date_not_found,
       get_bus_area
         IMPORTING
           im_v_bukrs      TYPE bukrs
@@ -201,7 +213,8 @@ CLASS lcl_file DEFINITION.
           ch_t_accountpayable    TYPE bapiacap09_tab OPTIONAL
           ch_s_documentheader    TYPE bapiache09
           ch_t_accountgl         TYPE bapiacgl09_tab OPTIONAL
-          ch_t_currencyamount    TYPE bapiaccr09_tab,
+          ch_t_currencyamount    TYPE bapiaccr09_tab
+          ch_t_extension2        TYPE bapiparex_tab  OPTIONAL,
       document_post
         IMPORTING
           im_v_bukrs             TYPE bukrs      OPTIONAL
@@ -212,7 +225,8 @@ CLASS lcl_file DEFINITION.
           ch_t_accountreceivable TYPE bapiacar09_tab OPTIONAL
           ch_t_accountpayable    TYPE bapiacap09_tab OPTIONAL
           ch_t_accountgl         TYPE bapiacgl09_tab OPTIONAL
-          ch_t_currencyamount    TYPE bapiaccr09_tab OPTIONAL,
+          ch_t_currencyamount    TYPE bapiaccr09_tab OPTIONAL
+          ch_t_extension2        TYPE bapiparex_tab  OPTIONAL,
       return_msg
         IMPORTING
           i_t_return TYPE bapiret2_t OPTIONAL
@@ -261,7 +275,13 @@ CLASS lcl_gl_balance DEFINITION INHERITING FROM lcl_file.
         IMPORTING
           im_t_upload_data TYPE ty_t_upload_data,
       upload REDEFINITION,
-      handle_data.
+      handle_data,
+      handle_data_single,
+      get_housebank
+        CHANGING
+          ch_s_accountgl TYPE bapiacgl09
+        RETURNING
+          VALUE(r_t012k) TYPE t012k.
 
   PROTECTED SECTION.
     METHODS:
@@ -384,7 +404,7 @@ ENDCLASS.
 *&---------------------------------------------------------------------*
 *& CLASS DEFINITION LCL_ACC_PAYABLE
 *&---------------------------------------------------------------------*
-CLASS lcl_acc_payable DEFINITION INHERITING 	FROM lcl_file.
+CLASS lcl_acc_payable DEFINITION INHERITING   FROM lcl_file.
 
   PUBLIC SECTION.
     TYPES:
@@ -437,8 +457,7 @@ CLASS lcl_glaccount DEFINITION INHERITING     FROM lcl_file.
   PUBLIC SECTION.
 
     TYPES:
-      ty_s_upload_data LIKE gs_glaccount,
-      ty_bukrs_tab     TYPE STANDARD TABLE OF ty_s_bukrs WITH DEFAULT KEY.
+      ty_s_upload_data LIKE gs_glaccount.
 
     METHODS:
       get_upload_data RETURNING VALUE(r_result)  TYPE ty_s_upload_data,
@@ -489,21 +508,25 @@ CLASS lcl_progress_indicator IMPLEMENTATION.
 
     DATA:
       lv_text     TYPE string,
-      lv_output_i TYPE boole_d VALUE IS INITIAL.
+      lv_output_i TYPE boole_d VALUE IS INITIAL,
+      lv_rtime    TYPE i.
 
-    IF me->total IS NOT INITIAL.
-
-      lv_text = | { im_v_text } [{ im_v_processed } de { me->total }] |.
-
-    ELSE.
-
-      lv_text = im_v_text .
-
+    IF im_v_processed IS NOT INITIAL AND im_v_processed EQ 1.
+      GET RUN TIME FIELD me->rtime.
     ENDIF.
 
-    DATA(result_mod) = im_v_processed MOD me->ratio.
+    IF me->total IS NOT INITIAL.
+      lv_text = | { im_v_text } [{ im_v_processed } de { me->total }] |.
+    ELSE.
+      lv_text = im_v_text .
+    ENDIF.
 
-    IF ( im_v_processed LT 4 ) OR result_mod IS INITIAL.
+    DATA(lv_result_mod) = im_v_processed MOD me->ratio.
+
+*   Displays the message every 25% OR every 10sec or First times
+    IF ( im_v_processed LT 4 )    OR
+         lv_result_mod IS INITIAL OR
+         ( lv_rtime - me->rtime ) GT 10000. "10 sec
       lv_output_i = abap_true.
     ENDIF.
 
@@ -545,7 +568,10 @@ CLASS lcl_bal_log IMPLEMENTATION.
 
   METHOD msg_add.
     DATA:
-        ls_msg TYPE bal_s_msg.
+      ls_msg               TYPE bal_s_msg,
+      ls_msg_handle        TYPE balmsghndl,
+      lb_msg_was_logged    TYPE boolean,
+      lb_msg_was_displayed TYPE boolean.
 
     MOVE-CORRESPONDING im_s_msg TO ls_msg.
 
@@ -566,20 +592,44 @@ CLASS lcl_bal_log IMPLEMENTATION.
 
     CALL FUNCTION 'BAL_LOG_MSG_ADD'
       EXPORTING
-        i_log_handle     = me->log_handle   " Log handle
-        i_s_msg          = ls_msg           " Notification data
-*      IMPORTING
-*       e_s_msg_handle   =                  " Message handle
-*       e_msg_was_logged =                  " Message collected
-*       e_msg_was_displayed =               " Message output
+        i_log_handle        = me->log_handle   " Log handle
+        i_s_msg             = ls_msg           " Notification data
+      IMPORTING
+        e_s_msg_handle      = ls_msg_handle         " Message handle
+        e_msg_was_logged    = lb_msg_was_logged     " Message collected
+        e_msg_was_displayed = lb_msg_was_displayed  " Message output
       EXCEPTIONS
-        log_not_found    = 1                " Log not found
-        msg_inconsistent = 2                " Message inconsistent
-        log_is_full      = 3                " Message number 999999 reached. Log is full
-        OTHERS           = 4.
+        log_not_found       = 1                " Log not found
+        msg_inconsistent    = 2                " Message inconsistent
+        log_is_full         = 3                " Message number 999999 reached. Log is full
+        OTHERS              = 4.
 
     CASE sy-subrc.
       WHEN 1.
+
+        CALL METHOD me->create
+          EXPORTING
+            im_v_subobject          = me->log_header-subobject
+          EXCEPTIONS
+            log_header_inconsistent = 1
+            OTHERS                  = 2.
+
+        IF syst-subrc IS INITIAL.
+          CALL FUNCTION 'BAL_LOG_MSG_ADD'
+            EXPORTING
+              i_log_handle        = me->log_handle   " Log handle
+              i_s_msg             = ls_msg           " Notification data
+            IMPORTING
+              e_s_msg_handle      = ls_msg_handle         " Message handle
+              e_msg_was_logged    = lb_msg_was_logged     " Message collected
+              e_msg_was_displayed = lb_msg_was_displayed  " Message output
+            EXCEPTIONS
+              log_not_found       = 1                " Log not found
+              msg_inconsistent    = 2                " Message inconsistent
+              log_is_full         = 3                " Message number 999999 reached. Log is full
+              OTHERS              = 4.
+        ENDIF.
+
         MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
             WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 RAISING log_not_found.
       WHEN 2 OR 4.
@@ -630,7 +680,7 @@ CLASS lcl_bal_log IMPLEMENTATION.
         lt_log_handle TYPE bal_t_logh.
 
 * Check if active background processing
-    CHECK syst-batch IS NOT INITIAL.
+    CHECK syst-batch IS INITIAL.
 
     APPEND me->log_handle TO lt_log_handle.
 
@@ -743,7 +793,7 @@ CLASS lcl_file IMPLEMENTATION.
     DATA lv_value TYPE filepath.
 
     " Get the path parameter set for the user
-    GET PARAMETER ID lcl_file=>cc_parameter_id1 FIELD lv_value.
+    GET PARAMETER ID co_parameter_id1 FIELD lv_value.
 
     CALL METHOD cl_gui_frontend_services=>get_upload_download_path
       CHANGING
@@ -755,7 +805,7 @@ CLASS lcl_file IMPLEMENTATION.
     IF lv_value IS INITIAL.
       CONCATENATE ex_v_dirup 'file.xlsx' INTO r_filename.
     ELSE.
-      CONCATENATE ex_v_dirup lv_value   INTO r_filename.
+      CONCATENATE ex_v_dirup lv_value    INTO r_filename.
     ENDIF.
 
   ENDMETHOD.                    "get_init_filename
@@ -807,23 +857,38 @@ CLASS lcl_file IMPLEMENTATION.
 *&---------------------------------------------------------------------*
   METHOD upload_super.
 
-
     DATA:
       it_raw   TYPE truxs_t_text_data,
       go_error TYPE REF TO cx_root.
 
     TRY.
 
-        CALL FUNCTION 'TEXT_CONVERT_XLS_TO_SAP'
-          EXPORTING
-            i_line_header        = abap_true                " Character Field Length 1
-            i_tab_raw_data       = it_raw                   " WORK TABLE
-            i_filename           = me->file_path            " Local file for upload/download
-          TABLES
-            i_tab_converted_data = ch_tab_converted_data    " Predefined Type
-          EXCEPTIONS
-            conversion_failed    = 1
-            OTHERS               = 2.
+        CASE abap_true.
+
+          WHEN rb_up1.
+
+            CALL METHOD me->upload_zcl_excel
+              CHANGING
+                ch_s_converted_data   = ch_tab_converted_data
+              EXCEPTIONS
+                conversion_failed     = 1
+                upload_date_not_found = 2
+                OTHERS                = 3.
+
+          WHEN rb_up2.
+
+            CALL FUNCTION 'TEXT_CONVERT_XLS_TO_SAP'
+              EXPORTING
+                i_line_header        = abap_true                " Character Field Length 1
+                i_tab_raw_data       = it_raw                   " WORK TABLE
+                i_filename           = me->file_path            " Local file for upload/download
+              TABLES
+                i_tab_converted_data = ch_tab_converted_data    " Predefined Type
+              EXCEPTIONS
+                conversion_failed    = 1
+                OTHERS               = 2.
+
+        ENDCASE.
 
         IF sy-subrc NE 0.
 
@@ -927,10 +992,20 @@ CLASS lcl_file IMPLEMENTATION.
     CLEAR: l_text.
 
     MOVE:
-      icon_previous_page      TO l_text-icon_id,
-      'Carregar aquivo'(b20)         TO l_text-text,        "#EC *
-      'Carregar arq.'(b21)  TO l_text-icon_text,
-      l_text                  TO sscrfields-functxt_02.
+      icon_previous_page        TO l_text-icon_id,
+      'Carregar aquivo'(b20)    TO l_text-text,             "#EC *
+      'Carregar arq.'(b21)      TO l_text-icon_text,
+      l_text                    TO sscrfields-functxt_02.
+
+    CLEAR: l_text.
+
+    CONCATENATE icon_previous_page 'Carregar arq.'(b21)
+        INTO b1_text SEPARATED BY space RESPECTING BLANKS.
+
+    WRITE:
+      icon_yellow_light AS ICON TO icon_001,
+      icon_yellow_light AS ICON TO icon_002.
+
 
   ENDMETHOD.
 
@@ -946,7 +1021,8 @@ CLASS lcl_file IMPLEMENTATION.
       lt_acc_receivable TYPE lcl_acc_receivable=>ty_t_upload_data,
       lt_acc_vendor     TYPE lcl_acc_payable=>ty_t_upload_data,
       lt_account_plan   TYPE TABLE OF lcl_glaccount=>ty_s_upload_data,
-      lx_xml            TYPE xstring.
+      lx_xml            TYPE xstring,
+      lv_file_name      TYPE string.
 
     CONSTANTS:
       c_default_extension TYPE string VALUE 'xlsx',
@@ -956,83 +1032,30 @@ CLASS lcl_file IMPLEMENTATION.
     FIELD-SYMBOLS <fs_model> TYPE ANY TABLE .
 
     CASE abap_true.
-      WHEN rb_glbal.
+      WHEN rb_glbal.    "Saldo de contas do razão
         ASSIGN lt_glbal_model       TO <fs_model>.
+        lv_file_name = %_rb_glbal_%_app_%-text.
 
-      WHEN rb_psbal.
+      WHEN rb_psbal.    "Saldo de projetos
         ASSIGN lt_psbal_model       TO <fs_model>.
+        lv_file_name = %_rb_psbal_%_app_%-text.
 
-      WHEN rb_kunnr.
+      WHEN rb_kunnr.    "Faturas de Clientes
         ASSIGN lt_acc_receivable    TO <fs_model>.
+        lv_file_name = %_rb_kunnr_%_app_%-text.
 
-      WHEN rb_lfn.
+      WHEN rb_lfn.      "Faturas de Fornecedores
         ASSIGN lt_acc_vendor        TO <fs_model>.
+        lv_file_name = %_rb_lfn_%_app_%-text.
 
-      WHEN rb_glact.
+      WHEN rb_glact.    "Plano de Contas
         ASSIGN lt_account_plan      TO <fs_model>.
-
-*        DATA:
-*          lo_excel          TYPE REF TO zcl_excel,
-*          lo_worksheet      TYPE REF TO zcl_excel_worksheet,
-*          lo_writer         TYPE REF TO zif_excel_writer,
-*          lx_data           TYPE xstring,
-*          ti_rawdata        TYPE solix_tab,        " Will be used for downloading or open directly
-*          lv_bytecount      TYPE i,                " Will be used for downloading or open directly
-*          lv_filename       TYPE string,
-*          lc_title          TYPE zexcel_sheet_title,
-*          ls_table_settings TYPE zexcel_s_table_settings.
-*
-*        CREATE OBJECT lo_excel.
-*
-*        lc_title = 'SKA1'.
-*
-*        ls_table_settings-top_left_column = 'A'.
-*        ls_table_settings-top_left_row    = 1.
-*        ls_table_settings-table_name      = lc_title.
-*        ls_table_settings-table_style     = zcl_excel_table=>builtinstyle_medium6.
-*
-*        TRY.
-*
-*            " Get active sheet
-**            IF p_first IS NOT INITIAL.
-**              lo_worksheet = po_excel->get_active_worksheet( ).
-**            ELSE.
-*            lo_worksheet = lo_excel->add_new_worksheet( ).
-**            ENDIF.
-*
-*            lo_worksheet->set_title( ip_title = lc_title ).
-*
-*            lo_worksheet->bind_table(
-*              EXPORTING
-*                ip_table          =
-*                is_table_settings = ls_table_settings ).
-*
-*            DATA(lv_column) = lo_worksheet->get_highest_column( ).
-*            DATA count TYPE i VALUE 1.
-*            DO lv_column TIMES.
-*              lo_worksheet->set_column_width(
-*                EXPORTING
-*                  ip_column         = count
-*                  ip_width_autosize = abap_true ).
-*              count = count + 1.
-*            ENDDO.
-*
-*          CATCH zcx_excel.
-*        ENDTRY.
-*
-*        " Define a primeira planilha como ativa
-*        lo_excel->set_active_sheet_index( 1 ).
-*
-*        CREATE OBJECT lo_writer TYPE zcl_excel_writer_2007.
-*
-*        lx_data = lo_writer->write_file( lo_excel ).
-*
-*        ti_rawdata = cl_bcs_convert=>xstring_to_solix( iv_xstring  = lx_data ).
-*
-*        lv_bytecount = xstrlen( lx_data ).
-
-
-
+        lv_file_name = %_rb_glact_%_app_%-text.
+        CALL METHOD lcl_file=>export_model_zcl_excel
+          EXPORTING
+            im_model       = <fs_model>
+            im_v_file_name = lv_file_name && c_default_file_name.
+        RETURN.
     ENDCASE.
 
     TRY .
@@ -1051,36 +1074,13 @@ CLASS lcl_file IMPLEMENTATION.
         i_xml                      = lx_xml
         i_default_extension        = c_default_extension
         i_initial_directory        = lcl_file=>get_init_filename( )
-        i_default_file_name        = syst-tcode && c_default_file_name
+        i_default_file_name        = lv_file_name && c_default_file_name
         i_mask                     = c_default_mask
       EXCEPTIONS
         application_not_executable = 1
         OTHERS                     = 2.
 
   ENDMETHOD.
-
-  METHOD set_parameter_id.
-
-    DATA :
-      lv_dir  TYPE localfile,
-      lv_file TYPE localfile.
-
-    CALL FUNCTION 'SO_SPLIT_FILE_AND_PATH'
-      EXPORTING
-        full_name     = me->file_path
-      IMPORTING
-        stripped_name = lv_file   "file name
-        file_path     = lv_dir    "directory path
-      EXCEPTIONS
-        x_error       = 1
-        OTHERS        = 2.
-
-    SET PARAMETER ID me->cc_parameter_id1 FIELD lv_file.
-
-  ENDMETHOD.
-
-
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 *&---------------------------------------------------------------------*
 *&     METHOD FILE_VALIDATE_PATH
@@ -1143,6 +1143,7 @@ CLASS lcl_file IMPLEMENTATION.
           accountpayable    = ch_t_accountpayable
           accountgl         = ch_t_accountgl
           currencyamount    = ch_t_currencyamount
+          extension2        = ch_t_extension2
           return            = ex_t_return.
 
       CALL FUNCTION 'BAPI_TRANSACTION_ROLLBACK'.
@@ -1156,6 +1157,7 @@ CLASS lcl_file IMPLEMENTATION.
           accountpayable    = ch_t_accountpayable
           accountgl         = ch_t_accountgl
           currencyamount    = ch_t_currencyamount
+          extension2        = ch_t_extension2
           return            = ex_t_return.
 
 *      READ TABLE ex_t_return ASSIGNING FIELD-SYMBOL(<fs_return>) WITH KEY type = 'E'.
@@ -1181,7 +1183,11 @@ CLASS lcl_file IMPLEMENTATION.
       ls_currencyamount_cp TYPE bapiaccr09.
 
     ls_accountgl-itemno_acc = lines( ch_t_accountgl ) + 1.
-    ls_accountgl-bus_area = me->get_bus_area( im_v_bukrs ).
+*    ls_accountgl-bus_area = me->get_bus_area( im_v_bukrs ).
+
+*    IF p_blart EQ 'LG' OR p_blart EQ 'LS'.
+    READ TABLE ch_t_accountgl TRANSPORTING bus_area INTO ls_accountgl INDEX 1.
+*    ENDIF.
 
     MOVE:
           p_gkont                  TO ls_accountgl-gl_account,
@@ -1202,7 +1208,7 @@ CLASS lcl_file IMPLEMENTATION.
     MOVE-CORRESPONDING ls_accountgl    TO ls_currencyamount_cp.
     ls_currencyamount_cp-currency       = me->c_currency_brl.
     ls_currencyamount_cp-currency_iso   = me->c_currency_brl.
-    ls_currencyamount_cp-curr_type         = '00'.
+    ls_currencyamount_cp-curr_type      = '00'.
     MULTIPLY ls_currencyamount_cp-amt_doccur BY '-1'.
     APPEND   ls_currencyamount_cp TO ch_t_currencyamount.
 
@@ -1229,13 +1235,12 @@ CLASS lcl_file IMPLEMENTATION.
 *       ch_t_accountpayable =
         ch_s_documentheader = ls_documentheader
         ch_t_accountgl      = ch_t_accountgl
-        ch_t_currencyamount = ch_t_currencyamount.
+        ch_t_currencyamount = ch_t_currencyamount
+        ch_t_extension2     = ch_t_extension2.
 
     CALL METHOD me->return_msg
       EXPORTING
         i_t_return = ex_t_return.
-
-    CALL METHOD me->o_bal_log->show.
 
   ENDMETHOD.
 
@@ -1250,6 +1255,10 @@ CLASS lcl_file IMPLEMENTATION.
          ls_msg      TYPE bal_s_msg.
 
     ls_msg-msg_count = lines( i_t_return ).
+
+    MESSAGE ID 'ZCMCARGA' TYPE 'I' NUMBER '014' WITH im_v_text INTO DATA(lv_msg_dummy).
+    CALL METHOD me->o_bal_log->msg_add( ).
+    CALL METHOD me->o_bal_log->save( ).
 
     LOOP AT i_t_return ASSIGNING FIELD-SYMBOL(<fs_return>).
 
@@ -1332,10 +1341,14 @@ CLASS lcl_file IMPLEMENTATION.
 
         ENDIF.
 
-        IF im_b_onli IS NOT INITIAL.
+        CALL METHOD o_file_gl->export_obj_to_memory.
 
-          o_file_gl->handle_data( ).
-
+        IF   im_b_onli IS NOT INITIAL.
+          IF p_glbal1  IS NOT INITIAL.
+            CALL METHOD o_file_gl->handle_data_single( ).
+          ELSE.
+            CALL METHOD o_file_gl->handle_data( ).
+          ENDIF.
         ENDIF.
 
 *---------------------- VENDOR ---------------------------------------
@@ -1360,6 +1373,9 @@ CLASS lcl_file IMPLEMENTATION.
           WRITE icon_green_light AS ICON TO icon_001.
 
         ENDIF.
+
+        CALL METHOD o_file_ap->export_obj_to_memory.
+
         IF im_b_onli IS NOT INITIAL.
 
           o_file_ap->handle_data_ap( ).
@@ -1388,6 +1404,9 @@ CLASS lcl_file IMPLEMENTATION.
           WRITE icon_green_light AS ICON TO icon_001.
 
         ENDIF.
+
+        CALL METHOD o_file_ps->export_obj_to_memory.
+
         IF  im_b_onli IS NOT INITIAL.
 
           o_file_ps->handle_data_ps( ).
@@ -1457,8 +1476,6 @@ CLASS lcl_file IMPLEMENTATION.
 
         ENDIF.
 
-
-
     ENDCASE.
 
 
@@ -1498,10 +1515,7 @@ CLASS lcl_file IMPLEMENTATION.
 
     CALL METHOD me->o_bal_log->msg_add
       EXCEPTIONS
-        log_not_found    = 1
-        msg_inconsistent = 2
-        log_is_full      = 3
-        OTHERS           = 4.
+        OTHERS = 1.
     IF sy-subrc NE 0.
       MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno
         WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 DISPLAY LIKE 'E'.
@@ -1513,12 +1527,16 @@ CLASS lcl_file IMPLEMENTATION.
     lv_msg1 = 'Transação:'(030) && sy-tcode && '  Programa:'(032) && sy-repid.
     WRITE lv_msg1.
     MESSAGE  lv_msg1 TYPE 'S'.
-    CALL METHOD me->o_bal_log->msg_add .
+    CALL METHOD me->o_bal_log->msg_add
+      EXCEPTIONS
+        OTHERS = 1.
 
     lv_msg1 = 'Arquivo:' && me->file_path.
     WRITE / lv_msg1.
     MESSAGE  lv_msg1 TYPE 'S'.
-    CALL METHOD me->o_bal_log->msg_add .
+    CALL METHOD me->o_bal_log->msg_add
+      EXCEPTIONS
+        OTHERS = 1.
 
     NEW-LINE NO-SCROLLING.
 
@@ -1535,16 +1553,58 @@ CLASS lcl_file IMPLEMENTATION.
   METHOD get_parameter.
 
     DATA:
-        lv_radiobutton TYPE screen-name.
+      lv_radiobutton TYPE screen-name,
+      wa_screen      TYPE screen.
 
-    CLEAR: rb_glbal, rb_psbal, rb_lfn, rb_kunnr.
+    GET PARAMETER ID co_parameter_id1 FIELD p_file.
+    GET PARAMETER ID co_parameter_id2 FIELD p_fserv.
+    GET PARAMETER ID co_parameter_sak FIELD p_gkont.
 
-    GET PARAMETER ID 'ZMIG_CARGA_ACC' FIELD lv_radiobutton.
+*   Clear all radio Button
+    LOOP AT SCREEN INTO wa_screen.
+      IF (  wa_screen-group1 EQ 'RB1' OR
+            wa_screen-group1 EQ 'RB2' OR
+            wa_screen-group1 EQ 'RB3' ) AND
+         wa_screen-group3 EQ 'PAR'.
+        ASSIGN (wa_screen-name) TO FIELD-SYMBOL(<fs_radiobutton>).
+        CLEAR: <fs_radiobutton>.
 
-    ASSIGN (lv_radiobutton) TO FIELD-SYMBOL(<fs_radiobutton>).
+      ENDIF.
+    ENDLOOP.
 
-    IF <fs_radiobutton> IS ASSIGNED.
-      <fs_radiobutton> = abap_true.
+    "Radio Button 1 ZMIG_CARGARD1
+    GET PARAMETER ID lcl_file=>c_rb1_id FIELD lv_radiobutton.
+    IF sy-subrc IS INITIAL.
+      ASSIGN (lv_radiobutton) TO <fs_radiobutton>.
+      IF <fs_radiobutton> IS ASSIGNED AND sy-subrc IS INITIAL.
+        <fs_radiobutton> = abap_true.
+      ENDIF.
+    ELSE.
+      rb_file1 = abap_true.
+    ENDIF.
+
+    "Radio Button 2
+    CLEAR lv_radiobutton.
+    UNASSIGN <fs_radiobutton>.
+
+    GET PARAMETER ID lcl_file=>c_rb2_id FIELD lv_radiobutton. "'ZMIG_CARGARD2'
+    IF sy-subrc IS INITIAL.
+      ASSIGN (lv_radiobutton) TO <fs_radiobutton>.
+      IF <fs_radiobutton> IS ASSIGNED AND sy-subrc IS INITIAL.
+        <fs_radiobutton> = abap_true.
+      ENDIF.
+    ENDIF.
+
+    "Radio Button 3
+    CLEAR lv_radiobutton.
+    UNASSIGN <fs_radiobutton>.
+
+    GET PARAMETER ID lcl_file=>c_rb3_id FIELD lv_radiobutton. "'ZMIG_CARGARD3'
+    IF sy-subrc IS INITIAL.
+      ASSIGN (lv_radiobutton) TO <fs_radiobutton>.
+      IF <fs_radiobutton> IS ASSIGNED AND sy-subrc IS INITIAL.
+        <fs_radiobutton> = abap_true.
+      ENDIF.
     ENDIF.
 
   ENDMETHOD.
@@ -1562,9 +1622,33 @@ CLASS lcl_file IMPLEMENTATION.
          wa_screen-group3 EQ 'PAR' AND
          <fs_radiobutton> EQ abap_true.
 
-        SET PARAMETER ID 'ZMIG_CARGA_ACC' FIELD wa_screen-name.
+        SET PARAMETER ID lcl_file=>c_rb1_id FIELD wa_screen-name.
       ENDIF.
     ENDLOOP.
+
+    LOOP AT SCREEN INTO wa_screen.
+      ASSIGN (wa_screen-name) TO <fs_radiobutton>.
+      IF wa_screen-group1 EQ 'RB2' AND
+         wa_screen-group3 EQ 'PAR' AND
+         <fs_radiobutton> EQ abap_true.
+
+        SET PARAMETER ID lcl_file=>c_rb2_id FIELD wa_screen-name.
+      ENDIF.
+    ENDLOOP.
+
+    LOOP AT SCREEN INTO wa_screen.
+      ASSIGN (wa_screen-name) TO <fs_radiobutton>.
+      IF wa_screen-group1 EQ 'RB3' AND
+         wa_screen-group3 EQ 'PAR' AND
+         <fs_radiobutton> EQ abap_true.
+
+        SET PARAMETER ID lcl_file=>c_rb3_id FIELD wa_screen-name.
+      ENDIF.
+    ENDLOOP.
+
+    SET PARAMETER ID co_parameter_id1 FIELD p_file.
+    SET PARAMETER ID co_parameter_id2 FIELD p_fserv.
+    SET PARAMETER ID co_parameter_sak FIELD p_gkont.
 
   ENDMETHOD.
 
@@ -1576,12 +1660,12 @@ CLASS lcl_file IMPLEMENTATION.
       lo_obj_ref TYPE REF TO object.
 
     IMPORT serial = ls_serial
-      FROM DATABASE demo_indx_blob(zm)
+      FROM DATABASE demo_indx_blob(sc)
       ID lcl_file=>c_memory_id1.
 
     CHECK sy-subrc IS INITIAL.
     FREE MEMORY ID lcl_file=>c_memory_id1.
-    DELETE FROM DATABASE demo_indx_blob(zm) ID lcl_file=>c_memory_id1.
+    DELETE FROM DATABASE demo_indx_blob(sc) ID lcl_file=>c_memory_id1.
 
     TRY.
 
@@ -1595,23 +1679,35 @@ CLASS lcl_file IMPLEMENTATION.
             CALL TRANSFORMATION id_indent
               SOURCE XML ls_serial-xml
               RESULT obj = o_file_ap.
+            IF o_file_ap->upload_data IS NOT INITIAL.
+              WRITE icon_green_light AS ICON TO icon_001.
+            ENDIF.
 
           WHEN TYPE  lcl_acc_receivable.
             CALL TRANSFORMATION id_indent
               SOURCE XML ls_serial-xml
               RESULT obj = o_file_ar.
+            IF o_file_ar->upload_data IS NOT INITIAL.
+              WRITE icon_green_light AS ICON TO icon_001.
+            ENDIF.
 
           WHEN TYPE  lcl_gl_balance.
             CALL TRANSFORMATION id_indent
               SOURCE XML ls_serial-xml
               RESULT obj = o_file_gl.
+            IF o_file_gl->upload_data IS NOT INITIAL.
+              WRITE icon_green_light AS ICON TO icon_001.
+            ENDIF.
 
           WHEN TYPE  lcl_ps_balance.
             CALL TRANSFORMATION id_indent
               SOURCE XML ls_serial-xml
               RESULT obj = o_file_ps.
+            IF o_file_ps->upload_data IS NOT INITIAL.
+              WRITE icon_green_light AS ICON TO icon_001.
+            ENDIF.
         ENDCASE.
-
+*        Falta o objeto do plano
 
       CATCH cx_root.
         RETURN. "On error exit method
@@ -1623,24 +1719,24 @@ CLASS lcl_file IMPLEMENTATION.
   METHOD export_obj_to_memory.
 
     DATA:
-      ls_serial         TYPE ty_serialize,
-      ls_demo_indx_blob TYPE demo_indx_blob.
+      ls_serial         TYPE ty_serialize.
+*      ls_demo_indx_blob TYPE demo_indx_blob.
 
-    ls_demo_indx_blob-userid = sy-uname.
-    GET TIME STAMP FIELD ls_demo_indx_blob-timestamp.
+*    ls_demo_indx_blob-userid = sy-uname.
+*    GET TIME STAMP FIELD ls_demo_indx_blob-timestamp.
 
-    ls_serial-objtype = me->get_object_type( ).
+*    ls_serial-objtype = me->get_object_type( ).
 
-    CALL FUNCTION 'GUID_CREATE'
-      IMPORTING
-        ev_guid_22 = ls_serial-guid.
+*    CALL FUNCTION 'GUID_CREATE'
+*      IMPORTING
+*        ev_guid_22 = ls_serial-guid.
 
     CALL TRANSFORMATION id
         SOURCE obj = me
         RESULT XML ls_serial-xml.
 
     EXPORT serial = ls_serial
-        TO DATABASE demo_indx_blob(zm) FROM ls_demo_indx_blob
+        TO DATABASE demo_indx_blob(sc) "FROM ls_demo_indx_blob
         ID lcl_file=>c_memory_id1.
 
   ENDMETHOD.
@@ -1657,7 +1753,6 @@ CLASS lcl_file IMPLEMENTATION.
       lo_worksheet TYPE REF TO zcl_excel_worksheet,
       go_error     TYPE REF TO cx_root.
 
-
     FIELD-SYMBOLS <fs_worksheet> TYPE ANY TABLE.
 
     CREATE OBJECT lo_reader TYPE zcl_excel_reader_2007.
@@ -1671,43 +1766,316 @@ CLASS lcl_file IMPLEMENTATION.
       CATCH zcx_excel INTO go_error .
         " O file excel & não pode ser processado
         MESSAGE ID 'UX' TYPE 'E' NUMBER '893'
-           WITH p_file." RAISING conversion_failed.
+           WITH p_file RAISING conversion_failed.
 
     ENDTRY.
 
-    DO lo_excel->get_worksheets_size( ) TIMES.
+    "'u' (structure) or 'h' (internal table)...
+    DESCRIBE FIELD ch_s_converted_data TYPE DATA(lv_type).
+
+
+    IF lv_type EQ 'h'. " (internal table)
+
       TRY.
+          lo_worksheet =  lo_excel->get_worksheet_by_index( 1 ).
 
-          ASSIGN COMPONENT sy-index OF STRUCTURE ch_s_converted_data TO <fs_worksheet>.
-
-          IF sy-subrc NE 0. EXIT. ENDIF.
-
-          lo_worksheet =  lo_excel->get_worksheet_by_index( iv_index = sy-index ).
 
           lo_worksheet->get_table(
-            EXPORTING
-              iv_skipped_rows = 1
-*              iv_skipped_cols = 0
-            IMPORTING
-              et_table        = <fs_worksheet> ).
+             EXPORTING
+               iv_skipped_rows = 1
+             IMPORTING
+               et_table        = ch_s_converted_data ).
 
         CATCH cx_root INTO go_error .
-
-          IF ( lines( <fs_worksheet> ) ) EQ lo_worksheet->get_tables_size( ).
-            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-              WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-*              RAISING conversion_failed.
-          ENDIF.
-
+          MESSAGE go_error->get_longtext( ) TYPE 'E'
+*              MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+*                WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+        RAISING conversion_failed.
       ENDTRY.
 
-    ENDDO.
+    ELSEIF lv_type EQ 'u' OR lv_type EQ 'v'. " 'u' Flat structure 'v' Deep structure
+
+      DO lo_excel->get_worksheets_size( ) TIMES.
+        TRY.
+
+            lo_worksheet =  lo_excel->get_worksheet_by_index( iv_index = sy-index ).
+
+            ASSIGN COMPONENT sy-index OF STRUCTURE ch_s_converted_data TO <fs_worksheet>.
+
+            IF sy-subrc NE 0. EXIT. ENDIF.
+
+            lo_worksheet->get_table(
+              EXPORTING
+                iv_skipped_rows = 1
+*              iv_skipped_cols = 0
+              IMPORTING
+                et_table        = <fs_worksheet> ).
+
+          CATCH cx_root INTO go_error .
+
+            IF ( lines( <fs_worksheet> ) ) EQ lo_worksheet->get_tables_size( )
+            OR   lines( <fs_worksheet> ) < 2 .
+
+              MESSAGE go_error->get_longtext( ) TYPE 'E'
+*              MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+*                WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+                  RAISING conversion_failed.
+            ENDIF.
+
+        ENDTRY.
+      ENDDO.
+
+    ENDIF.
 
 * Checks whether any data has been imported
     IF ch_s_converted_data IS INITIAL.
-      MESSAGE ID 'Z_BUPA' TYPE cc_msg_error NUMBER '007'.
-*        RAISING upload_date_not_found.
+      MESSAGE ID 'Z_BUPA' TYPE cc_msg_error NUMBER '007'
+      RAISING upload_date_not_found.
     ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD set_obj_to_memory.
+
+    IF o_file_gl IS BOUND AND
+       o_file_gl IS NOT INITIAL.
+      CALL METHOD o_file_gl->export_obj_to_memory( ).
+
+    ENDIF.
+
+    IF o_file_ap IS BOUND AND
+       o_file_ap IS NOT INITIAL.
+      CALL METHOD o_file_ap->export_obj_to_memory( ).
+
+    ENDIF.
+
+    IF o_file_ps IS BOUND AND
+       o_file_ps IS NOT INITIAL.
+      CALL METHOD o_file_ps->export_obj_to_memory( ).
+
+    ENDIF.
+
+    IF o_file_ar IS BOUND AND
+       o_file_ar IS NOT INITIAL.
+      CALL METHOD o_file_ar->export_obj_to_memory( ).
+
+    ENDIF.
+
+    IF o_file_glaccount IS BOUND AND
+       o_file_glaccount IS NOT INITIAL.
+      CALL METHOD o_file_glaccount->export_obj_to_memory( ).
+
+    ENDIF.
+
+  ENDMETHOD.
+
+  METHOD upload_to_server.
+
+    DATA:
+      l_flg_continue    TYPE boolean,
+      l_flg_open_error  TYPE boolean,
+      x_flg_stay        TYPE boolean,
+      l_os_message(100) TYPE c,
+      l_text1(40)       TYPE c,
+      l_text2(40)       TYPE c.
+
+    CALL FUNCTION 'C13Z_FILE_UPLOAD_BINARY'
+      EXPORTING
+        i_file_front_end   = p_file
+        i_file_appl        = p_fserv
+        i_file_overwrite   = abap_false
+      IMPORTING
+        e_flg_open_error   = l_flg_open_error
+        e_os_message       = l_os_message
+      EXCEPTIONS
+        fe_file_not_exists = 1
+        fe_file_read_error = 2
+        ap_no_authority    = 3
+        ap_file_open_error = 4
+        ap_file_exists     = 5
+        ap_convert_error   = 6
+        OTHERS             = 7.
+
+    IF sy-subrc NE 0.
+      x_flg_stay = abap_true.
+      CASE sy-subrc.
+        WHEN 1.
+          l_text1 = p_file(40).
+          l_text2 = p_file+40.
+          MESSAGE ID 'C$' TYPE 'S' NUMBER '155' DISPLAY LIKE 'E'
+          WITH l_text1 l_os_message l_text2.
+*       Não foi possível abrir o file &1&3 (&2)
+        WHEN 2.
+          MESSAGE ID 'C$' TYPE 'S' NUMBER '156' WITH p_file.
+*       Erro ao ler, escrever ou eliminar o file &1
+        WHEN 3.
+          MESSAGE ID 'C$' TYPE 'S' NUMBER '157' WITH p_fserv.
+*       Falta autorização para escrever ou ler o file &1
+        WHEN 4.
+          l_text1 = p_fserv(40).
+          l_text2 = p_fserv+40.
+          MESSAGE ID 'C$' TYPE 'S' NUMBER '155' WITH l_text1 l_os_message l_text2.
+*       Não foi possível abrir o file &1&3 (&2)
+        WHEN 5.
+*       file already exists, ask if file can be overwritten
+          CALL FUNCTION 'C14A_POPUP_ASK_FILE_OVERWRITE'
+            IMPORTING
+              e_flg_continue = l_flg_continue
+            EXCEPTIONS
+              OTHERS         = 1.
+          IF sy-subrc IS INITIAL.
+            l_flg_continue = abap_true.
+            x_flg_stay     = abap_false.
+*            PERFORM l_exec_file_upload
+*                        USING
+*                           i_ftfront
+*                           i_ftappl
+*                           true
+*                           i_ftftype
+*                        CHANGING
+*                           x_flg_stay.
+          ENDIF.
+        WHEN 6.
+          MESSAGE ID 'CM_SUB_IMP_EXP' TYPE 'S' NUMBER '004' DISPLAY LIKE 'E'
+              WITH 'BIN' p_file.
+*       Impossível carregar o file com formato de transferência '&1'
+        WHEN OTHERS.
+          MESSAGE ID 'C$' TYPE 'S' NUMBER '158' WITH p_file p_fserv.
+*       Erro durante a transferência do file &1 para &2
+      ENDCASE.
+    ELSE.
+      IF l_flg_open_error = abap_true.
+        x_flg_stay = abap_true.
+        l_text1 = p_fserv(40).
+        l_text2 = p_fserv+40.
+        MESSAGE ID 'C$' TYPE 'S' NUMBER '155' DISPLAY LIKE 'E' WITH l_text1 l_os_message l_text2.
+*     Não foi possível abrir o file &1&3 (&2)
+      ELSE.
+        MESSAGE ID 'C$' TYPE 'S' NUMBER '159' WITH p_file p_fserv.
+*     File &1 foi transferido para &2
+      ENDIF.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD export_model_zcl_excel.
+
+    DATA:
+      lo_excel        TYPE REF TO zcl_excel,
+      lo_writer       TYPE REF TO zif_excel_writer,
+      lx_data         TYPE xstring,
+      ti_rawdata      TYPE solix_tab,        " Will be used for downloading or open directly
+      lv_bytecount    TYPE i,
+      ls_account_plan TYPE lcl_glaccount=>ty_s_upload_data,
+      lv_path         TYPE string,
+      lv_fullpath     TYPE string,
+      lv_user_action  TYPE i.
+
+    " Creates active sheet
+    CREATE OBJECT lo_excel.
+
+    CALL METHOD lcl_file=>set_table_model(
+      EXPORTING
+        im_o_excel     = lo_excel
+        im_v_plan_name = 'SKA1'
+        im_t_table     = ls_account_plan-ska1
+        p_first        = abap_true ).
+
+    CALL METHOD lcl_file=>set_table_model(
+      EXPORTING
+        im_o_excel     = lo_excel
+        im_v_plan_name = 'SKB1'
+        im_t_table     = ls_account_plan-skb1
+        p_first        = abap_false ).
+
+    " Define a primeira planilha como ativa
+    lo_excel->set_active_sheet_index( 1 ).
+
+    CREATE OBJECT lo_writer TYPE zcl_excel_writer_2007.
+
+    lx_data = lo_writer->write_file( lo_excel ).
+
+    ti_rawdata = cl_bcs_convert=>xstring_to_solix( iv_xstring  = lx_data ).
+
+    lv_bytecount = xstrlen( lx_data ).
+
+    cl_gui_frontend_services=>file_save_dialog(
+      EXPORTING
+        window_title              = 'Salvar Modelo'
+        default_file_name         = im_v_file_name
+        file_filter               = 'Excel (*.xlsx)|*.xlsx' ##NO_TEXT
+        initial_directory         = lcl_file=>get_init_filename( )
+        prompt_on_overwrite       = abap_true
+      CHANGING
+        filename                  = im_v_file_name
+        path                      = lv_path
+        fullpath                  = lv_fullpath
+        user_action               = lv_user_action
+      EXCEPTIONS
+        OTHERS                    = 1     ).
+    IF lv_user_action EQ 0.
+
+      cl_gui_frontend_services=>gui_download(
+           EXPORTING
+             bin_filesize              = lv_bytecount
+             filename                  = lv_fullpath
+             filetype                  = 'BIN'
+             show_transfer_status      = abap_true
+           CHANGING
+             data_tab                  = ti_rawdata
+           EXCEPTIONS
+             OTHERS                    = 1  ).
+      IF sy-subrc NE 0.
+        MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E'
+                   WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+        RETURN.
+      ENDIF.
+    ENDIF.
+
+  ENDMETHOD.
+
+  METHOD set_table_model.
+
+    DATA:
+      ls_table_settings TYPE zexcel_s_table_settings,
+      lo_worksheet      TYPE REF TO zcl_excel_worksheet,
+      count             TYPE i VALUE 1.
+
+    ls_table_settings-top_left_column = 'A'.
+    ls_table_settings-top_left_row    = 1.
+    ls_table_settings-table_name      = im_v_plan_name.
+    ls_table_settings-table_style     = zcl_excel_table=>builtinstyle_medium6.
+
+    TRY.
+
+        " Get active sheet
+        IF p_first IS NOT INITIAL.
+          lo_worksheet = im_o_excel->get_active_worksheet( ).
+        ELSE.
+          lo_worksheet = im_o_excel->add_new_worksheet( ).
+        ENDIF.
+
+        lo_worksheet->set_title( ip_title = im_v_plan_name ).
+
+        lo_worksheet->bind_table(
+          EXPORTING
+            ip_table          = im_t_table
+            is_table_settings = ls_table_settings ).
+
+        DATA(lv_column) = lo_worksheet->get_highest_column( ).
+
+        DO lv_column TIMES.
+          lo_worksheet->set_column_width(
+            EXPORTING
+              ip_column         = count
+              ip_width_autosize = abap_true ).
+          count = count + 1.
+        ENDDO.
+
+      CATCH zcx_excel.
+    ENDTRY.
 
   ENDMETHOD.
 
@@ -1789,9 +2157,16 @@ CLASS lcl_gl_balance IMPLEMENTATION.
 *          <fs_upload_data>-comp_code    TO ls_accountgl-comp_code,
           p_xblnr                       TO ls_accountgl-alloc_nmbr,
           p_bktxt                       TO ls_accountgl-item_text,
-          p_bewar                       TO ls_accountgl-cs_trans_t.
+          p_bewar                       TO ls_accountgl-cs_trans_t,
+          <fs_upload_data>-bus_area     TO ls_accountgl-profit_ctr,     "Profit Center
+          p_budat                       TO ls_accountgl-pstng_date,
+          p_budat                       TO ls_accountgl-value_date.
 
 *        ls_accountgl-costcenter = me->get_costcenter( <fs_upload_data> ).
+
+        CALL METHOD me->get_housebank(
+          CHANGING
+            ch_s_accountgl = ls_accountgl ).
 
         APPEND ls_accountgl TO lt_accountgl.
 
@@ -1807,19 +2182,19 @@ CLASS lcl_gl_balance IMPLEMENTATION.
         APPEND ls_currencyamount TO lt_currencyamount.
 
 
-        IF lv_itemno GE 500.
-
-          CALL METHOD me->document_post
-            EXPORTING
-              im_v_bukrs          = <fs_burks>-comp_code
-            CHANGING
-              ch_t_accountgl      = lt_accountgl
-              ch_t_currencyamount = lt_currencyamount.
-
-          CLEAR:
-            lt_return, lt_accountgl, lt_currencyamount, lv_itemno.
-
-        ENDIF.
+*        IF lv_itemno GE 500.
+*
+*          CALL METHOD me->document_post
+*            EXPORTING
+*              im_v_bukrs          = <fs_burks>-comp_code
+*            CHANGING
+*              ch_t_accountgl      = lt_accountgl
+*              ch_t_currencyamount = lt_currencyamount.
+*
+*          CLEAR:
+*            lt_return, lt_accountgl, lt_currencyamount, lv_itemno.
+*
+*        ENDIF.
 
       ENDLOOP.  "WHERE bukrs = <fs_burks>-bukrs.
 
@@ -1832,7 +2207,86 @@ CLASS lcl_gl_balance IMPLEMENTATION.
 
     ENDLOOP.
 
+    IF p_swlog EQ abap_true.
+      CALL METHOD me->o_bal_log->show( ).
+    ENDIF.
+
   ENDMETHOD.
+
+  METHOD handle_data_single.
+
+    DATA:
+      ls_accountgl      TYPE bapiacgl09,
+      ls_currencyamount TYPE bapiaccr09,
+      lt_accountgl      TYPE STANDARD TABLE OF bapiacgl09,
+      lt_return         TYPE STANDARD TABLE OF bapiret2,
+      lt_currencyamount TYPE STANDARD TABLE OF bapiaccr09,
+      lv_itemno         TYPE posnr_acc VALUE IS INITIAL.
+
+*-----------------------------------------------------------------------
+    SORT me->upload_data BY comp_code gl_account bus_area ASCENDING.
+
+    "Clear all items that are amt is 0 and bus_area is initial.
+    DELETE me->upload_data WHERE amt_doccur IS INITIAL OR bus_area IS INITIAL.
+
+    CALL METHOD me->write_header( ).
+
+    " Company/Account/Bus Area
+    LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_upload_data>).
+
+      CLEAR:
+          ls_accountgl, ls_currencyamount, lt_return,
+          lt_accountgl, lt_currencyamount, lv_itemno.
+
+      CALL METHOD me->o_progress_ind->show
+        EXPORTING
+          im_v_text      = 'Processando:'
+          im_v_processed = sy-tabix.
+
+      ADD 1 TO lv_itemno.
+
+      MOVE-CORRESPONDING: <fs_upload_data> TO ls_accountgl.
+      MOVE:
+        lv_itemno                     TO ls_accountgl-itemno_acc,
+        p_xblnr                       TO ls_accountgl-alloc_nmbr,
+        p_bktxt                       TO ls_accountgl-item_text,
+        p_bewar                       TO ls_accountgl-cs_trans_t,
+        <fs_upload_data>-bus_area     TO ls_accountgl-profit_ctr,     "Profit Center
+        p_budat                       TO ls_accountgl-pstng_date,
+        p_budat                       TO ls_accountgl-value_date.
+
+
+      CALL METHOD me->get_housebank(
+        CHANGING
+          ch_s_accountgl = ls_accountgl ).
+
+      APPEND ls_accountgl TO lt_accountgl.
+
+      MOVE-CORRESPONDING:
+          <fs_upload_data>            TO ls_currencyamount.
+      MOVE:
+        lv_itemno                     TO ls_currencyamount-itemno_acc,
+        me->c_currency_brl            TO ls_currencyamount-currency,
+        me->c_currency_brl            TO ls_currencyamount-currency_iso,
+        '00'                          TO ls_currencyamount-curr_type.
+
+      APPEND ls_currencyamount TO lt_currencyamount.
+
+      CALL METHOD me->document_post
+        EXPORTING
+          im_v_bukrs          = <fs_upload_data>-comp_code
+        CHANGING
+          ch_t_accountgl      = lt_accountgl
+          ch_t_currencyamount = lt_currencyamount.
+
+    ENDLOOP.
+
+    IF p_swlog EQ abap_true.
+      CALL METHOD me->o_bal_log->show( ).
+    ENDIF.
+
+  ENDMETHOD.
+
 
   METHOD fill_accountgl.
 
@@ -1851,6 +2305,28 @@ CLASS lcl_gl_balance IMPLEMENTATION.
 
   METHOD get_object_type.
     r_result = me->objtype.
+  ENDMETHOD.
+
+  METHOD get_housebank.
+
+*    DATA:
+*        ls_t012k TYPE t012k.
+
+    SELECT SINGLE * FROM t012k
+        INTO @r_t012k
+        WHERE
+            hkont EQ @ch_s_accountgl-gl_account AND
+            bukrs EQ @ch_s_accountgl-comp_code.
+
+    IF syst-subrc IS INITIAL.
+
+      MOVE:
+          r_t012k-hbkid TO ch_s_accountgl-housebankid,
+          r_t012k-hktid TO ch_s_accountgl-housebankacctid.
+
+    ENDIF.
+
+
   ENDMETHOD.
 
 ENDCLASS.
@@ -1894,9 +2370,10 @@ CLASS lcl_ps_balance IMPLEMENTATION.
         lt_return, lt_accountgl, lt_currencyamount, lv_itemno, ls_documentheader.
 
       LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_upload_data>)
-        WHERE comp_code   = <fs_ref_doc>-comp_code AND
-              doc_date   = <fs_ref_doc>-doc_date AND
-              ref_doc_no = <fs_ref_doc>-ref_doc_no.
+        WHERE comp_code  = <fs_ref_doc>-comp_code  AND
+              doc_date   = <fs_ref_doc>-doc_date   AND
+              ref_doc_no = <fs_ref_doc>-ref_doc_no AND
+              shkzg      = <fs_ref_doc>-shkzg.
 
         CLEAR:
             ls_accountgl,  ls_currencyamount.
@@ -1933,7 +2410,9 @@ CLASS lcl_ps_balance IMPLEMENTATION.
 
     ENDLOOP.
 
-    CALL METHOD me->o_bal_log->show.
+    IF p_swlog EQ abap_true.
+      CALL METHOD me->o_bal_log->show( ).
+    ENDIF.
 
   ENDMETHOD.
 
@@ -1975,7 +2454,12 @@ CLASS lcl_ps_balance IMPLEMENTATION.
       ls_currencyamount_cp TYPE bapiaccr09.
 
     ls_accountgl-itemno_acc = lines( ch_t_accountgl ) + 1.
-    ls_accountgl-bus_area = me->get_bus_area( ch_s_documentheader-comp_code ).
+
+    " Todas as divisões são iguais
+    READ TABLE ch_t_accountgl ASSIGNING FIELD-SYMBOL(<fs_account>) INDEX 1.
+    IF <fs_account> IS ASSIGNED.
+      ls_accountgl-bus_area = <fs_account>-bus_area.
+    ENDIF.
 
     MOVE:
           p_gkont                  TO ls_accountgl-gl_account,
@@ -1984,7 +2468,6 @@ CLASS lcl_ps_balance IMPLEMENTATION.
           p_bewar                  TO ls_accountgl-cs_trans_t.
 
     APPEND   ls_accountgl         TO ch_t_accountgl.
-
 
     LOOP AT ch_t_currencyamount INTO ls_currencyamount.
       AT LAST.
@@ -2117,74 +2600,100 @@ CLASS lcl_acc_receivable IMPLEMENTATION.
       ls_accountreceivable TYPE bapiacar09,
       ls_currencyamount    TYPE bapiaccr09,
       ls_documentheader    TYPE bapiache09,
+      ls_extension2        TYPE bapiparex,
       lt_accountreceivable TYPE bapiacar09_tab,
       lt_currencyamount    TYPE bapiaccr09_tab,
+      lt_extension2        TYPE bapiparex_t,
       lt_ref_doc           TYPE lty_t_doc_ecc,
-      lv_itemno            TYPE posnr_acc VALUE IS INITIAL.
+      lv_itemno            TYPE posnr_acc VALUE IS INITIAL,
+      lcx_root             TYPE REF TO cx_root.
 
 *-----------------------------------------------------------------------
-    CALL METHOD me->write_header( ).
+    TRY.
+        CALL METHOD me->write_header( ).
 
-    SORT me->upload_data BY comp_code customer pstng_date.
+        SORT me->upload_data BY comp_code customer pstng_date.
 
-    MOVE-CORRESPONDING me->upload_data TO lt_ref_doc.
-    DELETE ADJACENT DUPLICATES FROM lt_ref_doc.
+        MOVE-CORRESPONDING me->upload_data TO lt_ref_doc.
+        DELETE ADJACENT DUPLICATES FROM lt_ref_doc.
 
-    LOOP AT lt_ref_doc ASSIGNING FIELD-SYMBOL(<fs_ref_doc>).
+        LOOP AT lt_ref_doc ASSIGNING FIELD-SYMBOL(<fs_ref_doc>).
 
-      CLEAR:
-        ls_accountreceivable, ls_documentheader, ls_currencyamount,
-        lt_accountreceivable, lt_currencyamount,         lv_itemno.
+          CLEAR:
+            ls_accountreceivable, ls_documentheader, ls_currencyamount,
+            lt_accountreceivable, lt_currencyamount, lt_extension2,
+            lv_itemno.
 
-      CALL METHOD me->o_progress_ind->show
-        EXPORTING
-          im_v_text      = 'Processando:'
-          im_v_processed = sy-tabix.
+          CALL METHOD me->o_progress_ind->show
+            EXPORTING
+              im_v_text      = 'Processando:'
+              im_v_processed = sy-tabix.
 
 
-      LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_upload_data>)
-        WHERE comp_code EQ <fs_ref_doc>-comp_code   AND
-              belnr_d   EQ <fs_ref_doc>-belnr_d. "    AND
+          LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_upload_data>)
+            WHERE comp_code EQ <fs_ref_doc>-comp_code   AND
+                  belnr_d   EQ <fs_ref_doc>-belnr_d. "    AND
 *              gjahr     EQ <fs_ref_doc>-gjahr.
 
-        CLEAR:
-          ls_accountreceivable, ls_documentheader, ls_currencyamount.
+            CLEAR:
+              ls_accountreceivable, ls_documentheader,
+              ls_currencyamount,    ls_extension2.
 
-        ADD 1 TO lv_itemno.
+            ADD 1 TO lv_itemno.
 
-        MOVE-CORRESPONDING:
-          <fs_upload_data> TO ls_accountreceivable,
-          <fs_upload_data> TO ls_currencyamount,
-          <fs_upload_data> TO ls_documentheader.
+            MOVE-CORRESPONDING:
+              <fs_upload_data> TO ls_accountreceivable,
+              <fs_upload_data> TO ls_currencyamount,
+              <fs_upload_data> TO ls_documentheader.
 
-        UNPACK <fs_upload_data>-customer TO ls_accountreceivable-customer.
+            UNPACK <fs_upload_data>-customer TO ls_accountreceivable-customer.
 
-        MOVE:
-          '00'      TO ls_currencyamount-curr_type,
-          lv_itemno TO ls_accountreceivable-itemno_acc,
-          lv_itemno TO ls_currencyamount-itemno_acc.
+            MOVE:
+              '00'      TO ls_currencyamount-curr_type,
+              lv_itemno TO ls_accountreceivable-itemno_acc,
+              lv_itemno TO ls_currencyamount-itemno_acc.
 
-        ls_currencyamount-amt_doccur = me->define_debit_credit( <fs_upload_data> ).
-        ls_currencyamount-amt_base   = ls_currencyamount-amt_doccur.
+            ls_currencyamount-amt_doccur = me->define_debit_credit( <fs_upload_data> ).
+            ls_currencyamount-amt_base   = ls_currencyamount-amt_doccur.
 
-        APPEND:
-            ls_accountreceivable TO lt_accountreceivable,
-            ls_currencyamount TO lt_currencyamount.
+            APPEND:
+                ls_accountreceivable TO lt_accountreceivable,
+                ls_currencyamount TO lt_currencyamount.
 
-        CONCATENATE <fs_ref_doc>-belnr_d <fs_ref_doc>-comp_code <fs_ref_doc>-gjahr
-            INTO me->obj_key.
+            CONCATENATE <fs_ref_doc>-belnr_d <fs_ref_doc>-comp_code <fs_ref_doc>-gjahr
+                INTO me->obj_key.
 
-      ENDLOOP.
+            ls_extension2-structure  = 'ACCIT'.
+            ls_extension2-valuepart1 = 'XREF1_HD'.
+            ls_extension2-valuepart2 = ls_accountreceivable-itemno_acc.
+            ls_extension2-valuepart3 = me->obj_key.
+            APPEND ls_extension2 TO lt_extension2.
 
-      CALL METHOD me->document_post
-        EXPORTING
-          im_s_documentheader    = ls_documentheader
-        CHANGING
-          ch_t_accountreceivable = lt_accountreceivable
-          ch_t_currencyamount    = lt_currencyamount.
-    ENDLOOP.
+            ls_extension2-valuepart1 = 'XREF2_HD'.
+            ls_extension2-valuepart3 = 'MIGRAÇÃO'.
+            APPEND ls_extension2 TO lt_extension2.
 
-    CALL METHOD me->o_bal_log->show.
+          ENDLOOP.
+
+          CALL METHOD me->document_post
+            EXPORTING
+              im_s_documentheader    = ls_documentheader
+            CHANGING
+              ch_t_accountreceivable = lt_accountreceivable
+              ch_t_currencyamount    = lt_currencyamount
+              ch_t_extension2        = lt_extension2.
+        ENDLOOP.
+
+        IF p_swlog EQ abap_true.
+          CALL METHOD me->o_bal_log->show( ).
+        ENDIF.
+
+      CATCH cx_root INTO lcx_root.
+
+        MESSAGE lcx_root->get_longtext( ) TYPE 'S' DISPLAY LIKE 'E'.
+        RETURN.
+
+    ENDTRY.
 
   ENDMETHOD.
 
@@ -2364,8 +2873,10 @@ CLASS lcl_acc_payable IMPLEMENTATION.
       ls_accountpayable TYPE bapiacap09,
       ls_currencyamount TYPE bapiaccr09,
       ls_documentheader TYPE bapiache09,
+      ls_extension2     TYPE bapiparex,
       lt_accountpayable TYPE bapiacap09_tab,
       lt_currencyamount TYPE STANDARD TABLE OF bapiaccr09,
+      lt_extension2     TYPE bapiparex_t,
       lt_ref_doc        TYPE lty_t_doc_ecc,
       lv_itemno         TYPE posnr_acc VALUE IS INITIAL.
 
@@ -2380,7 +2891,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
       CLEAR:
         ls_accountpayable, ls_accountpayable,
         ls_documentheader, lt_accountpayable, lt_currencyamount,
-        lv_itemno.
+        lv_itemno, lt_extension2.
 
       LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_upload_data>)
         WHERE comp_code EQ <fs_ref_doc>-comp_code   AND
@@ -2389,7 +2900,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
 
         CLEAR:
           ls_accountpayable, ls_accountpayable,
-          ls_documentheader.
+          ls_documentheader, ls_extension2.
 
         CALL METHOD me->o_progress_ind->show
           EXPORTING
@@ -2414,11 +2925,43 @@ CLASS lcl_acc_payable IMPLEMENTATION.
         ls_currencyamount-amt_base   = ls_currencyamount-amt_doccur.
 
         APPEND:
-            ls_accountpayable TO lt_accountpayable,
-            ls_currencyamount TO lt_currencyamount.
+          ls_accountpayable TO lt_accountpayable,
+          ls_currencyamount TO lt_currencyamount.
 
+        "Concatenation of the number of the migrated accounting document of the ECC
         CONCATENATE <fs_ref_doc>-belnr_d <fs_ref_doc>-comp_code <fs_ref_doc>-gjahr
             INTO me->obj_key.
+
+        ls_extension2-structure  = 'ACCIT'.
+        ls_extension2-valuepart1 = 'XREF1_HD'.
+        ls_extension2-valuepart2 = ls_accountpayable-itemno_acc.
+        ls_extension2-valuepart3 = me->obj_key.
+        APPEND ls_extension2 TO lt_extension2.
+
+        ls_extension2-valuepart1 = 'XREF2_HD'.
+        ls_extension2-valuepart3 = 'MIGRAÇÃO'.
+        APPEND ls_extension2 TO lt_extension2.
+
+        " Number of order BOLETO
+        IF <fs_upload_data>-esrnr IS NOT INITIAL.
+          ls_extension2-valuepart1 = 'ESRNR'.
+          ls_extension2-valuepart3 = <fs_upload_data>-esrnr.
+          APPEND ls_extension2 TO lt_extension2.
+
+          ls_extension2-valuepart1 = 'ESRRE'.
+          ls_extension2-valuepart3 = <fs_upload_data>-esrre.
+          APPEND ls_extension2 TO lt_extension2.
+        ENDIF.
+
+        " Purchase Order
+        IF <fs_upload_data>-ebeln IS NOT INITIAL.
+          ls_extension2-valuepart1  = 'EBELN'.
+          ls_extension2-valuepart3 = <fs_upload_data>-ebeln.
+          APPEND ls_extension2 TO lt_extension2.
+          ls_extension2-valuepart1  = 'EBELP'.
+          ls_extension2-valuepart3 = <fs_upload_data>-ebelp.
+          APPEND ls_extension2 TO lt_extension2.
+        ENDIF.
 
       ENDLOOP.
 
@@ -2427,10 +2970,13 @@ CLASS lcl_acc_payable IMPLEMENTATION.
           im_s_documentheader = ls_documentheader
         CHANGING
           ch_t_accountpayable = lt_accountpayable
-          ch_t_currencyamount = lt_currencyamount.
+          ch_t_currencyamount = lt_currencyamount
+          ch_t_extension2     = lt_extension2.
     ENDLOOP.
 
-    CALL METHOD me->o_bal_log->show.
+    IF p_swlog EQ abap_true.
+      CALL METHOD me->o_bal_log->show( ).
+    ENDIF.
 
   ENDMETHOD.
 
@@ -2439,6 +2985,11 @@ CLASS lcl_acc_payable IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD upload.
+
+    DATA:
+      lv_comp_count TYPE i,
+      lv_desc_field TYPE c LENGTH 1,
+      lv_cell_date  TYPE zexcel_cell_value.
 
     CALL METHOD me->upload_super
       CHANGING
@@ -2454,6 +3005,30 @@ CLASS lcl_acc_payable IMPLEMENTATION.
     ELSEIF sy-subrc EQ 2.
       MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
         WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 RAISING upload_date_not_found.
+    ENDIF.
+
+    "Convert date format excel for SAP, only if use ABAPXLSX
+    IF rb_up1 IS NOT INITIAL.
+      LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_t_upload_data>).
+        CLEAR lv_comp_count.
+        DO.
+          ADD 1 TO lv_comp_count.
+          ASSIGN COMPONENT lv_comp_count OF STRUCTURE <fs_t_upload_data> TO FIELD-SYMBOL(<fs_comp>).
+          IF sy-subrc NE 0 OR <fs_comp> IS NOT ASSIGNED.
+            EXIT.
+          ELSE.
+            DESCRIBE FIELD <fs_comp> TYPE lv_desc_field.
+            IF lv_desc_field EQ 'D'.
+              lv_cell_date = <fs_comp>.
+              CALL METHOD zcl_excel_common=>excel_string_to_date
+                EXPORTING
+                  ip_value = lv_cell_date
+                RECEIVING
+                  ep_value = <fs_comp>.
+            ENDIF.
+          ENDIF.
+        ENDDO.
+      ENDLOOP.
     ENDIF.
 
   ENDMETHOD.
@@ -2517,7 +3092,8 @@ CLASS lcl_acc_payable IMPLEMENTATION.
         ch_t_accountgl      = ch_t_accountgl
         ch_t_accountpayable = ch_t_accountpayable
         ch_s_documentheader = ls_documentheader
-        ch_t_currencyamount = ch_t_currencyamount.
+        ch_t_currencyamount = ch_t_currencyamount
+        ch_t_extension2     = ch_t_extension2.
 
     CALL METHOD me->return_msg
       EXPORTING
@@ -2572,7 +3148,15 @@ CLASS lcl_glaccount IMPLEMENTATION.
 
     CALL METHOD me->upload_zcl_excel
       CHANGING
-        ch_s_converted_data = me->upload_data.
+        ch_s_converted_data   = me->upload_data
+      EXCEPTIONS
+        conversion_failed     = 1
+        upload_date_not_found = 2
+        OTHERS                = 3.
+    IF sy-subrc NE 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno DISPLAY LIKE 'E'
+        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
 
   ENDMETHOD.
 
@@ -2597,11 +3181,17 @@ CLASS lcl_glaccount IMPLEMENTATION.
       ls_account_careas   TYPE glaccount_carea,
       ls_account_coa      TYPE glaccount_coa,
       lt_return           TYPE bapiret2_t,
+      ls_return           TYPE bapiret2,
       ls_ska1             TYPE ska1,
       ls_skat             TYPE skat,
       ls_skb1             TYPE skb1,
       lv_action           TYPE c LENGTH 1.
 
+    IF me->o_progress_ind IS NOT BOUND.
+      CREATE OBJECT me->o_progress_ind
+        EXPORTING
+          im_v_total = lines( me->upload_data-ska1 ).
+    ENDIF.
     CALL METHOD me->write_header( ).
 
     LOOP AT me->upload_data-ska1 ASSIGNING FIELD-SYMBOL(<fs_ska1>).
@@ -2609,6 +3199,11 @@ CLASS lcl_glaccount IMPLEMENTATION.
       CLEAR: lt_account_names, ls_glaccount_name, lt_account_keywords,
              lt_account_ccodes, ls_account_ccodes, lt_account_careas, ls_account_careas,
              ls_account_coa, lt_return, ls_ska1, ls_skat, ls_skb1, lv_action.
+
+      CALL METHOD me->o_progress_ind->show
+        EXPORTING
+          im_v_text      = 'Processando:'
+          im_v_processed = sy-tabix.
 
       CALL FUNCTION 'READ_SKA1'
         EXPORTING
@@ -2626,32 +3221,41 @@ CLASS lcl_glaccount IMPLEMENTATION.
         lv_action = 'I'.
       ENDIF.
 
-      IF ( ls_skat-txt20 NE <fs_ska1>-txt20 OR
-           ls_skat-txt50 NE <fs_ska1>-txt50 ) AND
-         <fs_ska1>-txt20 IS NOT INITIAL.
+*      IF ( ls_skat-txt20 NE <fs_ska1>-txt20 OR
+*           ls_skat-txt50 NE <fs_ska1>-txt50 ) AND
+*         <fs_ska1>-txt20 IS NOT INITIAL.
 
+      MOVE-CORRESPONDING:
+          <fs_ska1> TO ls_account_coa-keyy,
+          <fs_ska1> TO ls_account_coa-data,
+          <fs_ska1> TO ls_glaccount_name-keyy,
+          <fs_ska1> TO ls_glaccount_name-data.
+
+      ls_glaccount_name-keyy-spras = sy-langu.
+      ls_glaccount_name-action     = lv_action.
+      ls_account_coa-action        = lv_action.
+
+      APPEND ls_glaccount_name TO lt_account_names.
+
+
+*      ENDIF.
+
+* --------------  Dados da área de controladoria (CO) --------------
+      READ TABLE me->upload_data-skb1  WITH KEY saknr = <fs_ska1>-saknr TRANSPORTING NO FIELDS.
+      IF <fs_ska1>-katyp IS NOT INITIAL AND syst-subrc EQ 0.
         MOVE-CORRESPONDING:
-            <fs_ska1> TO ls_account_coa,
-            <fs_ska1> TO ls_glaccount_name-keyy,
-            <fs_ska1> TO ls_glaccount_name-data.
+          <fs_ska1> TO ls_account_careas-keyy,
+          <fs_ska1> TO ls_account_careas-data.
 
-        ls_glaccount_name-keyy-spras = sy-langu.
-        ls_glaccount_name-action     = lv_action.
+*    A area de contabilidade pode mudar por empresa ajustar
+        ls_account_careas-keyy-kokrs   = <fs_ska1>-ktopl.
+        ls_account_careas-fromto-datab = '19000101'.
+        ls_account_careas-fromto-datbi = '99991231'.
+        ls_account_careas-action       = lv_action.
 
-        APPEND ls_glaccount_name TO lt_account_names.
-
-        IF <fs_ska1>-katyp IS NOT INITIAL.
-          MOVE-CORRESPONDING:
-            <fs_ska1> TO ls_account_careas-keyy,
-            <fs_ska1> TO ls_account_careas-data.
-
-          ls_account_careas-fromto-datab = '19000101'.
-          ls_account_careas-fromto-datbi = '99991231'.
-          ls_account_careas-action     = lv_action.
-
-          APPEND ls_account_careas TO lt_account_careas.
-        ENDIF.
+        APPEND ls_account_careas TO lt_account_careas.
       ENDIF.
+* --------------  Dados da área de controladoria (CO) --------------
 
       LOOP AT me->upload_data-skb1 ASSIGNING FIELD-SYMBOL(<fs_skb1>) WHERE saknr EQ <fs_ska1>-saknr.
 
@@ -2679,6 +3283,15 @@ CLASS lcl_glaccount IMPLEMENTATION.
 
       ENDLOOP.
 
+      ls_return-id = 'FH'.
+      ls_return-type = 'S'.
+      ls_return-number = '999'.
+      ls_return-message = 'Conta Nº' && ls_account_coa-keyy-ktopl && ls_account_coa-keyy-saknr.
+      ls_return-message_v1 = 'Conta Nº' && ls_account_coa-keyy-ktopl.
+      ls_return-message_v2 = ls_account_coa-keyy-saknr.
+
+      APPEND ls_return TO lt_return.
+
       CALL FUNCTION 'GL_ACCT_MASTER_SAVE'
         EXPORTING
           testmode           = p_test                 " Modo de teste (sem salvar)
@@ -2698,7 +3311,7 @@ CLASS lcl_glaccount IMPLEMENTATION.
 
       READ TABLE lt_return TRANSPORTING NO FIELDS WITH KEY type = 'E'.
 
-      IF syst-subrc IS INITIAL.
+      IF syst-subrc IS INITIAL. "OR p_test IS NOT INITIAL. "Problems with perform
         CALL FUNCTION 'BAPI_TRANSACTION_ROLLBACK'.
       ELSE.
         CALL FUNCTION 'BAPI_TRANSACTION_COMMIT'
@@ -2706,14 +3319,11 @@ CLASS lcl_glaccount IMPLEMENTATION.
             wait = abap_true.                  " Use of Command `COMMIT AND WAIT`
       ENDIF.
 
-
     ENDLOOP.
 
-
-
-
-
-
+    IF p_swlog EQ abap_true.
+      CALL METHOD me->o_bal_log->show( ).
+    ENDIF.
 
   ENDMETHOD.
 

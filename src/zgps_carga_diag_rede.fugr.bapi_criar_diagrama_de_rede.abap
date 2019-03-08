@@ -13,7 +13,7 @@
 * --------------------------------------------------------------------------*
 * Request    | Descrição                                                    *
 * --------------------------------------------------------------------------*
-* S4DK902260 | AGIR - Carga de Dados para Migração - HXXX - Diag. de Rede    *
+* S4DK902260 | AGIR - Carga de Dados para Migração - HXXX - Diag. de Rede   *
 * --------------------------------------------------------------------------*
 
 *  OBS1.: Método Standard para criar "Diagramas de Rede"
@@ -30,8 +30,8 @@ FUNCTION bapi_criar_diagrama_de_rede.
 *"----------------------------------------------------------------------
 *"*"Interface local:
 *"  IMPORTING
-*"     VALUE(P_I_WA_NETWORK) TYPE  BAPI_BUS2002_NEW
-*"     VALUE(P_I_WA_CAMPOS_ZS) TYPE  ZEPS_BAPI_TE_NETWORK OPTIONAL
+*"     VALUE(P_I_WA_NETWORK) TYPE  ZEPS_BAPI_BUS2002_NEW
+*"     VALUE(P_I_WA_CAMPOS_ZS) TYPE  BAPI_TE_NETWORK OPTIONAL
 *"     VALUE(P_I_TESTRUN) TYPE  BAPIE1GLOBAL_DATA-TESTRUN OPTIONAL
 *"  EXPORTING
 *"     REFERENCE(P_E_TI_RETURN) TYPE  BAPIRET2_TAB
@@ -64,8 +64,7 @@ FUNCTION bapi_criar_diagrama_de_rede.
         OTHERS                 = 2.
 
 *   A estrutura BAPI_TE_NETWORK contém a estrutura CI_AUFK
-*   wa_aufk_ext_in-structure  = 'BAPI_TE_NETWORK'.
-    wa_aufk_ext_in-structure  = 'ZEPS_BAPI_TE_NETWORK'.
+    wa_aufk_ext_in-structure  = 'BAPI_TE_NETWORK'.
     wa_aufk_ext_in-valuepart1 = lc_valuepart.
     APPEND wa_aufk_ext_in TO ti_campos_zs.
 
@@ -75,12 +74,12 @@ FUNCTION bapi_criar_diagrama_de_rede.
   CALL FUNCTION 'BAPI_PS_INITIALIZATION'.
 
 * Create Network Header Using BAPI
-  CALL FUNCTION 'BAPI_BUS2002_CREATE'
+  CALL FUNCTION 'BAPI_ZBUS2002_ZCREATE'
     EXPORTING
-      i_network   = p_i_wa_network
+      i_new_network = p_i_wa_network
     TABLES
-      et_return   = ti_return
-      extensionin = ti_campos_zs.
+      et_return     = ti_return
+      extensionin   = ti_campos_zs.
 
   APPEND LINES OF ti_return TO ti_return_fim.
 

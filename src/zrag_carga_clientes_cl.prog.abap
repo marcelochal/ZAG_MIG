@@ -227,7 +227,12 @@ CLASS lcl_bupa DEFINITION FINAL FRIENDS lcl_file lcl_messages .
           im_s_bp_numbers LIKE s_bp_numbers,
       check_customer_exists
         CHANGING
-          ch_s_bp_numbers LIKE s_bp_numbers.
+          ch_s_bp_numbers LIKE s_bp_numbers,
+      fill_tax_ind
+        IMPORTING
+          im_v_kunnr      TYPE kunnr
+        RETURNING
+          VALUE(r_result) TYPE cmds_ei_tax_ind_t.
 
 ENDCLASS.                       "lcl_bupa
 
@@ -709,6 +714,7 @@ CLASS lcl_bupa IMPLEMENTATION .
       ls_cvis_ei_extern-customer-header-object_instance-kunnr   = <fs_bp_numbers>-kunnr.
       ls_cvis_ei_extern-customer-company_data-company           = me->fill_company_data( <fs_bp_numbers>-kunnr ).
       ls_cvis_ei_extern-customer-sales_data-sales               = me->fill_sales_data( <fs_bp_numbers>-kunnr ).
+      ls_cvis_ei_extern-customer-central_data-tax_ind-tax_ind   = me->fill_tax_ind( <fs_bp_numbers>-kunnr ).
 
       "Definir logica para cada tipo de cliente
       ls_cvis_ei_extern-customer-central_data-central-data-icmstaxpay = 'NO'. "Contribuinte Normal
@@ -1144,8 +1150,27 @@ CLASS lcl_bupa IMPLEMENTATION .
 
     ENDLOOP.
 
-  ENDMETHOD.
+*----------------------------------------------------------------------
+* Verify BUPA ROLES
+*----------------------------------------------------------------------
+    LOOP AT ch_s_source-partner-central_data-role-roles ASSIGNING FIELD-SYMBOL(<fs_roles_source>).
+*      LOOP AT <fs_bp_current>-central_data-role-roles ASSIGNING FIELD-SYMBOL(<fs_roles_current>)
+*          WHERE data-rolecategory EQ <fs_roles_source>-data-rolecategory .
+*      ENDLOOP.
 
+      READ TABLE <fs_bp_current>-central_data-role-roles
+        WITH KEY data-rolecategory = <fs_roles_source>-data-rolecategory TRANSPORTING NO FIELDS.
+
+      IF sy-subrc IS INITIAL.
+        <fs_roles_source>-task = cc_object_task_update.
+      ELSE.
+        <fs_roles_source>-task = cc_object_task_insert.
+      ENDIF.
+
+    ENDLOOP.
+
+
+  ENDMETHOD.
 
 **********************************************************************
 *&----------------------------------------------------------------------*
@@ -1595,13 +1620,17 @@ CLASS lcl_bupa IMPLEMENTATION .
     READ TABLE o_file->upload_data-company_data WITH TABLE KEY key_kunnr COMPONENTS kunnr = im_v_kunnr TRANSPORTING NO FIELDS.
 
     IF  sy-subrc IS INITIAL.
+      ls_roles-task = cc_object_task_update.
       ls_roles-data-rolecategory = cc_rolecategory_client. "FLCU00 Cliente (contab.financ.)
+      ls_roles-data_key          = cc_rolecategory_client. "FLCU00 Cliente (contab.financ.)
       APPEND ls_roles TO r_result.
     ENDIF.
 
     READ TABLE o_file->upload_data-sales_data WITH TABLE KEY key_kunnr COMPONENTS kunnr = im_v_kunnr TRANSPORTING NO FIELDS.
 
     IF  sy-subrc IS INITIAL.
+      ls_roles-task = cc_object_task_update.
+      ls_roles-data_key          = cc_rolecategory_client2. "FLCU01 Cliente (Org. Vendas)
       ls_roles-data-rolecategory = cc_rolecategory_client2. "FLCU01 Cliente (Org. Vendas)
       APPEND ls_roles TO r_result.
     ENDIF.
@@ -2008,6 +2037,71 @@ CLASS lcl_bupa IMPLEMENTATION .
 
   ENDMETHOD.
 
+*=====================================================================
+  METHOD fill_tax_ind.
+    CONSTANTS:
+        c_ibrx TYPE c LENGTH 4 VALUE 'IBRX' ##NO_TEXT.
+
+    DATA:
+      ls_cmds_ei_tax_ind     TYPE cmds_ei_tax_ind.
+
+    LOOP AT me->o_file->upload_data-tax_classf ASSIGNING FIELD-SYMBOL(<fs_tax_classf>)
+        WHERE kunnr =  im_v_kunnr.
+
+      CLEAR: ls_cmds_ei_tax_ind.
+
+      CALL FUNCTION 'KNVI_SINGLE_READ'
+        EXPORTING
+          i_kunnr   = <fs_tax_classf>-kunnr   " Customer Number
+          i_aland   = <fs_tax_classf>-aland   " Deliv. Country
+          i_tatyp   = <fs_tax_classf>-tatyp   " Tax Category
+        EXCEPTIONS
+          not_found = 1                " No Entry Found
+          OTHERS    = 4.
+
+      IF sy-subrc EQ 1.
+        ls_cmds_ei_tax_ind-task = cc_object_task_insert. " I Insert
+      ELSE.
+        ls_cmds_ei_tax_ind-task        = cc_object_task_update.  " U Update
+        ls_cmds_ei_tax_ind-datax-taxkd = abap_true.
+      ENDIF.
+
+      MOVE-CORRESPONDING:
+      <fs_tax_classf>       TO ls_cmds_ei_tax_ind-data_key,
+      <fs_tax_classf>       TO ls_cmds_ei_tax_ind-data.
+
+      APPEND ls_cmds_ei_tax_ind TO r_result.
+
+    ENDLOOP."me->o_file->upload_data-tax_classf ASSIGNING FIELD-SYMBOL(<fs_tax_classf>)
+
+    IF syst-subrc IS NOT INITIAL.
+
+      CALL FUNCTION 'KNVI_SINGLE_READ'
+        EXPORTING
+          i_kunnr   = im_v_kunnr        " Customer Number
+          i_aland   = cc_pais_iso_br    " Deliv. Country
+          i_tatyp   = c_ibrx            " Tax Category
+        EXCEPTIONS
+          not_found = 1                 " No Entry Found
+          OTHERS    = 4.
+
+      IF sy-subrc EQ 1.
+        ls_cmds_ei_tax_ind-task = cc_object_task_insert. " I Insert
+      ELSE.
+        ls_cmds_ei_tax_ind-task        = cc_object_task_update.  " U Update
+        ls_cmds_ei_tax_ind-datax-taxkd = abap_true.
+      ENDIF.
+
+      ls_cmds_ei_tax_ind-data_key-aland = cc_pais_iso_br.
+      ls_cmds_ei_tax_ind-data_key-tatyp = c_ibrx.
+      ls_cmds_ei_tax_ind-data-taxkd     = 1.
+
+      APPEND ls_cmds_ei_tax_ind TO r_result.
+
+    ENDIF.
+
+  ENDMETHOD.
+
 ENDCLASS.                       " lcl_bupa
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2165,43 +2259,6 @@ CLASS lcl_file IMPLEMENTATION.
 
   ENDMETHOD.
 
-*&---------------------------------------------------------------------*
-*&  METHOD set_sscrtexts
-*&---------------------------------------------------------------------*
-*  METHOD export_model.
-
-*    DATA:
-*      lo_table  TYPE REF TO cl_salv_table,
-*      lt_model  LIKE STANDARD TABLE OF s_upload_data,
-*      lx_xml    TYPE xstring,
-*      vl_return TYPE c.
-*
-*    CONSTANTS:
-*      c_default_extension TYPE string VALUE 'xlsx',
-*      c_default_file_name TYPE string VALUE ' modelo.xlsx',
-*      c_default_mask      TYPE string VALUE 'Excel (*.xlsx)|*.xlsx' ##NO_TEXT.
-*
-*    TRY .
-*        cl_salv_table=>factory( IMPORTING r_salv_table = lo_table CHANGING t_table = lt_model ).
-*      CATCH cx_root.
-*
-*    ENDTRY.
-*
-*    lx_xml = lo_table->to_xml( xml_type = '10' ). "XLSX
-*
-*    CALL FUNCTION 'XML_EXPORT_DIALOG'
-*      EXPORTING
-*        i_xml                      = lx_xml
-*        i_default_extension        = c_default_extension
-*        i_initial_directory        = lcl_file=>get_init_filename( )
-*        i_default_file_name        = syst-tcode && c_default_file_name
-*        i_mask                     = c_default_mask
-*      EXCEPTIONS
-*        application_not_executable = 1
-*        OTHERS                     = 2.
-*
-*  ENDMETHOD.
-*
   METHOD set_parameter_id.
 
     DATA:
@@ -2360,14 +2417,13 @@ CLASS lcl_messages IMPLEMENTATION.
       lv_output_i = abap_true.
     ENDIF.
 
-
     CALL METHOD cl_progress_indicator=>progress_indicate
       EXPORTING
         i_text               = lv_text          " Progress Text (If no message transferred in I_MSG*)
         i_processed          = im_v_processed   " Number of Objects Already Processed
         i_total              = im_v_total       " Total Number of Objects to Be Processed
         i_output_immediately = lv_output_i.     " X = Display Progress Immediately
-    .
+
   ENDMETHOD.
 
 ENDCLASS.

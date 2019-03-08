@@ -22,10 +22,10 @@ INCLUDE zrag_carga_acc_post_cl.
 * INITIALIZATION
 *----------------------------------------------------------------------*
 INITIALIZATION.
-  lcl_file=>set_sscrtexts( ).
-  WRITE icon_yellow_light AS ICON TO icon_001.
+  CALL METHOD lcl_file=>set_sscrtexts( ).
   CALL METHOD lcl_file=>get_parameter.
   CALL METHOD lcl_file=>get_object_from_memory( ).
+  PERFORM set_screen.
 
 *----------------------------------------------------------------------*
 * AT SELECTION-SCREEN ON VALUE-REQUEST FOR
@@ -51,6 +51,9 @@ AT SELECTION-SCREEN.
       CALL METHOD lcl_file=>export_model.
     WHEN'FC02'.
       CALL METHOD lcl_file=>start_upload( ).
+    WHEN'B1_UCOM'.
+      CALL METHOD lcl_file=>upload_to_server( ).
+
   ENDCASE.
 
 AT SELECTION-SCREEN ON RADIOBUTTON GROUP rb1.
@@ -61,6 +64,13 @@ AT SELECTION-SCREEN ON RADIOBUTTON GROUP rb1.
 *----------------------------------------------------------------------*
 AT SELECTION-SCREEN OUTPUT.
   PERFORM set_screen.
+
+*----------------------------------------------------------------------*
+* AT SELECTION-SCREEN ON EXIT-COMMAND
+*----------------------------------------------------------------------*
+*AT SELECTION-SCREEN ON EXIT-COMMAND.
+
+*  CALL METHOD lcl_file=>set_obj_to_memory( ).
 
 *----------------------------------------------------------------------*
 * START-OF-SELECTION
@@ -86,7 +96,8 @@ FORM set_screen .
   CASE abap_true.
     WHEN rb_psbal OR rb_lfn OR rb_kunnr.
       LOOP AT SCREEN INTO wa_screen.
-        IF wa_screen-group1 EQ 'G1'.
+        IF wa_screen-group1 EQ 'G1' OR
+           wa_screen-name   EQ 'P_GLBAL1'.
           wa_screen-active    = 0.
           wa_screen-invisible = 1.
           MODIFY SCREEN FROM wa_screen.
@@ -95,12 +106,27 @@ FORM set_screen .
 
     WHEN rb_glact.
       LOOP AT SCREEN INTO wa_screen.
-        IF wa_screen-group1 EQ 'G1' OR wa_screen-group1 EQ 'G2'..
+        IF wa_screen-group1 EQ 'G1' OR
+           wa_screen-group1 EQ 'G2' OR
+           wa_screen-name   EQ 'P_GLBAL1'.
+
           wa_screen-active    = 0.
           wa_screen-invisible = 1.
           MODIFY SCREEN FROM wa_screen.
+
         ENDIF.
       ENDLOOP.
+    WHEN rb_glbal.
+      LOOP AT SCREEN INTO wa_screen.
+        IF wa_screen-group1 EQ 'G1' OR
+           wa_screen-name   EQ 'P_GLBAL1'.
+
+          wa_screen-active    = 1.
+          wa_screen-invisible = 0.
+          MODIFY SCREEN FROM wa_screen.
+        ENDIF.
+      ENDLOOP.
+
     WHEN OTHERS.
       LOOP AT SCREEN INTO wa_screen.
         IF wa_screen-group1 EQ 'G1'.
@@ -112,29 +138,67 @@ FORM set_screen .
 
   ENDCASE.
 
-*---------------------------------------------------------------------
   CASE abap_true.
+    WHEN rb_file1.
+      LOOP AT SCREEN INTO wa_screen.
+        IF wa_screen-group1 EQ 'G4'.
+          wa_screen-active    = 0.
+          wa_screen-invisible = 1.
+          MODIFY SCREEN FROM wa_screen.
+        ENDIF.
+      ENDLOOP.
 
-    WHEN rb_psbal.
-      p_tcode = lcl_ps_balance=>tcode.
-      p_gkont = lcl_ps_balance=>gkont.
-
-    WHEN rb_lfn.
-      p_tcode = lcl_acc_payable=>tcode.
-      p_gkont = lcl_acc_payable=>gkont.
-
-    WHEN rb_kunnr.
-      p_tcode = lcl_acc_receivable=>tcode.
-      p_gkont = lcl_acc_receivable=>gkont.
-
+*    WHEN rb_file2.
+*      LOOP AT SCREEN INTO wa_screen.
+*        IF wa_screen-group1 EQ 'G3'.
+*          wa_screen-active    = 0.
+*          wa_screen-invisible = 1.
+*          MODIFY SCREEN FROM wa_screen.
+*        ENDIF.
+*      ENDLOOP.
+    WHEN OTHERS.
+      LOOP AT SCREEN INTO wa_screen.
+        IF wa_screen-group1 EQ 'G4'.
+          wa_screen-active    = 1.
+          wa_screen-invisible = 0.
+          MODIFY SCREEN FROM wa_screen.
+        ENDIF.
+      ENDLOOP.
   ENDCASE.
+
+*---------------------------------------------------------------------
+  IF p_tcode IS INITIAL.
+    CASE abap_true.
+      WHEN rb_psbal.
+        p_tcode = lcl_ps_balance=>tcode.
+      WHEN rb_lfn.
+        p_tcode = lcl_acc_payable=>tcode.
+      WHEN rb_kunnr.
+        p_tcode = lcl_acc_receivable=>tcode.
+      WHEN OTHERS.
+        p_tcode = lcl_ps_balance=>tcode.
+    ENDCASE.
+  ENDIF.
+
+  IF p_gkont IS INITIAL.
+    CASE abap_true.
+      WHEN rb_psbal.
+        p_gkont = lcl_ps_balance=>gkont.
+      WHEN rb_lfn.
+        p_gkont = lcl_acc_payable=>gkont.
+      WHEN rb_kunnr.
+        p_gkont = lcl_acc_receivable=>gkont.
+      WHEN OTHERS.
+        p_gkont = lcl_ps_balance=>gkont.
+    ENDCASE.
+  ENDIF.
 
 *---------------------------------------------------------------------
 * Get text for GL account
   lv_saknr = p_gkont.
 
   PERFORM set_text_account IN PROGRAM saplgl_account_master_maintain USING    lv_ktopl lv_saknr
-                                                                     CHANGING lv_txt50.
+                                                                   CHANGING lv_txt50.
   gt_gkont = lv_txt50.
 
 *---------------------------------------------------------------------
@@ -165,8 +229,8 @@ FORM set_screen .
 *---------------------------------------------------------------------
 * Get Textos de tipos de movimento
   SELECT SINGLE txt FROM t856t INTO gt_bewar
-              WHERE trtyp = p_bewar
-                AND langu = sy-langu.
+            WHERE trtyp = p_bewar
+              AND langu = sy-langu.
 
   MODIFY SCREEN.
 

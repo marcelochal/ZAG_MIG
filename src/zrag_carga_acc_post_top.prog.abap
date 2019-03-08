@@ -56,35 +56,44 @@ TYPES:
     amt_doccur3     TYPE bapiaccr09-amt_doccur,   "Montante MI3
     currency        TYPE bapiaccr09-currency,
     hwaer           TYPE bapiaccr09-currency,
-    hwae2           TYPE bapiaccr09-currency,     "Código da moeda
-    hwae3           TYPE bapiaccr09-currency,     "Código da moeda
-    tax_code        TYPE bapiacap09-tax_code,     "Código do IVA
-    profit_ctr      TYPE bapiacap09-profit_ctr,   "Centro de lucro
-    fkber           TYPE fkber,                   "Área funcional
-    pmnttrms        TYPE bapiacap09-pmnttrms,     "Chave de condições de pagamento
-    bline_date      TYPE bapiacap09-bline_date,   "bline_date "Data base para cálculo do vencimento
-    dzbd1t          TYPE bapiacap09-dsct_days1,   "Dias de desconto 1
-    dzbd1p          TYPE dzbd1p,                  "Taxa de desconto 1
-    dzbd2t          TYPE dzbd2t,                  "Dias de desconto 2
-    dzbd2p          TYPE dzbd2p,                  "Taxa de desconto 2
-    dzbd3t          TYPE dzbd3t,                  "Prazo para condição líquida
-    bapiskfbt       TYPE bapiskfbt,               "Montante com direito a desconto em moeda do documento
-    pmnt_block      TYPE bapiacap09-pmnt_block,   "Chave para o bloqueio de pagamento
-    pymt_meth       TYPE bapiacap09-pymt_meth,    "Forma de pagamento
-    partner_bk      TYPE bapiacap09-partner_bk,   "Tipo de banco do parceiro
-    dzuonr          TYPE dzuonr,                  "Nº atribuição
-    bank_id         TYPE bapiacap09-bank_id,      "Chave breve de um banco da empresa
+    hwae2           TYPE bapiaccr09-currency,       "Código da moeda
+    hwae3           TYPE bapiaccr09-currency,       "Código da moeda
+    tax_code        TYPE bapiacap09-tax_code,       "Código do IVA
+    profit_ctr      TYPE bapiacap09-profit_ctr,     "Centro de lucro
+    fkber           TYPE fkber,                     "Área funcional
+    pmnttrms        TYPE bapiacap09-pmnttrms,       "Chave de condições de pagamento
+    bline_date      TYPE bapiacap09-bline_date,     "bline_date "Data base para cálculo do vencimento
+    dzbd1t          TYPE bapiacap09-dsct_days1,     "Dias de desconto 1
+    dzbd1p          TYPE dzbd1p,                    "Taxa de desconto 1
+    dzbd2t          TYPE dzbd2t,                    "Dias de desconto 2
+    dzbd2p          TYPE dzbd2p,                    "Taxa de desconto 2
+    dzbd3t          TYPE dzbd3t,                    "Prazo para condição líquida
+    bapiskfbt       TYPE bapiskfbt,                 "Montante com direito a desconto em moeda do documento
+    pmnt_block      TYPE bapiacap09-pmnt_block,     "Chave para o bloqueio de pagamento
+    pymt_meth       TYPE bapiacap09-pymt_meth,      "Forma de pagamento
+    partner_bk      TYPE bapiacap09-partner_bk,     "Tipo de banco do parceiro
+    dzuonr          TYPE dzuonr,                    "Nº atribuição
+    bank_id         TYPE bapiacap09-bank_id,        "Chave breve de um banco da empresa
     housebankacctid TYPE bapiacap09-housebankacctid, "Chave breve das coordenadas de uma conta
-    businessplace   TYPE bapiacap09-businessplace, "Filial
-    belnr_d         TYPE belnr_d,                 "Nº documento de um documento contábil
-    gjahr           TYPE gjahr,                   "Exercício
-    saknr           TYPE saknr,                   "
-    bus_area        TYPE bapiacap09-bus_area,     "Divisão
-    bschl           TYPE bschl,                   "Chave de lançamento
-    doc_type        TYPE bapiache09-doc_type,     "Tipo de documento
-    vbund           TYPE vbund,                   "Nº sociedade
-    bline_date1     TYPE bapiacap09-bline_date,   "Vencimento líquido
-    empfb           TYPE empfb,                   "Recebedor de pagamento/pagador
+    businessplace   TYPE bapiacap09-businessplace,  "Filial
+    belnr_d         TYPE belnr_d,                   " Nº documento de um documento contábil
+    gjahr           TYPE gjahr,                     " Exercício
+    saknr           TYPE saknr,                     "
+    bus_area        TYPE bapiacap09-bus_area,       " Divisão
+    bschl           TYPE bschl,                     " Chave de lançamento
+    doc_type        TYPE bapiache09-doc_type,       " Tipo de documento
+    vbund           TYPE vbund,                     " Nº sociedade
+    bline_date1     TYPE bapiacap09-bline_date,     " Vencimento líquido
+    empfb           TYPE empfb,                     " Recebedor de pagamento/pagador
+    shkzg           TYPE shkzg,                     " Código débito/crédito
+    ebeln           TYPE ebeln,                     " Nº do documento de compras
+    ebelp           TYPE ebelp,                     " Nº item do documento de compra
+    esrnr           TYPE esrnr,                     " Nº participante NDR
+    esrre           TYPE esrre,                     " Nº referência NDR (nota de depósito com nº referência)
+    esrpz           TYPE esrpz,                     " Dígito de controle de nota de depósito c/nº referência (NDR)
+    brcde           TYPE brcde,                     " Representação númerica de cód.barras em form.pagamento
+    augbl           TYPE augbl,                     " Nº documento de compensação
+    augdt           TYPE augdt,                     " Data de compensação
   END OF ty_s_accounts_payable,
 
 * Accounts receivable ACCOUNTRECEIVABLE LIKE BAPIACAR09 OPTIONAL
@@ -121,8 +130,8 @@ TYPES:
     dunn_key        TYPE bapiacar09-dunn_key,     "Chave de advertência
     alloc_nmbr      TYPE bapiacar09-alloc_nmbr,   "Nº atribuição
     bank_id         TYPE bapiacar09-bank_id,      "Chave breve de um banco da empresa
-    housebankacctid TYPE bapiacar09-housebankacctid,    "Chave breve das coordenadas de uma conta
-    businessplace   TYPE bapiacar09-businessplace,      "Filial
+    housebankacctid TYPE bapiacar09-housebankacctid, "Chave breve das coordenadas de uma conta
+    businessplace   TYPE bapiacar09-businessplace, "Filial
     belnr_d         TYPE belnr_d,                 "Nº documento de um documento contábil
     gjahr           TYPE gjahr,                   "Exercício
 *    saknr           TYPE saknr,                   "
@@ -268,20 +277,33 @@ DATA:
     skb1 TYPE ty_t_skb1,
   END OF gs_glaccount.
 
+CONSTANTS:
+  co_parameter_id1 TYPE memoryid VALUE 'ZMIG_FILE_01',
+  co_parameter_id2 TYPE memoryid VALUE 'ZMIG_FILE_02',
+  co_parameter_sak TYPE memoryid VALUE 'SAK'.
+
 *--------------------------------------------------------------------
 *   PARÂMETROS DE SELEÇÃO
 *--------------------------------------------------------------------
-SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-t01.
-
-*SELECTION-SCREEN BEGIN OF LINE.
-PARAMETERS p_file TYPE rlgrap-filename OBLIGATORY MEMORY ID cc_parameter_id. ##EXISTS
-SELECTION-SCREEN COMMENT 79(5)  icon_001.
-*SELECTION-SCREEN END OF LINE.
-*SELECTION-SCREEN PUSHBUTTON 79(2) b_text USER-COMMAND ucom .
-
 SELECTION-SCREEN:
   FUNCTION KEY 1,
   FUNCTION KEY 2.
+
+SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-t01.
+
+*SELECTION-SCREEN BEGIN OF LINE.
+PARAMETERS p_file  TYPE rlgrap-filename  MODIF ID g3 MEMORY ID co_parameter_id1 . ##EXISTS
+SELECTION-SCREEN COMMENT 79(5)  icon_001 MODIF ID g3.
+PARAMETERS p_fserv TYPE rcgfiletr-ftappl MODIF ID g4 MEMORY ID co_parameter_id2 DEFAULT '/tmp/'. ##EXISTS
+
+SELECTION-SCREEN SKIP.
+PARAMETERS:
+  rb_file1 RADIOBUTTON GROUP rb1 MODIF ID rb1 USER-COMMAND rb_sel DEFAULT 'X',
+  rb_file2 RADIOBUTTON GROUP rb1 MODIF ID rb1.
+
+SELECTION-SCREEN PUSHBUTTON 35(20) b1_text  USER-COMMAND b1_ucom MODIF ID g4.
+SELECTION-SCREEN COMMENT    56(5)  icon_002                      MODIF ID g4.
+
 SELECTION-SCREEN SKIP.
 
 SELECTION-SCREEN BEGIN OF BLOCK b02 WITH FRAME TITLE TEXT-t02.
@@ -296,24 +318,37 @@ SELECTION-SCREEN COMMENT 58(50) gt_blart            MODIF ID g1.
 PARAMETERS:
   p_bktxt TYPE bktxt            DEFAULT 'Migração de saldos GL' MODIF ID g2,
   p_xblnr TYPE xblnr1           DEFAULT 'Migração saldos GL'    MODIF ID g1,
-  p_gkont TYPE gkont OBLIGATORY DEFAULT '9100021999'            MODIF ID g2.
+*  p_gkont TYPE gkont OBLIGATORY DEFAULT '9100021999'            MODIF ID g2.
+  p_gkont TYPE gkont MEMORY ID co_parameter_sak                 MODIF ID g2.
 SELECTION-SCREEN COMMENT 58(50) gt_gkont                        MODIF ID g2.
-PARAMETERS p_tcode TYPE tcode OBLIGATORY DEFAULT sy-tcode       MODIF ID g2.
+*PARAMETERS p_tcode TYPE tcode OBLIGATORY DEFAULT sy-tcode       MODIF ID g2.
+PARAMETERS p_tcode TYPE tcode                                   MODIF ID g2.
 SELECTION-SCREEN COMMENT 58(50) gt_tcode                        MODIF ID g2.
+PARAMETERS p_glbal1 TYPE boolean AS CHECKBOX DEFAULT abap_true.
 
 SELECTION-SCREEN END OF BLOCK b02.
 
+*Tipo de processamento
 SELECTION-SCREEN BEGIN OF BLOCK b03 WITH FRAME TITLE TEXT-t03.
 PARAMETERS:
-  rb_glbal DEFAULT 'X' RADIOBUTTON GROUP rb1 USER-COMMAND rb_sel MODIF ID rb1,
-  rb_psbal RADIOBUTTON GROUP rb1 MODIF ID rb1,
-  rb_lfn   RADIOBUTTON GROUP rb1 MODIF ID rb1,
-  rb_kunnr RADIOBUTTON GROUP rb1 MODIF ID rb1,
-  rb_glact RADIOBUTTON GROUP rb1 MODIF ID rb1.
+  rb_glbal RADIOBUTTON GROUP rb2 MODIF ID rb2 USER-COMMAND rb_sel DEFAULT 'X', "Saldo de contas do razão
+  rb_psbal RADIOBUTTON GROUP rb2 MODIF ID rb2, "Saldo de projetos
+  rb_lfn   RADIOBUTTON GROUP rb2 MODIF ID rb2, "Faturas de Fornecedores
+  rb_kunnr RADIOBUTTON GROUP rb2 MODIF ID rb2, "Faturas de Clientes
+  rb_glact RADIOBUTTON GROUP rb2 MODIF ID rb2. "Plano de Contas
 SELECTION-SCREEN END OF BLOCK b03.
 
 SELECTION-SCREEN BEGIN OF BLOCK b04 WITH FRAME TITLE TEXT-t04.
-PARAMETERS p_test TYPE xtest AS CHECKBOX DEFAULT abap_true.
+PARAMETERS:
+  p_test  TYPE xtest   AS CHECKBOX DEFAULT abap_true,
+  p_swlog TYPE boolean AS CHECKBOX DEFAULT abap_true.
+
 SELECTION-SCREEN END OF BLOCK b04.
+
+SELECTION-SCREEN BEGIN OF BLOCK b05 WITH FRAME TITLE TEXT-t05.
+PARAMETERS:
+  rb_up1 RADIOBUTTON GROUP rb3 MODIF ID rb3 USER-COMMAND rb_sel DEFAULT 'X',
+  rb_up2 RADIOBUTTON GROUP rb3 MODIF ID rb3.
+SELECTION-SCREEN END OF BLOCK b05.
 
 SELECTION-SCREEN END OF BLOCK b01.
