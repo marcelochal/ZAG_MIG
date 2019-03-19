@@ -10,6 +10,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZFFI_BAPI_CRIAR_IMOBILIZADO</FUNCNAME>
+     <SHORT_TEXT>Criar Imobilizado</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_IMOBILIZADO</PARAMETER>
@@ -34,22 +35,26 @@
       <RSFDO>
        <PARAMETER>P_I_TI_IMOBILIZADO</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Dados de entrada para criação de imobilizado</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFFI_BAPI_FIXEDASSET_OVRTAKE</FUNCNAME>
+     <SHORT_TEXT>BAPI for Legacy Data Transfer</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>KEY</PARAMETER>
@@ -366,311 +371,373 @@
       <RSFDO>
        <PARAMETER>KEY</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Key of Asset Being Created</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>REFERENCE</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Reference for Creating Using Reference</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CREATESUBNUMBER</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Create Asset Subnumber?</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CREATEGROUPASSET</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Indicator: Asset is a group asset</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Test Run</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GENERALDATA</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>General Data</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GENERALDATAX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for General Data</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INVENTORY</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Inventory</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INVENTORYX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Inventory</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>POSTINGINFORMATION</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Posting Information</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>POSTINGINFORMATIONX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Posting Information</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TIMEDEPENDENTDATA</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Time-Dependent Data</STEXT>
        <INDEX> 012</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TIMEDEPENDENTDATAX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Time-Dependent Data</STEXT>
        <INDEX> 013</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ALLOCATIONS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Allocations</STEXT>
        <INDEX> 014</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ALLOCATIONSX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Allocations</STEXT>
        <INDEX> 015</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORIGIN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Origin</STEXT>
        <INDEX> 016</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORIGINX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Origin</STEXT>
        <INDEX> 017</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INVESTACCTASSIGNMNT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Account Assignment for Investment</STEXT>
        <INDEX> 018</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INVESTACCTASSIGNMNTX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Investment Account Assignments</STEXT>
        <INDEX> 019</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NETWORTHVALUATION</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Net worth valuation</STEXT>
        <INDEX> 020</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NETWORTHVALUATIONX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Net Worth Valuation</STEXT>
        <INDEX> 021</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>REALESTATE</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Real Estate and Similar Rights</STEXT>
        <INDEX> 022</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>REALESTATEX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Real Estate</STEXT>
        <INDEX> 023</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INSURANCE</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Insurance</STEXT>
        <INDEX> 024</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INSURANCEX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Insurance</STEXT>
        <INDEX> 025</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>LEASING</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Leasing</STEXT>
        <INDEX> 026</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>LEASINGX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Leasing</STEXT>
        <INDEX> 027</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_GEN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Russia - General Data (Time-Independent)</STEXT>
        <INDEX> 028</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_GENX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters: Russia - General Data (Time-Independent)</STEXT>
        <INDEX> 029</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_PTX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Russia - Time-Independent Data - Net Worth Tax</STEXT>
        <INDEX> 030</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_PTXX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters: Russia - Time-Independent Data - Net Worth Tax</STEXT>
        <INDEX> 031</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_TTX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Russia - Time-Independent Data - Transport Tax</STEXT>
        <INDEX> 032</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_TTXX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters: Russia - Time-Independent Data - Transport Tax</STEXT>
        <INDEX> 033</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_IN_GEN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>India - Time-Independent General Data (BAPI-struc.)</STEXT>
        <INDEX> 034</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_IN_GENX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Update Flags: India - Time-Independent General Data (BAPI-struc.)</STEXT>
        <INDEX> 035</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_JP_ANN16</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Japan - Time-Independent Data for Annex 16</STEXT>
        <INDEX> 036</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_JP_ANN16X</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Update Flags: Japan - Time-Independent Data for Annex 16</STEXT>
        <INDEX> 037</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_JP_PTX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Japan - Time-Independent Data for Property Tax</STEXT>
        <INDEX> 038</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_JP_PTXX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Update Flags: Japan - Time-Independent Data for Property Tax</STEXT>
        <INDEX> 039</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_TIME_DEP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Globalization Fields: Date Interval of Time-Dependent Data</STEXT>
        <INDEX> 040</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_GENTD</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Russia - General Data (Time-Dependent)</STEXT>
        <INDEX> 041</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_GENTDX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters: Russia - General Data (Time-Dependent)</STEXT>
        <INDEX> 042</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_PTXTD</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Russia - Time-Dependent Data - Net Worth Tax</STEXT>
        <INDEX> 043</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_PTXTDX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters: Russia - Time-Dependent Data - Net Worth Tax</STEXT>
        <INDEX> 044</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_TTXTD</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Russia - Time-Dependent Data - Transport Tax</STEXT>
        <INDEX> 045</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_RUS_TTXTDX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters: Russia - Time-Dependent Data - Transport Tax</STEXT>
        <INDEX> 046</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_JP_IMPTD</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Japan - Time-Dependent Impairment Data (BAPI)</STEXT>
        <INDEX> 047</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>GLO_JP_IMPTDX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Update Flags: Japan - Time Dependent Impairment Data (BAPI)</STEXT>
        <INDEX> 048</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>COMPANYCODE</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Company Code of Asset Created</STEXT>
        <INDEX> 049</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ASSET</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Main Number of Asset Created</STEXT>
        <INDEX> 050</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>SUBNUMBER</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Subnumber of Created Asset</STEXT>
        <INDEX> 051</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ASSETCREATED</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Asset Created</STEXT>
        <INDEX> 052</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DEPRECIATIONAREAS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Depreciation Areas</STEXT>
        <INDEX> 053</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DEPRECIATIONAREASX</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Change Parameters for Depreciation Areas</STEXT>
        <INDEX> 054</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INVESTMENT_SUPPORT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Investment Support Key</STEXT>
        <INDEX> 055</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>BAPI_TE_ANLU</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Interface BAPI p/ampliação clientes da tabela ANLU</STEXT>
        <INDEX> 056</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CUMULATEDVALUES</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Cumulative Values</STEXT>
        <INDEX> 057</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>POSTEDVALUES</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Posted values</STEXT>
        <INDEX> 058</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TRANSACTIONS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Transactions for Transfer during Fiscal Year</STEXT>
        <INDEX> 059</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>PROPORTIONALVALUES</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Proportional Values on Transactions</STEXT>
        <INDEX> 060</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Return Table</STEXT>
        <INDEX> 061</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>POSTINGHEADERS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Header Info for Postings During Year - Legacy Data Transfer</STEXT>
        <INDEX> 062</INDEX>
       </RSFDO>
      </DOCUMENTATION>

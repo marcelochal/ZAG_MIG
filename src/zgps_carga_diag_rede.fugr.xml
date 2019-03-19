@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE</FUNCNAME>
+     <SHORT_TEXT>Criar diagrama de rede</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_WA_NETWORK</PARAMETER>
@@ -36,21 +37,25 @@
       <RSFDO>
        <PARAMETER>P_I_WA_NETWORK</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Structure Network: Create</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Ampliação do cliente para diagrama de rede (CI_AUFK)</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
@@ -58,6 +63,7 @@
     <item>
      <FUNCNAME>BAPI_ZBUS2002_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Create Network Header Using BAPI</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
@@ -84,27 +90,32 @@
       <RSFDO>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Structure Network: Create</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONIN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Reference Structure for BAPI Parameters EXTENSIONIN/EXTENSIONOUT</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONOUT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Reference Structure for BAPI Parameters EXTENSIONIN/EXTENSIONOUT</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZCN2002_ZNETWORK_ZCREATE</FUNCNAME>
+     <SHORT_TEXT>Create Network Header Using BAPI</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
@@ -133,27 +144,32 @@
       <RSFDO>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Structure Network: Create</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_NPLNR</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Network Number</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONIN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Reference Structure for BAPI Parameters ExtensionIn/ExtensionOut</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NETWORK_NOT_CREATED</PARAMETER>
        <KIND>X</KIND>
+       <STEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZMAP2I_ZBUS2002_NEW_TO_CAUFVD</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>BAPI_BUS2002_NEW</PARAMETER>
@@ -177,11 +193,13 @@
       <RSFDO>
        <PARAMETER>BAPI_BUS2002_NEW</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Data Structure: Create Network Header</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CAUFVD</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Dialog Structure for Order Headers and Items</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>

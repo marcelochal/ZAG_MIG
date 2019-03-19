@@ -2040,10 +2040,11 @@ CLASS lcl_bupa IMPLEMENTATION .
 *=====================================================================
   METHOD fill_tax_ind.
     CONSTANTS:
-        c_ibrx TYPE c LENGTH 4 VALUE 'IBRX' ##NO_TEXT.
+      c_tatyp_ibrx TYPE knvi-tatyp VALUE 'IBRX' ##NO_TEXT,
+      c_aland_br   TYPE knvi-aland VALUE cc_pais_iso_br.
 
     DATA:
-      ls_cmds_ei_tax_ind     TYPE cmds_ei_tax_ind.
+      ls_cmds_ei_tax_ind TYPE cmds_ei_tax_ind.
 
     LOOP AT me->o_file->upload_data-tax_classf ASSIGNING FIELD-SYMBOL(<fs_tax_classf>)
         WHERE kunnr =  im_v_kunnr.
@@ -2074,26 +2075,26 @@ CLASS lcl_bupa IMPLEMENTATION .
 
     ENDLOOP."me->o_file->upload_data-tax_classf ASSIGNING FIELD-SYMBOL(<fs_tax_classf>)
 
-    IF syst-subrc IS NOT INITIAL.
+    IF syst-subrc IS NOT INITIAL AND p_taxc EQ abap_true.
 
       CALL FUNCTION 'KNVI_SINGLE_READ'
         EXPORTING
           i_kunnr   = im_v_kunnr        " Customer Number
-          i_aland   = cc_pais_iso_br    " Deliv. Country
-          i_tatyp   = c_ibrx            " Tax Category
+          i_aland   = c_aland_br        " Deliv. Country
+          i_tatyp   = c_tatyp_ibrx      " Tax Category
         EXCEPTIONS
           not_found = 1                 " No Entry Found
           OTHERS    = 4.
 
       IF sy-subrc EQ 1.
-        ls_cmds_ei_tax_ind-task = cc_object_task_insert. " I Insert
+        ls_cmds_ei_tax_ind-task        = cc_object_task_insert. " I Insert
       ELSE.
         ls_cmds_ei_tax_ind-task        = cc_object_task_update.  " U Update
         ls_cmds_ei_tax_ind-datax-taxkd = abap_true.
       ENDIF.
 
-      ls_cmds_ei_tax_ind-data_key-aland = cc_pais_iso_br.
-      ls_cmds_ei_tax_ind-data_key-tatyp = c_ibrx.
+      ls_cmds_ei_tax_ind-data_key-aland = c_aland_br.
+      ls_cmds_ei_tax_ind-data_key-tatyp = c_tatyp_ibrx.
       ls_cmds_ei_tax_ind-data-taxkd     = 1.
 
       APPEND ls_cmds_ei_tax_ind TO r_result.

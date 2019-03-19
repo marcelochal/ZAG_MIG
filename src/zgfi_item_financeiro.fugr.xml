@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZFFI_FM_COMITEM_UPDATE</FUNCNAME>
+     <SHORT_TEXT>Finanzpositionen des Finanzkreises sichern</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>I_FIKRS</PARAMETER>
@@ -70,26 +71,31 @@
       <RSFDO>
        <PARAMETER>T_FMCI</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Categoria de tabela para tabela FMCI</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMCIT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Table type for FMCIT</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMHICI</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Hierarquia itens de orçamento</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMZUBSP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Atribuição de elementos BSP</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Parâmetro de retorno</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
      </DOCUMENTATION>

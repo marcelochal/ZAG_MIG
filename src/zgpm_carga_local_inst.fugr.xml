@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_LOCAL_INSTALACAO</FUNCNAME>
+     <SHORT_TEXT>Criar local de instalação</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_EXTERNAL_NUMBER</PARAMETER>
@@ -68,56 +69,67 @@
       <RSFDO>
        <PARAMETER>P_I_EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Identificação do local de instalação</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_LABELING_SYSTEM</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Sistema de identificação para locais técnicos</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_DATA_GENERAL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE + campos READ</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_DATA_SPECIFIC</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE_FL_ONLY + campos READ</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_AUTOMATIC_INSTALL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Código de um caractere</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Tabela para campos Zs do local de instalação</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_FUNCTLOCATION</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Local de instalação</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_GENERAL_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE + campos READ</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_SPECIFIC_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE_FL_ONLY + campos READ</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
      </DOCUMENTATION>
@@ -125,6 +137,7 @@
     <item>
      <FUNCNAME>BAPI_ZFUNCLOC_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>PM BAPI: Create Functional Location</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
@@ -189,61 +202,73 @@
       <RSFDO>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Functional Location Label</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>LABELING_SYSTEM</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Labeling System for Functional Locations</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_GENERAL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: BAPI Structure for ITOBAPI_CREATE + READ Fields</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_SPECIFIC</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: BAPI Structure for ITOBAPI_CREATE_FL_ONLY + READ Fields</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>AUTOMATIC_INSTALL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Automatic Installation According to Structure Indicator</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: cmps.ITOB que podem ser criados por APIs, só locais</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>FUNCTLOCATION</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Functional Location Key</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_GENERAL_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: BAPI Structure for ITOBAPI_CREATE + READ Fields</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_SPECIFIC_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: BAPI Structure for ITOBAPI_CREATE_FL_ONLY + READ Fields</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONIN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Reference Structure for BAPI Parameters ExtensionIn/ExtensionOut</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONOUT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Reference Structure for BAPI Parameters ExtensionIn/ExtensionOut</STEXT>
        <INDEX> 012</INDEX>
       </RSFDO>
      </DOCUMENTATION>

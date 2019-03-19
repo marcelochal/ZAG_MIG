@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_PONTO_DE_MEDICAO</FUNCNAME>
+     <SHORT_TEXT>Criar ponto de medição</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_WA_PONT_MED</PARAMETER>
@@ -31,16 +32,19 @@
       <RSFDO>
        <PARAMETER>P_I_WA_PONT_MED</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Estrutura para extração de dados  - Pontos de Medição</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>

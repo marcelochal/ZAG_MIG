@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_NORMA_APROP</FUNCNAME>
+     <SHORT_TEXT>Criar Norma de apropriação</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_NORMA_APROP</PARAMETER>
@@ -31,22 +32,26 @@
       <RSFDO>
        <PARAMETER>P_I_TI_NORMA_APROP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Dados de Entrada para criação de Norma de apropriação</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPS_CONV_PEP_OBJNR</FUNCNAME>
+     <SHORT_TEXT>Converter o Elemento PEP para OBJNR</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_PEP</PARAMETER>
@@ -65,11 +70,13 @@
       <RSFDO>
        <PARAMETER>P_I_PEP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Elemento do plano da estrutura do projeto (elemento PEP)</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_OBJNR</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Nº objeto</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
      </DOCUMENTATION>
@@ -77,6 +84,7 @@
     <item>
      <FUNCNAME>ZK_SRULE_SAVE_UTASK</FUNCNAME>
      <UPDATE_TASK>1</UPDATE_TASK>
+     <SHORT_TEXT>Verbuchungsbaustein für Abrechnungsvorschrift</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
@@ -124,6 +132,7 @@
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>

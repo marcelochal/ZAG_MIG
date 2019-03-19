@@ -10,6 +10,7 @@
     <item>
      <FUNCNAME>BAPI_ZPROJECTDEF_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Create Project Definition</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
@@ -31,22 +32,26 @@
       <RSFDO>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Structure Project Definition</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Parâmetro de retorno</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPS_2001_PROJECTDEF_CREATE</FUNCNAME>
+     <SHORT_TEXT>Criar Definição de Projeto</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
@@ -68,22 +73,26 @@
       <RSFDO>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI structure project definition</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Message table for BAPIs (Project System)</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPS_MAP_NOVOS_CAMPOS_2_PROJ</FUNCNAME>
+     <SHORT_TEXT>Mapear novos campos que a BAPI original não trata</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
@@ -102,11 +111,13 @@
       <RSFDO>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Structure Project Definition</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>PROJ</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Definição do projeto</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
      </DOCUMENTATION>

@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_PEPS</FUNCNAME>
+     <SHORT_TEXT>Criar PEPs</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_DEF_PROJETO</PARAMETER>
@@ -42,26 +43,31 @@
       <RSFDO>
        <PARAMETER>P_I_DEF_PROJETO</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>BAPI Structure Network: Create</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_PEPS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Tabela para a criação de PEPs</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Tabela para ampliação do cliente para elemento PEP (CI_PRPS)</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
      </DOCUMENTATION>

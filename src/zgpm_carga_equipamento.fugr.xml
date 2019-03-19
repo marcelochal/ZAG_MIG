@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_EQUIPAMENTO</FUNCNAME>
+     <SHORT_TEXT>Criar equipamento</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_EXTERNAL_NUMBER</PARAMETER>
@@ -81,66 +82,79 @@
       <RSFDO>
        <PARAMETER>P_I_EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Nº equipamento</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_DATA_GENERAL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE + campos READ</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_DATA_SPECIFIC</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI p/ITOBAPI_CREATE_EQ_ONLY + campos READ</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_DATA_FLEET</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para FLEET_IDENT e FLEET_INCLUDE</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_VALID_DATE</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Data na qual o loc.montagem do equipamento foi modificado</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_DATA_INSTALL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para montagem/desmontagem equipamentos</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Tabela para campos Zs de equipamento</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_EQUIPMENT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Nº equipamento</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_GENERAL_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE + campos READ</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_SPECIFIC_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI p/ITOBAPI_CREATE_EQ_ONLY + campos READ</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_FLEET_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: estrutura BAPI para FLEET_IDENT e FLEET_INCLUDE</STEXT>
        <INDEX> 012</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 013</INDEX>
       </RSFDO>
      </DOCUMENTATION>
@@ -148,6 +162,7 @@
     <item>
      <FUNCNAME>BAPI_ZEQUI_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>PM BAPI: Create Equipment</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
@@ -222,61 +237,73 @@
       <RSFDO>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Number of Equipment to be Created (Initial =&gt; Internal Assignment)</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_GENERAL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>General Data for Technical Objects</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_SPECIFIC</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Equipment-Specific data</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_FLEET</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Vehicle-Specific Data</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>VALID_DATE</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Valid-From Date for Equipment to be Created</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_INSTALL</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Installation Date for Equipment</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>PM: ITOB cmps.que podem ser criados só por APIs, só equis</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EQUIPMENT</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Number of Equipment Created</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_GENERAL_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>General Data for Technical Objects</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_SPECIFIC_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Equipment-Specific data</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_FLEET_EXP</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Vehicle-Specific Data</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Return Parameter</STEXT>
        <INDEX> 012</INDEX>
       </RSFDO>
       <RSFDO>

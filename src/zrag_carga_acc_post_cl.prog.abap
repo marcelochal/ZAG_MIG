@@ -2916,6 +2916,10 @@ CLASS lcl_acc_payable IMPLEMENTATION.
 
         UNPACK <fs_upload_data>-vendor_no TO ls_accountpayable-vendor_no.
 
+        " Tipo de banco do pagador diferente
+        IF ls_accountpayable-alt_payee IS NOT INITIAL.
+          ls_accountpayable-alt_payee_bank = ls_accountpayable-partner_bk.
+        ENDIF.
         MOVE:
           '00'      TO ls_currencyamount-curr_type,
           lv_itemno TO ls_accountpayable-itemno_acc,

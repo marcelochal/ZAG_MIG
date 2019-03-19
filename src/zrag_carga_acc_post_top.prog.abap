@@ -84,7 +84,8 @@ TYPES:
     doc_type        TYPE bapiache09-doc_type,       " Tipo de documento
     vbund           TYPE vbund,                     " Nº sociedade
     bline_date1     TYPE bapiacap09-bline_date,     " Vencimento líquido
-    empfb           TYPE empfb,                     " Recebedor de pagamento/pagador
+*    empfb           TYPE empfb,                     " Recebedor de pagamento/pagador
+    alt_payee       TYPE empfb,                     " Recebedor de pagamento/pagador
     shkzg           TYPE shkzg,                     " Código débito/crédito
     ebeln           TYPE ebeln,                     " Nº do documento de compras
     ebelp           TYPE ebelp,                     " Nº item do documento de compra
@@ -94,6 +95,9 @@ TYPES:
     brcde           TYPE brcde,                     " Representação númerica de cód.barras em form.pagamento
     augbl           TYPE augbl,                     " Nº documento de compensação
     augdt           TYPE augdt,                     " Data de compensação
+    qbshb           TYPE qbshb_x8,                  " Montante de imposto retido NA fonte em moeda DO documento
+    qsfbt           TYPE qsfbt_x8,                  " Montante isento de irf em moeda DO documento
+    qsshb           TYPE qsshb_x8,                  " Montante BASE de imposto retido NA fonte em moeda documento
   END OF ty_s_accounts_payable,
 
 * Accounts receivable ACCOUNTRECEIVABLE LIKE BAPIACAR09 OPTIONAL
