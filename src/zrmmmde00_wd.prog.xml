@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_PROG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <PROGDIR>
+    <NAME>ZRMMMDE00_WD</NAME>
+    <DBAPL>S</DBAPL>
+    <DBNA>D$</DBNA>
+    <SUBC>1</SUBC>
+    <RSTAT>K</RSTAT>
+    <RLOAD>P</RLOAD>
+    <FIXPT>X</FIXPT>
+    <LDBNAME>D$S</LDBNAME>
+    <UCCHECK>X</UCCHECK>
+   </PROGDIR>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>001</KEY>
+     <ENTRY>Delete materials</ENTRY>
+     <LENGTH>28</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>002</KEY>
+     <ENTRY>Are you sure you want to delete</ENTRY>
+     <LENGTH>66</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>003</KEY>
+     <ENTRY>all of the materials?</ENTRY>
+     <LENGTH>29</LENGTH>
+    </item>
+    <item>
+     <ID>R</ID>
+     <ENTRY>Delete All of the Materials in the Current Client</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_ERNAM</KEY>
+     <ENTRY>.</ENTRY>
+     <LENGTH>9</LENGTH>
+     <SPLIT>D</SPLIT>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_MATNR</KEY>
+     <ENTRY>.</ENTRY>
+     <LENGTH>9</LENGTH>
+     <SPLIT>D</SPLIT>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_TEST</KEY>
+     <ENTRY>.</ENTRY>
+     <LENGTH>9</LENGTH>
+     <SPLIT>D</SPLIT>
+    </item>
+   </TPOOL>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>P</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Eliminar materiais</ENTRY>
+       <LENGTH>28</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>002</KEY>
+       <ENTRY>Tem certeza de que deseja excluir</ENTRY>
+       <LENGTH>66</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>003</KEY>
+       <ENTRY>todos os materiais?</ENTRY>
+       <LENGTH>29</LENGTH>
+      </item>
+      <item>
+       <ID>R</ID>
+       <ENTRY>Eliminar todos os materiais do mandante atual</ENTRY>
+       <LENGTH>45</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_ERNAM</KEY>
+       <ENTRY>.</ENTRY>
+       <LENGTH>9</LENGTH>
+       <SPLIT>D</SPLIT>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_MATNR</KEY>
+       <ENTRY>.</ENTRY>
+       <LENGTH>9</LENGTH>
+       <SPLIT>D</SPLIT>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_TEST</KEY>
+       <ENTRY>.</ENTRY>
+       <LENGTH>9</LENGTH>
+       <SPLIT>D</SPLIT>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

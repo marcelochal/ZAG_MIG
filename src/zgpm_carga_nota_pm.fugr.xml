@@ -9,7 +9,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_NOTA_PM</FUNCNAME>
-     <SHORT_TEXT>Criar nota</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_WA_HEADER_NOTA</PARAMETER>
@@ -32,26 +31,22 @@
       <RSFDO>
        <PARAMETER>P_I_WA_HEADER_NOTA</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Dados de Entrada para criação da nota</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPM_ALM_PM_NOTIF_CREATE</FUNCNAME>
-     <SHORT_TEXT>Create PM/CS Notification</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
@@ -134,98 +129,82 @@
       <RSFDO>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Notification number (for external numbering)</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIF_TYPE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Notification Type</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFHEADER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Notification Header Data</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>SENDER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Log. external system</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORDERID</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Order Number</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ADD_RIQS5</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Campos adicionais para RIQS5</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFHEADER_EXPORT</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Notification Header Data</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTITEM</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Work Table for Notification Item</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFCAUS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Work Table for Causes</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFACTV</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Work Table for Activities</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFTASK</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Work Table for Tasks</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFPARTNR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Work Table for Partners</STEXT>
        <INDEX> 012</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>LONGTEXTS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Work Table for Longtexts</STEXT>
        <INDEX> 013</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>KEY_RELATIONSHIPS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Table with key relationships external - internal</STEXT>
        <INDEX> 014</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Message Type: S Success, E Error, W Warning, I In</STEXT>
        <INDEX> 015</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZMAP2I_BAPI2080_NOTHDRI_RIQS5</FUNCNAME>
-     <SHORT_TEXT>bapi2080_nothdri -&gt; riqs5</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>BAPI2080_NOTHDRI</PARAMETER>
@@ -254,7 +233,6 @@
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ADD_RIQS5</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Campos adicionais para RIQS5</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>

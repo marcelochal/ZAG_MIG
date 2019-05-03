@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_PROG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <PROGDIR>
+    <NAME>ZRAG_CARGA_ZPCT_PGTO_FOR</NAME>
+    <SUBC>1</SUBC>
+    <RSTAT>K</RSTAT>
+    <RLOAD>P</RLOAD>
+    <FIXPT>X</FIXPT>
+    <UCCHECK>X</UCCHECK>
+   </PROGDIR>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>P</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>002</KEY>
+       <ENTRY>Parâmetros do Arquivo</ENTRY>
+       <LENGTH>21</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>003</KEY>
+       <ENTRY>Linhas de Cabeçalho</ENTRY>
+       <LENGTH>19</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>101</KEY>
+       <ENTRY>Carregando arquivo de entrada...</ENTRY>
+       <LENGTH>32</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>102</KEY>
+       <ENTRY>Validando dados...</ENTRY>
+       <LENGTH>18</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>103</KEY>
+       <ENTRY>Atualizando a tabela...</ENTRY>
+       <LENGTH>46</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>104</KEY>
+       <ENTRY>Carga concluída com sucesso</ENTRY>
+       <LENGTH>54</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>105</KEY>
+       <ENTRY>registros carregados</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E01</KEY>
+       <ENTRY>Nenhum fornecedor existente para os registros</ENTRY>
+       <LENGTH>45</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E02</KEY>
+       <ENTRY>Erro ao carregar arquivo</ENTRY>
+       <LENGTH>24</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E03</KEY>
+       <ENTRY>Nenhum registro carregado</ENTRY>
+       <LENGTH>25</LENGTH>
+      </item>
+      <item>
+       <ID>R</ID>
+       <ENTRY>Carga da Tabela ZPCT_PGTO_FOR</ENTRY>
+       <LENGTH>29</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_FILE</KEY>
+       <ENTRY>Arquivo</ENTRY>
+       <LENGTH>15</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_LINES</KEY>
+       <ENTRY>Linhas de Cabeçalho..</ENTRY>
+       <LENGTH>29</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

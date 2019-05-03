@@ -10,7 +10,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_TAREFAS</FUNCNAME>
-     <SHORT_TEXT>Criar Tarefas</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_DIAG_REDE</PARAMETER>
@@ -50,44 +49,37 @@
       <RSFDO>
        <PARAMETER>P_I_DIAG_REDE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>BAPI Structure Network: Create</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_TAREFAS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela de dados: criar tarefa do diagrama de rede</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela ampliação do cliente p/ tarefa diag rede (CI_AFVU)</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_SERVICOS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Dados de Entrada para criação de serviço</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPS_SHDB_CN22</FUNCNAME>
-     <SHORT_TEXT>Criar as tarefas de serviço via SHDB na CN22</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_DIAG_REDE</PARAMETER>
@@ -121,31 +113,26 @@
       <RSFDO>
        <PARAMETER>P_I_DIAG_REDE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Nº diagrama rede</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_TAREFAS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela de dados: criar tarefa do diagrama de rede</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_SERVICOS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Dados de Entrada para criação de serviço</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
      </DOCUMENTATION>

@@ -4,8 +4,6 @@
   <asx:values>
    <PROGDIR>
     <NAME>ZPSR_BAPI_PROJECTDEF_CREATE</NAME>
-    <STATE>A</STATE>
-    <VARCL>X</VARCL>
     <SUBC>1</SUBC>
     <APPL>C</APPL>
     <RLOAD>E</RLOAD>

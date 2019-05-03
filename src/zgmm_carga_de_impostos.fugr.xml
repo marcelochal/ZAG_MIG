@@ -10,7 +10,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_IMPOSTOS</FUNCNAME>
-     <SHORT_TEXT>Criar Impostos</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXDEF</PARAMETER>
@@ -95,86 +94,72 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXDEF</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo imposto: taxas default</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIP1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regras IPI</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIP2</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regras IPI (dep.do material)</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIP3</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para IPI agrupado</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIC1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regulamentos gerais ICMS</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIC2</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálc.imposto: regras ICMS</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIC3</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para ICMS agrupados</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXCI1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálc.imposto: Complemento de regras ICMS</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXST2</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálc.imposto: regras sub.tributária (geral)</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXST1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regulamentos de sub.trib.</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXST3</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo dinâmico de Substituição Tributária</STEXT>
        <INDEX> 011</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 012</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 013</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXCI1</FUNCNAME>
-     <SHORT_TEXT>Criar Complemento de regras ICMS</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXCI1</PARAMETER>
@@ -198,26 +183,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXCI1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálc.imposto: Complemento de regras ICMS</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXDEF</FUNCNAME>
-     <SHORT_TEXT>Criar taxas default</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXDEF</PARAMETER>
@@ -241,26 +222,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXDEF</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo imposto: taxas default</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXIC1</FUNCNAME>
-     <SHORT_TEXT>Criar regulamentos gerais ICMS</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXIC1</PARAMETER>
@@ -284,26 +261,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIC1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regulamentos gerais ICMS</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXIC2</FUNCNAME>
-     <SHORT_TEXT>Criar regras ICMS</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXIC2</PARAMETER>
@@ -327,26 +300,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIC2</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálc.imposto: regras ICMS</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXIC3</FUNCNAME>
-     <SHORT_TEXT>Criar ICMS agrupado</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXIC3</PARAMETER>
@@ -370,26 +339,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIC3</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para ICMS agrupados</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXIP1</FUNCNAME>
-     <SHORT_TEXT>Criar regras IPI</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXIP1</PARAMETER>
@@ -413,26 +378,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIP1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regras IPI</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXIP2</FUNCNAME>
-     <SHORT_TEXT>Criar regras IPI (dep.do material)</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXIP2</PARAMETER>
@@ -456,26 +417,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIP2</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regras IPI (dep.do material)</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXIP3</FUNCNAME>
-     <SHORT_TEXT>Criar IPI agrupado</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXIP3</PARAMETER>
@@ -499,26 +456,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXIP3</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para IPI agrupado</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXST1</FUNCNAME>
-     <SHORT_TEXT>Criar regulamentos de sub.trib.</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXST1</PARAMETER>
@@ -542,26 +495,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXST1</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo de imposto: regulamentos de sub.trib.</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXST2</FUNCNAME>
-     <SHORT_TEXT>Criar regras sub.tributária (geral)</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXST2</PARAMETER>
@@ -585,26 +534,22 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXST2</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálc.imposto: regras sub.tributária (geral)</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFMM_SHDB_J_1BTXST3</FUNCNAME>
-     <SHORT_TEXT>Criar Cálculo dinâmico de Substituição Tributária</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_TI_J_1BTXST3</PARAMETER>
@@ -628,19 +573,16 @@
       <RSFDO>
        <PARAMETER>P_I_TI_J_1BTXST3</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela para Cálculo dinâmico de Substituição Tributária</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>

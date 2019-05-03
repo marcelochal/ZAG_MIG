@@ -4,8 +4,6 @@
   <asx:values>
    <PROGDIR>
     <NAME>SAPLZGPM_CARGA_LISTA_TAREFAS</NAME>
-    <STATE>A</STATE>
-    <VARCL>X</VARCL>
     <DBAPL>S</DBAPL>
     <DBNA>D$</DBNA>
     <SUBC>F</SUBC>

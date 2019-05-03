@@ -9,7 +9,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_MATERIAIS</FUNCNAME>
-     <SHORT_TEXT>Criar Materiais</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_DIAG_REDE</PARAMETER>
@@ -36,25 +35,21 @@
       <RSFDO>
        <PARAMETER>P_I_DIAG_REDE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>BAPI Structure Network: Create</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_MATERIAIS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela de dados: criar elemento da tarefa</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>

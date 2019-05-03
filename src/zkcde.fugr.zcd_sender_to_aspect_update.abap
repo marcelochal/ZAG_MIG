@@ -1,0 +1,59 @@
+FUNCTION ZCD_SENDER_TO_ASPECT_UPDATE.
+*"--------------------------------------------------------------------
+*"*"Interface local:
+*"  IMPORTING
+*"     VALUE(I_REPID) LIKE  KCDEDATAR-DEST
+*"     VALUE(I_TEST) TYPE  KCDU_BYTE DEFAULT SPACE
+*"  TABLES
+*"      I_SENDER TYPE  KCDE_SENDER
+*"  EXCEPTIONS
+*"      OPEN_EIS
+*"      CLOSE_EIS
+*"      NO_SENDERSTRUCTURE
+*"--------------------------------------------------------------------
+*ata: l_subrc like sy-subrc,
+DATA: L_CLENG LIKE CDIFIE-OFFST,
+      L_RLENG LIKE CDIFIE-OFFST,
+      L_ILENG LIKE CDIFIE-OFFST,
+      L_LINES TYPE I,
+      T242S_TAB  LIKE CFSEND_TAB OCCURS 50 WITH HEADER LINE,
+      VARVL_TAB TYPE KCDU_VARVL.
+
+  FIELD-SYMBOLS: <SENDER>.    " <field>.
+  PERFORM T242S_STRUCT_FILL TABLES T242S_TAB
+                            USING  I_REPID L_CLENG L_RLENG L_ILENG.
+  DESCRIBE TABLE T242S_TAB LINES L_LINES.
+  IF L_LINES < 1. RAISE NO_SENDERSTRUCTURE. ENDIF.
+  ASSIGN I_SENDER(L_CLENG) TO <SENDER>.
+
+  CALL FUNCTION 'KCD_MAPPING_INIT'
+       EXPORTING
+            REPID                 = I_REPID
+            GRPID                 = 'FILE'
+       EXCEPTIONS
+            INITIALIZATION_FAILED = 1.
+
+  IF SY-SUBRC <> 0.
+    RAISE OPEN_EIS.
+  ENDIF.
+  LOOP AT I_SENDER.
+    CALL FUNCTION 'KCD_RECONVERT_SENDER'
+         CHANGING
+              CRECORD =  <SENDER>.
+    CALL FUNCTION 'KCD_SENDER_SET_TRANSFER'
+         EXPORTING
+              SENDER_SET = <SENDER>.
+  ENDLOOP.
+
+  CALL FUNCTION 'KCD_MAPPING_EXECUTE'
+       EXPORTING
+            TEST_RUN      = I_TEST
+       TABLES
+            VARVL         = VARVL_TAB
+       EXCEPTIONS
+            ERROR_OCCURED = 1.
+
+  IF SY-SUBRC <> 0.
+    RAISE CLOSE_EIS.
+  ENDIF.
+ENDFUNCTION.

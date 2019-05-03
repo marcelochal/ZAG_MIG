@@ -15,9 +15,9 @@
 * Version | Date      | Who                 |   What                 *
 *    1.00 | 21/11/18  | Marcelo Alvares     |   Versão Inicial       *
 **********************************************************************
-*&---------------------------------------------------------------------*
+*&--------------------------------------------------------------------*
 *& Include          ZRAG_CARGA_ACC_POST_TOP
-*&---------------------------------------------------------------------*
+*&--------------------------------------------------------------------*
 REPORT zrag_carga_acc_post LINE-SIZE 120.
 
 TYPE-POOLS:
@@ -33,6 +33,7 @@ TYPES:
     comp_code  TYPE bapiacap09-comp_code,
     gl_account TYPE bapiacgl09-gl_account,  "Conta do Razão da contabilidade geral
     bus_area   TYPE bapiacap09-bus_area,    "Divisão
+    costcenter TYPE bapiacgl09-costcenter,  " Cost Center
     amt_doccur TYPE bapiaccr09-amt_doccur,  "Montante em moeda do documento
   END OF ty_s_gl_balance,
 
@@ -171,6 +172,7 @@ TYPES:
 *    quantity_c  TYPE c LENGTH 10,            "Quantidade
     base_uom    TYPE bapiacgl09-base_uom,    "Unidade de medida básica
     material    TYPE bapiacgl09-material,    "Número do material (18 caracteres)
+*    costcenter  TYPE bapiacgl09-costcenter,  " Cost Center
 *    material    TYPE c LENGTH 18,           "Número do material (18 caracteres)
 *    quantity    TYPE bapiacgl09-quantity,    "Quantidade
 *    dummy       TYPE c,
@@ -247,17 +249,45 @@ TYPES:
     cochanged TYPE    skb1-cochanged,  "Dados da área de contabilidade de custos modificados
   END OF ty_s_skb1,
 
+  BEGIN OF ty_s_fmbudget,
+*    fm_area         TYPE fikrs,             " Financial Management Area
+*    process         TYPE buku_process_ui,   " Budgeting Process
+*    doctype         TYPE bued_doctype,      " Budget entry document type
+*    version         TYPE buku_version,      " Budget Version
+*    docdate         TYPE bp_bldat,          " Document Date
+    funds_ctr TYPE fistl,             " Funds Center
+    cmmt_item TYPE fm_fipex,          " Commitment item
+    measure   TYPE fm_measure,        " Funded Program
+*    fisc_year       TYPE gjahr,             " Fiscal Year
+  END OF ty_s_fmbudget,
+
+  BEGIN OF ty_s_fmbudget_months,
+    total_amount_01 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_02 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_03 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_04 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_05 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_06 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_07 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_08 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_09 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_10 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_11 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+    total_amount_12 TYPE bapicurr_d,        " Currency amount in BAPI interfaces
+  END OF ty_s_fmbudget_months,
+
   ty_t_ska1 TYPE TABLE OF ty_s_ska1 WITH NON-UNIQUE SORTED KEY key_ska1 COMPONENTS ktopl saknr,
   ty_t_skb1 TYPE TABLE OF ty_s_skb1 WITH NON-UNIQUE SORTED KEY key_skb1 COMPONENTS bukrs saknr.
 
 CLASS:
-lcl_acc_payable     DEFINITION DEFERRED,
-lcl_acc_receivable  DEFINITION DEFERRED,
-lcl_bal_log         DEFINITION DEFERRED,
-lcl_file            DEFINITION DEFERRED,
-lcl_gl_balance      DEFINITION DEFERRED,
-lcl_ps_balance      DEFINITION DEFERRED,
-lcl_glaccount       DEFINITION DEFERRED.
+  lcl_acc_payable     DEFINITION DEFERRED,
+  lcl_acc_receivable  DEFINITION DEFERRED,
+  lcl_bal_log         DEFINITION DEFERRED,
+  lcl_file            DEFINITION DEFERRED,
+  lcl_gl_balance      DEFINITION DEFERRED,
+  lcl_ps_balance      DEFINITION DEFERRED,
+  lcl_glaccount       DEFINITION DEFERRED,
+  lcl_fmbudget        DEFINITION DEFERRED.
 
 RANGES:
   r_div     FOR tgsb-gsber,
@@ -275,6 +305,7 @@ DATA:
   o_file_ps        TYPE REF TO lcl_ps_balance,
   o_file_ar        TYPE REF TO lcl_acc_receivable,
   o_file_glaccount TYPE REF TO lcl_glaccount,
+  o_file_fmbudget  TYPE REF TO lcl_fmbudget,
 
   BEGIN OF gs_glaccount,
     ska1 TYPE ty_t_ska1,
@@ -291,7 +322,8 @@ CONSTANTS:
 *--------------------------------------------------------------------
 SELECTION-SCREEN:
   FUNCTION KEY 1,
-  FUNCTION KEY 2.
+  FUNCTION KEY 2,
+  FUNCTION KEY 3.
 
 SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-t01.
 
@@ -320,26 +352,42 @@ PARAMETERS:
   p_blart TYPE bkpf-blart OBLIGATORY DEFAULT 'UE'   MODIF ID g1.
 SELECTION-SCREEN COMMENT 58(50) gt_blart            MODIF ID g1.
 PARAMETERS:
-  p_bktxt TYPE bktxt            DEFAULT 'Migração de saldos GL' MODIF ID g2,
+  p_bktxt TYPE bktxt            DEFAULT 'Migração de saldos GL' MODIF ID g6,
   p_xblnr TYPE xblnr1           DEFAULT 'Migração saldos GL'    MODIF ID g1,
+  p_park  TYPE xpark_it                                         MODIF ID g1,
 *  p_gkont TYPE gkont OBLIGATORY DEFAULT '9100021999'            MODIF ID g2.
   p_gkont TYPE gkont MEMORY ID co_parameter_sak                 MODIF ID g2.
 SELECTION-SCREEN COMMENT 58(50) gt_gkont                        MODIF ID g2.
 *PARAMETERS p_tcode TYPE tcode OBLIGATORY DEFAULT sy-tcode       MODIF ID g2.
 PARAMETERS p_tcode TYPE tcode                                   MODIF ID g2.
 SELECTION-SCREEN COMMENT 58(50) gt_tcode                        MODIF ID g2.
-PARAMETERS p_glbal1 TYPE boolean AS CHECKBOX DEFAULT abap_true.
+PARAMETERS p_glbal1 TYPE boolean AS CHECKBOX DEFAULT abap_true  MODIF ID g5.
 
+PARAMETERS:
+  p_fmarea TYPE fmbw_s_screen-fm_area   DEFAULT 'TB00'      MODIF ID fm,
+  p_proces TYPE fmbh-process_ui         DEFAULT 'ENTR'      MODIF ID fm.
+SELECTION-SCREEN COMMENT 58(50) gt_proc                     MODIF ID fm.
+PARAMETERS
+  p_dtype  TYPE fmeddoctype-doctype     DEFAULT 'UPL'       MODIF ID fm.
+SELECTION-SCREEN COMMENT 58(50) gt_dtype                    MODIF ID fm.
+PARAMETERS:
+  p_vers   TYPE fmbh-version            DEFAULT '0'         MODIF ID fm,
+  p_pstdat TYPE fmbh-postdate           DEFAULT syst-datum  MODIF ID fm,
+*  p_measu  TYPE fmbw_s_screen-smeasure                      MODIF ID fm,
+  p_fiyear TYPE fmbw_s_screen-rfiscyear DEFAULT syst-datum(4) MODIF ID fm,
+  p_budcat TYPE fmbw_s_screen-budcat    DEFAULT '9F'        MODIF ID fm,
+  p_budty  TYPE fmbw_s_screen-sbudtype  DEFAULT 'BT01'      MODIF ID fm.
 SELECTION-SCREEN END OF BLOCK b02.
 
 *Tipo de processamento
 SELECTION-SCREEN BEGIN OF BLOCK b03 WITH FRAME TITLE TEXT-t03.
 PARAMETERS:
-  rb_glbal RADIOBUTTON GROUP rb2 MODIF ID rb2 USER-COMMAND rb_sel DEFAULT 'X', "Saldo de contas do razão
+  rb_glbal RADIOBUTTON GROUP rb2 MODIF ID rb2 USER-COMMAND rb_sel DEFAULT 'X', "Saldo de contas do razÃ£o
   rb_psbal RADIOBUTTON GROUP rb2 MODIF ID rb2, "Saldo de projetos
   rb_lfn   RADIOBUTTON GROUP rb2 MODIF ID rb2, "Faturas de Fornecedores
   rb_kunnr RADIOBUTTON GROUP rb2 MODIF ID rb2, "Faturas de Clientes
-  rb_glact RADIOBUTTON GROUP rb2 MODIF ID rb2. "Plano de Contas
+  rb_glact RADIOBUTTON GROUP rb2 MODIF ID rb2, "Plano de Contas
+  rb_fmbo  RADIOBUTTON GROUP rb2 MODIF ID rb2. "Dotação orcamento
 SELECTION-SCREEN END OF BLOCK b03.
 
 SELECTION-SCREEN BEGIN OF BLOCK b04 WITH FRAME TITLE TEXT-t04.

@@ -9,7 +9,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_ORDEM_PM</FUNCNAME>
-     <SHORT_TEXT>Criar ordem</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_WA_HEADER_ORDEM</PARAMETER>
@@ -36,32 +35,27 @@
       <RSFDO>
        <PARAMETER>P_I_WA_HEADER_ORDEM</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Estrutura header para criação de ordem de manutenção (IW31)</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TI_OPERACOES</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela de operações p/ criação ordem de manutenção (IW31)</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Mensagens de erro</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZALM_ME_ORDER_CREATE</FUNCNAME>
-     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>ORDER_HEADER</PARAMETER>
@@ -123,68 +117,57 @@
       <RSFDO>
        <PARAMETER>ORDER_HEADER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>ALM ME: Order header data</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_AD_CABECALHO</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Campos adicioais para o cabeçalho da ordem</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_PARTNER_TPA_KEY</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>General Flag</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_ORDER_HEADER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Order Header Data</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORDER_OPERATION</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Order Operation</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORDER_PARTNER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Partner Key</STEXT>
        <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORDER_LONGTEXT</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Long Texts</STEXT>
        <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORDER_USERSTATUS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Table with Status Changes for User Status</STEXT>
        <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Return parameter</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZMAP2I_ALM_ME_ORDER_HEAD_TO_C</FUNCNAME>
-     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>ALM_ME_ORDER_HEADER</PARAMETER>
@@ -213,19 +196,16 @@
       <RSFDO>
        <PARAMETER>ALM_ME_ORDER_HEADER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Order Header</STEXT>
        <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_AD_CABECALHO</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Campos adicioais para o cabeçalho da ordem</STEXT>
        <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CAUFVD</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Dialog Structure for Order Headers and Items</STEXT>
        <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>

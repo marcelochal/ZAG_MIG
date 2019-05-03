@@ -60,6 +60,9 @@ FUNCTION bapi_criar_tarefas.
 *-------------------------------------------------------------------*
 *-------------------------------------------------------------------*
 
+  "Devido a problemas em chamadas sucessivas dessa BAPI pelo DMC, é preciso o comando abaixo
+  wait UP TO 1 SECONDS.
+
   CALL FUNCTION 'BAPI_PS_INITIALIZATION'.
 
 *  Não trabalharemos com os campos Zs

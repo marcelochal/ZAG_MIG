@@ -40,6 +40,15 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_tcode.
     IMPORTING
       result = p_tcode.     " Single selection result
 
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_vers.
+  CALL FUNCTION 'FMCU_SHOW_VERSION'
+    EXPORTING
+      i_fm_area  = p_fmarea
+    IMPORTING
+      e_version  = p_vers
+    EXCEPTIONS
+      no_version = 1
+      OTHERS     = 2.
 *----------------------------------------------------------------------*
 * AT SELECTION-SCREEN
 *----------------------------------------------------------------------*b03
@@ -51,6 +60,8 @@ AT SELECTION-SCREEN.
       CALL METHOD lcl_file=>export_model.
     WHEN'FC02'.
       CALL METHOD lcl_file=>start_upload( ).
+    WHEN'FC03'.
+      lcl_file=>clear_database_memory( ).
     WHEN'B1_UCOM'.
       CALL METHOD lcl_file=>upload_to_server( ).
 
@@ -97,9 +108,11 @@ FORM set_screen .
     WHEN rb_psbal OR rb_lfn OR rb_kunnr.
       LOOP AT SCREEN INTO wa_screen.
         IF wa_screen-group1 EQ 'G1' OR
-           wa_screen-name   EQ 'P_GLBAL1'.
+           wa_screen-group1 EQ 'G5' OR
+           wa_screen-group1 EQ 'FM'.
           wa_screen-active    = 0.
           wa_screen-invisible = 1.
+
           MODIFY SCREEN FROM wa_screen.
         ENDIF.
       ENDLOOP.
@@ -108,19 +121,40 @@ FORM set_screen .
       LOOP AT SCREEN INTO wa_screen.
         IF wa_screen-group1 EQ 'G1' OR
            wa_screen-group1 EQ 'G2' OR
-           wa_screen-name   EQ 'P_GLBAL1'.
+           wa_screen-group1 EQ 'G5' OR
+           wa_screen-group1 EQ 'G6' OR
+           wa_screen-group1 EQ 'FM'.
 
           wa_screen-active    = 0.
           wa_screen-invisible = 1.
           MODIFY SCREEN FROM wa_screen.
-
         ENDIF.
       ENDLOOP.
+
     WHEN rb_glbal.
       LOOP AT SCREEN INTO wa_screen.
         IF wa_screen-group1 EQ 'G1' OR
-           wa_screen-name   EQ 'P_GLBAL1'.
+           wa_screen-group1 EQ 'G5'.
+          wa_screen-active    = 1.
+          wa_screen-invisible = 0.
+        ELSEIF wa_screen-group1 EQ 'FM'.
+          wa_screen-active    = 0.
+          wa_screen-invisible = 1.
+        ENDIF.
+        MODIFY SCREEN FROM wa_screen.
+      ENDLOOP.
 
+    WHEN rb_fmbo.
+      LOOP AT SCREEN INTO wa_screen.
+        IF ( wa_screen-group1 EQ 'G1' OR
+             wa_screen-group1 EQ 'G2' OR
+             wa_screen-group1 EQ 'G5' ) AND
+             wa_screen-group1 NE 'G6' .
+
+          wa_screen-active    = 0.
+          wa_screen-invisible = 1.
+          MODIFY SCREEN FROM wa_screen.
+        ELSE.
           wa_screen-active    = 1.
           wa_screen-invisible = 0.
           MODIFY SCREEN FROM wa_screen.
@@ -132,8 +166,11 @@ FORM set_screen .
         IF wa_screen-group1 EQ 'G1'.
           wa_screen-active    = 1.
           wa_screen-invisible = 0.
-          MODIFY SCREEN FROM wa_screen.
+        ELSEIF wa_screen-group1 EQ 'FM'.
+          wa_screen-active    = 0.
+          wa_screen-invisible = 1.
         ENDIF.
+        MODIFY SCREEN FROM wa_screen.
       ENDLOOP.
 
   ENDCASE.
@@ -231,6 +268,33 @@ FORM set_screen .
   SELECT SINGLE txt FROM t856t INTO gt_bewar
             WHERE trtyp = p_bewar
               AND langu = sy-langu.
+
+*---------------------------------------------------------------------
+* Get Textos tipo doc FM
+  DATA:
+    l_t_doctypet TYPE fmed_t_doctypet.
+  CALL FUNCTION 'FMCU_GET_DOCTYPES'
+    EXPORTING
+      i_flg_with_text = abap_true
+    IMPORTING
+*     e_t_doctype     = l_t_doctype
+      e_t_doctypet    = l_t_doctypet
+    EXCEPTIONS
+      no_doctype      = 1
+      OTHERS          = 2.
+  READ TABLE l_t_doctypet ASSIGNING FIELD-SYMBOL(<fs_doctypet>)
+    WITH KEY langu   = sy-langu
+             doctype = p_dtype
+    BINARY SEARCH.
+  IF sy-subrc IS INITIAL.
+    gt_dtype = <fs_doctypet>-text.
+  ENDIF.
+
+
+  SELECT SINGLE text15 FROM buprocess_uit
+    INTO gt_proc
+  WHERE langu = syst-langu AND
+        process_ui = p_proces.
 
   MODIFY SCREEN.
 

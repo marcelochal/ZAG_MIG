@@ -79,19 +79,16 @@
       <RSFDO>
        <PARAMETER>I_FMFCTR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Funds Center (FMFCTR)</STEXT>
        <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FMFCTRT</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Texto do centro financeiro</STEXT>
        <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FMHISV</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Tabela hierarquia centros financeiros em variante hier.</STEXT>
        <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
@@ -112,7 +109,6 @@
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Parâmetro de retorno</STEXT>
        <INDEX> 010</INDEX>
       </RSFDO>
      </DOCUMENTATION>

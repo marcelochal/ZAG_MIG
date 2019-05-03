@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <INCLUDES>
+    <SOBJ_NAME>LZGPS_BAPIS_MIGRACAOTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGPS_BAPIS_MIGRACAO</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>BAPI_ZPROJECTDEF_ZCREATE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
+       <TYP>ZEPS_BAPI_PROJECT_DEFINITION</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>TESTRUN</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>BAPIE1GLOBAL_DATA-TESTRUN</TYP>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>RETURN</PARAMETER>
+       <DBSTRUCT>BAPIRET2</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>TESTRUN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RETURN</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZFPS_MAP_CI_PROJ_2_PROJ</FUNCNAME>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>BAPI_PROJECT_DEFINITION</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZEPS_BAPI_PROJECT_DEFINITION</TYP>
+      </RSIMP>
+     </IMPORT>
+     <CHANGING>
+      <RSCHA>
+       <PARAMETER>PROJ</PARAMETER>
+       <DBFIELD>PROJ</DBFIELD>
+       <REFERENCE>X</REFERENCE>
+      </RSCHA>
+     </CHANGING>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>BAPI_PROJECT_DEFINITION</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>PROJ</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
