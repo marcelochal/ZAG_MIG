@@ -120,12 +120,25 @@ FORM f_carrega_arquivo  TABLES   pt_file  TYPE table
 
   IF l_file_extension(3) = 'XLS' OR l_file_extension(3) = 'xls'.
 
-    PERFORM f_upload_excel_file TABLES  pt_file
-                              USING   p_file
-                                      ld_scol
-                                      ld_srow
-                                      ld_ecol
-                                      ld_erow.
+*    PERFORM f_upload_excel_file TABLES  pt_file
+*                              USING   p_file
+*                                      ld_scol
+*                                      ld_srow
+*                                      ld_ecol
+*                                      ld_erow.
+    DATA(lo_file_upload) = NEW zcl_file_upload( im_v_file_path = p_file ).
+    lo_file_upload->upload_file(
+
+      CHANGING
+        ch_tab_converted_data = gt_dados
+      EXCEPTIONS
+        OTHERS                = 3   ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno
+        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 DISPLAY LIKE 'E'.
+      STOP.
+    ENDIF.
+
   ELSE.
     CALL FUNCTION 'GUI_UPLOAD'
       EXPORTING
@@ -204,63 +217,63 @@ ENDFORM. " f_get_file_extension
 *&---------------------------------------------------------------------*
 *&      Form  f_upload_excel_file
 *&---------------------------------------------------------------------*
-FORM f_upload_excel_file TABLES p_table
-                         USING  p_file
-                                p_scol
-                                p_srow
-                                p_ecol
-                                p_erow.
-
-  DATA : lt_intern TYPE  zkcde_cells OCCURS 0 WITH HEADER LINE.
-  FIELD-SYMBOLS : <fs>.
-* Has the following format:
-*             Row number   | Colum Number   |   Value
-*             ---------------------------------------
-*      i.e.     1                 1             Name1
-*               2                 1             Joe
-
-  DATA : ld_index TYPE i.
-* Note: Alternative function module - 'ALSM_EXCEL_TO_INTERNAL_TABLE'
-
-  CALL FUNCTION 'ZCD_EXCEL_OLE_TO_INT_CONVERT'
-    EXPORTING
-      filename                = p_file
-      i_begin_col             = p_scol
-      i_begin_row             = p_srow
-      i_end_col               = p_ecol
-      i_end_row               = p_erow
-    TABLES
-      intern                  = lt_intern
-    EXCEPTIONS
-      inconsistent_parameters = 1
-      upload_ole              = 2
-      OTHERS                  = 3.
-  IF sy-subrc <> 0.
-    MESSAGE e999(z_pm) WITH TEXT-e02.
-  ENDIF.
-
-  IF lt_intern[] IS INITIAL.
-    MESSAGE e999(z_pm) WITH TEXT-e03.
-  ELSE.
-    SORT lt_intern BY row col.
-    LOOP AT lt_intern.
-      IF lt_intern-row LE p_lines.
-        CONTINUE.
-      ENDIF.
-      MOVE lt_intern-col TO ld_index.
-      ASSIGN COMPONENT ld_index OF STRUCTURE p_table TO <fs>.
-      IF ld_index = 8.
-        TRANSLATE lt_intern-value USING ',.'.
-      ENDIF.
-      MOVE: lt_intern-value TO <fs>.
-      AT END OF row.
-        APPEND p_table.
-        CLEAR p_table.
-      ENDAT.
-    ENDLOOP.
-  ENDIF.
-
-ENDFORM.                    "f_upload_excel_file
+*FORM f_upload_excel_file TABLES p_table
+*                         USING  p_file
+*                                p_scol
+*                                p_srow
+*                                p_ecol
+*                                p_erow.
+*
+*  DATA : lt_intern TYPE  zkcde_cells OCCURS 0 WITH HEADER LINE.
+*  FIELD-SYMBOLS : <fs>.
+** Has the following format:
+**             Row number   | Colum Number   |   Value
+**             ---------------------------------------
+**      i.e.     1                 1             Name1
+**               2                 1             Joe
+*
+*  DATA : ld_index TYPE i.
+** Note: Alternative function module - 'ALSM_EXCEL_TO_INTERNAL_TABLE'
+*
+*  CALL FUNCTION 'ZCD_EXCEL_OLE_TO_INT_CONVERT'
+*    EXPORTING
+*      filename                = p_file
+*      i_begin_col             = p_scol
+*      i_begin_row             = p_srow
+*      i_end_col               = p_ecol
+*      i_end_row               = p_erow
+*    TABLES
+*      intern                  = lt_intern
+*    EXCEPTIONS
+*      inconsistent_parameters = 1
+*      upload_ole              = 2
+*      OTHERS                  = 3.
+*  IF sy-subrc <> 0.
+*    MESSAGE e999(z_pm) WITH TEXT-e02.
+*  ENDIF.
+*
+*  IF lt_intern[] IS INITIAL.
+*    MESSAGE e999(z_pm) WITH TEXT-e03.
+*  ELSE.
+*    SORT lt_intern BY row col.
+*    LOOP AT lt_intern.
+*      IF lt_intern-row LE p_lines.
+*        CONTINUE.
+*      ENDIF.
+*      MOVE lt_intern-col TO ld_index.
+*      ASSIGN COMPONENT ld_index OF STRUCTURE p_table TO <fs>.
+*      IF ld_index = 8.
+*        TRANSLATE lt_intern-value USING ',.'.
+*      ENDIF.
+*      MOVE: lt_intern-value TO <fs>.
+*      AT END OF row.
+*        APPEND p_table.
+*        CLEAR p_table.
+*      ENDAT.
+*    ENDLOOP.
+*  ENDIF.
+*
+*ENDFORM.                    "f_upload_excel_file
 
 *&---------------------------------------------------------------------*
 *&      Form  f_help_dir_arq
@@ -293,7 +306,7 @@ FORM f_valida_arquivo.
       IMPORTING
         output = gs_dados-lifnr.
 
-    MODIFY gt_dados from gs_dados INDEX gv_tabix.
+    MODIFY gt_dados FROM gs_dados INDEX gv_tabix.
 
     PERFORM f_valida_fornecedor.
 

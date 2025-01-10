@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZFFI_FM_COMITEM_UPDATE</FUNCNAME>
+     <SHORT_TEXT>Finanzpositionen des Finanzkreises sichern</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>I_FIKRS</PARAMETER>
@@ -55,42 +56,39 @@
       <RSFDO>
        <PARAMETER>I_FIKRS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_GJAHR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FLG_COMMIT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMCI</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>Categoria de tabela para tabela FMCI</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMCIT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
+       <STEXT>Table type for FMCIT</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMHICI</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
+       <STEXT>Hierarquia itens de orçamento</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>T_FMZUBSP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
+       <STEXT>Atribuição de elementos BSP</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
+       <STEXT>Parâmetro de retorno</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>

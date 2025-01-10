@@ -96,6 +96,8 @@ TYPES:
     brcde           TYPE brcde,                     " Representação númerica de cód.barras em form.pagamento
     augbl           TYPE augbl,                     " Nº documento de compensação
     augdt           TYPE augdt,                     " Data de compensação
+    wt_type         TYPE witht,                     " Código para categoria de imposto retido na fonte
+    wt_code         TYPE wt_withcd,                   " Código de imposto retido na fonte
     qbshb           TYPE qbshb_x8,                  " Montante de imposto retido NA fonte em moeda DO documento
     qsfbt           TYPE qsfbt_x8,                  " Montante isento de irf em moeda DO documento
     qsshb           TYPE qsshb_x8,                  " Montante BASE de imposto retido NA fonte em moeda documento
@@ -328,7 +330,7 @@ SELECTION-SCREEN:
 SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-t01.
 
 *SELECTION-SCREEN BEGIN OF LINE.
-PARAMETERS p_file  TYPE rlgrap-filename  MODIF ID g3 MEMORY ID co_parameter_id1 . ##EXISTS
+PARAMETERS p_file TYPE rlgrap-filename  MODIF ID g3 MEMORY ID co_parameter_id1. ##EXISTS
 SELECTION-SCREEN COMMENT 79(5)  icon_001 MODIF ID g3.
 PARAMETERS p_fserv TYPE rcgfiletr-ftappl MODIF ID g4 MEMORY ID co_parameter_id2 DEFAULT '/tmp/'. ##EXISTS
 
@@ -344,9 +346,9 @@ SELECTION-SCREEN SKIP.
 
 SELECTION-SCREEN BEGIN OF BLOCK b02 WITH FRAME TITLE TEXT-t02.
 PARAMETERS:
-  p_budat TYPE budat OBLIGATORY DEFAULT sy-datum    MODIF ID g1 , "Data de lançamento no documento
+  p_budat TYPE budat OBLIGATORY DEFAULT sy-datum    MODIF ID g1,  "Data de lançamento no documento
   p_bldat TYPE bldat OBLIGATORY DEFAULT sy-datum    MODIF ID g1,  "Data no documento
-  p_bewar TYPE bseg-bewar OBLIGATORY DEFAULT 'Z00'  MODIF ID g2.  "Saldo Inicial
+  p_bewar TYPE bseg-bewar            DEFAULT 'Z00'  MODIF ID g2.  "Saldo Inicial
 SELECTION-SCREEN COMMENT 58(50) gt_bewar            MODIF ID g2.
 PARAMETERS:
   p_blart TYPE bkpf-blart OBLIGATORY DEFAULT 'UE'   MODIF ID g1.
@@ -354,7 +356,6 @@ SELECTION-SCREEN COMMENT 58(50) gt_blart            MODIF ID g1.
 PARAMETERS:
   p_bktxt TYPE bktxt            DEFAULT 'Migração de saldos GL' MODIF ID g6,
   p_xblnr TYPE xblnr1           DEFAULT 'Migração saldos GL'    MODIF ID g1,
-  p_park  TYPE xpark_it                                         MODIF ID g1,
 *  p_gkont TYPE gkont OBLIGATORY DEFAULT '9100021999'            MODIF ID g2.
   p_gkont TYPE gkont MEMORY ID co_parameter_sak                 MODIF ID g2.
 SELECTION-SCREEN COMMENT 58(50) gt_gkont                        MODIF ID g2.

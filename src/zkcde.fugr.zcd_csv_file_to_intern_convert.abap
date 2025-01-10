@@ -1,5 +1,5 @@
 FUNCTION ZCD_CSV_FILE_TO_INTERN_CONVERT.
-*"--------------------------------------------------------------------
+*"----------------------------------------------------------------------
 *"*"Interface local:
 *"  IMPORTING
 *"     VALUE(I_FILENAME) LIKE  RLGRAP-FILENAME
@@ -9,7 +9,7 @@ FUNCTION ZCD_CSV_FILE_TO_INTERN_CONVERT.
 *"  EXCEPTIONS
 *"      UPLOAD_CSV
 *"      UPLOAD_FILETYPE
-*"--------------------------------------------------------------------
+*"----------------------------------------------------------------------
   DATA: CSV_FORMAT TYPE  KCDU_SRECS.
   DATA: WA_ROW     TYPE  KCDU_SREC.
   DATA: L_SEPARATOR TYPE  C.

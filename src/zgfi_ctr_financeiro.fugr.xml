@@ -64,56 +64,128 @@
       <RSFDO>
        <PARAMETER>I_FIKRS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FISTL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_HIVARNT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FMFCTR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>Funds Center (FMFCTR)</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FMFCTRT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
+       <STEXT>Texto do centro financeiro</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FMHISV</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
+       <STEXT>Tabela hierarquia centros financeiros em variante hier.</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FLG_TEST</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FLG_NO_ENQUEUE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FLG_COMMIT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 010</INDEX>
+       <STEXT>Parâmetro de retorno</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <LONGTEXTS_ZFFI_FM_FUNDS_CTR_CREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFFI_FM_FUNDS_CTR_CREATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00009</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFFI_FM_FUNDS_CTR_CREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U4</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Beim Anlegen ist die uebergeord. Position - falls vorhanden - und deren</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Finanzvorgang und Positionstyp mit zugeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Falls der Positionstyp der uebergeord. Position &apos;N&apos; ist, so kann man</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>durch Mitgabe des Parameters I_FIPUP_POTYP = &apos;N&apos; steuern, dass das Feld</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>POTYP eingabebereit wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U4</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U4</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U4</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U4</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_ZFFI_FM_FUNDS_CTR_CREATE>
   </asx:values>
  </asx:abap>
 </abapGit>

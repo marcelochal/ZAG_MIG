@@ -14,7 +14,6 @@ set extended check on.
 
 data: break_level value '2'.
 
-
 types: begin of type_group_datar_struc,
          group_id like kcdedatar-range_id,
          range_id like kcdedatar-range_id,

@@ -10,6 +10,7 @@
     <item>
      <FUNCNAME>BAPI_ZPROJECTDEF_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Create Project Definition</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
@@ -31,22 +32,23 @@
       <RSFDO>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>BAPI Structure Project Definition</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Parâmetro de retorno</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPS_2001_PROJECTDEF_CREATE</FUNCNAME>
+     <SHORT_TEXT>Criar Definição de Projeto</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
@@ -68,22 +70,23 @@
       <RSFDO>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>BAPI structure project definition</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Message table for BAPIs (Project System)</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPS_MAP_NOVOS_CAMPOS_2_PROJ</FUNCNAME>
+     <SHORT_TEXT>Mapear novos campos que a BAPI original não trata</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
@@ -102,16 +105,1337 @@
       <RSFDO>
        <PARAMETER>PROJECT_DEFINITION_STRU</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>BAPI Structure Project Definition</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>PROJ</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Definição do projeto</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <LONGTEXTS_BAPI_ZPROJECTDEF_ZCREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0006</VERSION>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00006</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Mit dieser Methode kann eine Projektdefinition angelegt werden, die die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>für das gesamte Projekt verbindlichen Daten enthält.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Dabei finden alle Konsistenzprüfungen statt, die auch beim Anlegen einer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Projektdefinition innerhalb der Transaktion durchgeführt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Um eine Projektdefinition anzulegen, benötigen Sie die entsprechende</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Berechtigung.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Sie müssen beim Anlegen einer Projektdefinition ein Projektprofil</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>angeben, das zuvor im Customizing angelegt wurde.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Obligatorischer Importparameter ist PROJECT_DEFINITION_STRU.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Meldungen werden im Return-Parameter zurückgegeben. In der Dokumentation</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zu diesem Parameter finden Sie die Rückgabewerte und deren Bedeutungen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Weitere Informationen finden Sie in der Dokumentation unter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;ZH&gt;PS-Projektsystem-Projektstrukturplan&lt;/&gt;.</TDLINE>
+      </TLINE>
+      <TLINE/>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0006</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00006</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>You can use this method to create a project definition that contains</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> data binding for the whole project.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>In the process, all the consistency checks are made that are made if you</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>create a project definition using the transaction.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>You need the relevant authority to create a project definition.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>When you create a project definition, you must use a project profile</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>that has been previously created in Customizing.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>PROJECT_DEFINITION_STRU is an obligatory import parameter.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Messsages are returned in the Return parameter. For information about</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>return values and their meaning, see the documentation for the Return</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>parameter.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>For more information,see the SAP Library under &lt;zh&gt;PS Project System -&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Work breakdown structure&lt;/&gt;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0006</VERSION>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00006</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>この方法は、プロジェクト全体を拘束するデータを含むプロジェクト定義を</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>登録するのに使用することができます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>その進行において、トランザクションを使用してプロジェクト定義を登録</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>する場合に行われる、全ての整合性チェックが行われます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>プロジェクト定義を登録するための関連の権限が必要になります。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>プロジェクト定義を登録する際、カスタマイジングにおいて以前に登録された</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>プロジェクトプロファイルを使用する必要があります。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>PROJECT_DEFINITION_STRU は、必須インポートパラメータです。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>メッセージは、リターンパラメータにおいてリターンされます。リターン値</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>およびその意味についての情報は、リターンパラメータに対する文書を参照</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>してください。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>追加情報は、&lt;zh&gt;PS プロジェクト管理 -&gt; WBS&lt;/&gt; の下での SAP ライブラリを</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>参照してください。</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE      E_MESSAGE_TABLE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE      E_MESSAGE_TABLE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Treten beim Anlegen der Projektdefinition Fehler auf, z.B. bei</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Konsistenzprüfungen oder wegen fehlender Berechtigungen oder Eingaben,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>so wird in dieser Tabelle die entsprechende Methode, das Objekt und die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Fehlernachricht ausgegeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U3</TDFORMAT>
+       <TDLINE>Struktur der Tabelle:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Methode,,Datentyp CHAR,,Feldlänge 32</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Objekt-Typ,,Datentyp CHAR,,Feldlänge 32</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>SAP-interner Objekt-Schlüssel,,Datentyp CHAR,,Feldlänge 90</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>SAP-externer Objekt-Schlüssel,,Datentyp CHAR,,Feldlänge 90</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Nachrichtenidentifikation,,Datentyp CHAR,,Feldlänge 20</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Nummer der Nachricht,,Datentyp CHAR,,Feldlänge 3</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Typ der Nachricht,,Datentyp CHAR,,Feldlänge 1</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Text der Nachricht,,Datentyp CHAR,,Feldlänge 72</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE      PROJECT_DEFINITION_STRU</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00042</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE      PROJECT_DEFINITION_STRU</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>In dieser Struktur werden die für das gesamte Projekt verbindlichen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Daten übergeben. Informationen zur Bedeutung der einzelnen Parameter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>finden Sie in der entsprechenden Datenelement-Dokumentation.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Für Währung und Zeiteinheit können Sie alternativ die SAP-interne</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Bezeichnung (PS_PWHIE bzw. PS_ZTEHT) oder den ISO-CODE (ISOCD bzw.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ISOCD_UNIT) verwenden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>LZ</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_DEFINITION,,&lt;DS:DE.PS_PSPID&gt;Projektdefinition&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>DESCRIPTION,,&lt;DS:DE.PS_POST1&gt;PS: Kurzbeschreibung (erste Textzeile)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>MASK_ID,,&lt;DS:DE.PS_KIMSK&gt;Auswahlmaske für Kurz-ID PSP-Elemente&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>RESPONSIBLE_NO,,&lt;DS:DE.PS_VERNR&gt;Nummer des Verantwortlichen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(Projektleiter)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>APPLICANT_NO,,&lt;DS:DE.PS_ASTNR&gt;Nummer des Antragstellers&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>COMP_CODE,,&lt;DS:DE.BUKRS&gt;Buchungskreis&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUS_AREA,,&lt;DS:DE.GSBER&gt;Geschäftsbereich&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CONTROLLING_AREA,,&lt;DS:DE.KOKRS&gt;Kostenrechnungskreis&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROFIT_CTR,,&lt;DS:DE.PRCTR&gt;Profit Center&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY,,&lt;DS:DE.PS_PWHIE&gt;Währung Projektstrukturplan</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(Projektdefinition)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY_ISO,,&lt;DS:DE.ISOCD&gt;Iso-Code Währung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_ASSIGNMENT,,&lt;DS:DE.PS_ZUORD&gt;Zuordnung Netzplan&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>START,,&lt;DS:DE.PS_PLFAZ&gt;Geplanter Starttermin für Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>FINISH,,&lt;DS:DE.PS_PLSEZ&gt;Geplanter Endtermin für Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLANT,,&lt;DS:DE.WERKS_D&gt;Werk&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CALENDAR,,&lt;DS:DE.FABKL&gt;Schlüssel des Fabrikkalenders&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_BASIC,,&lt;DS:DE.PS_VGPLF&gt;Planungsform für die Ecktermine im</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_FCST,,&lt;DS:DE.PS_EWPLF&gt;Planungsform für die Prognosetermine im</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT,,&lt;DS:DE.PS_ZTEHT&gt;Zeiteinheit Terminplanung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT_ISO,,&lt;DS:DE.ISOCD_UNIT&gt;ISO-Code Maßeinheit&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_PROFILE,,&lt;DS:DE.PROFIDNZPL&gt;Netzplanprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_PROFILE,,&lt;DS:DE.PROFIDPROJ&gt;Projektprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUDGET_PROFILE,,&lt;DS:DE.BP_BPROFIL&gt;Budgetprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_STOCK,,&lt;DS:DE.PS_BESTAND&gt;Projektbestandsführung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>OBJECTCLASS,,&lt;DS:DE.SCOPE_CV&gt;Objektklasse&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>STATISTICAL,,&lt;DS:DE.PS_XSTAT&gt;Statistisches PSP-Element (X)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TAXJURCODE,,&lt;DS:DE.TXJCD&gt;Tax Jurisdiction Code - Standort für</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Steuerrechnung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>INT_PROFILE,,&lt;DS:DE.PS_ZSCHM&gt;Zinsschema für Verzinsung von Projekten&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>WBS_SCHED_PROFILE,,&lt;DS:DE.PS_SCHDPRF&gt;Profil PSP-Terminierung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CSH_BDGT_PROFILE,,&lt;DS:DE.PSFM_PRF&gt;Finanzplan-Profil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_PROFILE,,&lt;DS:DE.BP_PPROFIL&gt;Planprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE      PROJECT_DEFINITION_STRU</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00040</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE      PROJECT_DEFINITION_STRU</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>In this structure data are transfered that are binding for the whole</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>project.For information about the indivdual parameters, see the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>relevant data element documentation.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>For currency and unit of time you can use either the SAP internal name</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(PS_PWHIE or PS_ZTEHT) or the ISO code (ISOCD or ISOCD_UNIT).</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>LZ</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_DEFINITION,,&lt;DS:DE.PS_PSPID&gt;Project definition&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>DESCRIPTION,,&lt;DS:DE.PS_POST1&gt;PS: Short description (first text line)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>MASK_ID,,&lt;DS:DE.PS_KIMSK&gt;Selection screen for  short ID for WBS</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>elements&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>RESPONSIBLE_NO,,&lt;DS:DE.PS_VERNR&gt;Personnel no. of the person responsible</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(project manager)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>APPLICANT_NO,,&lt;DS:DE.PS_ASTNR&gt;Applicant number&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>COMP_CODE,,&lt;DS:DE.BUKRS&gt;Company code&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUS_AREA,,&lt;DS:DE.GSBER&gt;Business area&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CONTROLLING_AREA,,&lt;DS:DE.KOKRS&gt;Controlling area&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROFIT_CTR,,&lt;DS:DE.PRCTR&gt;Profit Center&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY,,&lt;DS:DE.PS_PWHIE&gt;WBS currency (projct definition)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY_ISO,,&lt;DS:DE.ISOCD&gt;Iso-Code f. currency&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_ASSIGNMENT,,&lt;DS:DE.PS_ZUORD&gt;Network assignment&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>START,,&lt;DS:DE.PS_PLFAZ&gt;Scheduled start date for project&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>FINISH,,&lt;DS:DE.PS_PLSEZ&gt;Scheduled finish date for project&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLANT,,&lt;DS:DE.WERKS_D&gt;Plant&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CALENDAR,,&lt;DS:DE.FABKL&gt;Factory calendar&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_BASIC,,&lt;DS:DE.PS_VGPLF&gt;Planning method for basic dates in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>project&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_FCST,,&lt;DS:DE.PS_EWPLF&gt;&gt;Planning method for forecast dates in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>project&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT,,&lt;DS:DE.PS_ZTEHT&gt;Unit of time for scheduling&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT_ISO,,&lt;DS:DE.ISOCD_UNIT&gt;ISO code f. unit of time&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_PROFILE,,&lt;DS:DE.PROFIDNZPL&gt;Network profile&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_PROFILE,,&lt;DS:DE.PROFIDPROJ&gt;Project profile&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUDGET_PROFILE,,&lt;DS:DE.BP_BPROFIL&gt;Budget profile&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_STOCK,,&lt;DS:DE.PS_BESTAND&gt;Projektstock management&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>OBJECTCLASS,,&lt;DS:DE.SCOPE_CV&gt;Object class&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>STATISTICAL,,&lt;DS:DE.PS_XSTAT&gt;Statistical WBS element (X)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TAXJURCODE,,&lt;DS:DE.TXJCD&gt;Tax Jurisdiction Code&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>INT_PROFILE,,&lt;DS:DE.PS_ZSCHM&gt;Inetrest profile for project&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>WBS_SCHED_PROFILE,,&lt;DS:DE.PS_SCHDPRF&gt;WBS scheduling profile&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CSH_BDGT_PROFILE,,&lt;DS:DE.PSFM_PRF&gt;Financial budget profile&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_PROFILE,,&lt;DS:DE.BP_PPROFIL&gt;Plan profile&lt;/&gt;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE      PROJECT_DEFINITION_STRU</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE      PROJECT_DEFINITION_STRU</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>この構成において、プロジェクト全体を拘束するデータが転送されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>個別パラメータについての情報は、関連のデータ要素文書を参照してください。</TDLINE>
+      </TLINE>
+      <TLINE/>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>通貨および時間単位は、SAP 内部名称 (PS_PWHIE または PS_ZTEHT) または</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> ISO コード (ISOCD または ISOCD_UNIT) のいずれを使用することもできます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>LZ</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_DEFINITION,,&lt;DS:DE.PS_PSPID&gt;プロジェクト定義&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>DESCRIPTION,,&lt;DS:DE.PS_POST1&gt;PS: テキスト (第一テキスト行)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>MASK_ID,,&lt;DS:DE.PS_KIMSK&gt;WBS 要素の ID(短) のための選択画面</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>RESPONSIBLE_NO,,&lt;DS:DE.PS_VERNR&gt;責任者</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(プロジェクトマネジャー) の従業員番号&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>APPLICANT_NO,,&lt;DS:DE.PS_ASTNR&gt;申請者番号&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>COMP_CODE,,&lt;DS:DE.BUKRS&gt;会社コード&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUS_AREA,,&lt;DS:DE.GSBER&gt;業務領域&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CONTROLLING_AREA,,&lt;DS:DE.KOKRS&gt;管理領域&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROFIT_CTR,,&lt;DS:DE.PRCTR&gt;利益センタ&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY,,&lt;DS:DE.PS_PWHIE&gt;WBS 通貨 (プロジェクト定義)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY_ISO,,&lt;DS:DE.ISOCD&gt;通貨の ISO コード&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_ASSIGNMENT,,&lt;DS:DE.PS_ZUORD&gt;ネットワーク割当&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>START,,&lt;DS:DE.PS_PLFAZ&gt;プロジェクトの計画開始日&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>FINISH,,&lt;DS:DE.PS_PLSEZ&gt;プロジェクトの計画終了日&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLANT,,&lt;DS:DE.WERKS_D&gt;プラント&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CALENDAR,,&lt;DS:DE.FABKL&gt;稼動日カレンダ&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_BASIC,,&lt;DS:DE.PS_VGPLF&gt;プロジェクトにおける基準日の計画方法</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_FCST,,&lt;DS:DE.PS_EWPLF&gt;プロジェクトにおける予測日の計画方法</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT,,&lt;DS:DE.PS_ZTEHT&gt;日程計画の時間単位&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT_ISO,,&lt;DS:DE.ISOCD_UNIT&gt;時間単位の ISO コード&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_PROFILE,,&lt;DS:DE.PROFIDNZPL&gt;ネットワークプロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_PROFILE,,&lt;DS:DE.PROFIDPROJ&gt;プロジェクトプロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUDGET_PROFILE,,&lt;DS:DE.BP_BPROFIL&gt;予算プロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_STOCK,,&lt;DS:DE.PS_BESTAND&gt;プロジェクト在庫管理&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>OBJECTCLASS,,&lt;DS:DE.SCOPE_CV&gt;対象クラス&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>STATISTICAL,,&lt;DS:DE.PS_XSTAT&gt;統計 WBS 要素 (X)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TAXJURCODE,,&lt;DS:DE.TXJCD&gt;税管轄コード&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>INT_PROFILE,,&lt;DS:DE.PS_ZSCHM&gt;プロジェクトの金利プロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>WBS_SCHED_PROFILE,,&lt;DS:DE.PS_SCHDPRF&gt;WBS 日程計画プロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CSH_BDGT_PROFILE,,&lt;DS:DE.PSFM_PRF&gt;財務予算プロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_PROFILE,,&lt;DS:DE.BP_PPROFIL&gt;計画プロファイル&lt;/&gt;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZPROJECTDEF_ZCREATE      RETURN</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZPROJECTDEF_ZCREATE      RETURN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Treten beim Anlegen der Projektdefinition Fehler auf, z.B. bei</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Konsistenzprüfungen oder wegen fehlender Berechtigungen oder Eingaben,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>so wird in dieser Tabelle die entsprechende Methode, das Objekt und die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Fehlernachricht ausgegeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U3</TDFORMAT>
+       <TDLINE>Struktur der Tabelle:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Methode,,Datentyp CHAR,,Feldlänge 32</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Objekt-Typ,,Datentyp CHAR,,Feldlänge 32</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>SAP-interner Objekt-Schlüssel,,Datentyp CHAR,,Feldlänge 90</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>SAP-externer Objekt-Schlüssel,,Datentyp CHAR,,Feldlänge 90</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Nachrichtenidentifikation,,Datentyp CHAR,,Feldlänge 20</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Nummer der Nachricht,,Datentyp CHAR,,Feldlänge 3</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Typ der Nachricht,,Datentyp CHAR,,Feldlänge 1</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Text der Nachricht,,Datentyp CHAR,,Feldlänge 72</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_BAPI_ZPROJECTDEF_ZCREATE>
+   <LONGTEXTS_ZFPS_2001_PROJECTDEF_CREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPS_2001_PROJECTDEF_CREATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0006</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPS_2001_PROJECTDEF_CREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00006</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Mit dieser Methode kann eine Projektdefinition angelegt werden, die die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>für das gesamte Projekt verbindlichen Daten enthält.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Dabei finden alle Konsistenzprüfungen statt, die auch beim Anlegen einer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Projektdefinition innerhalb der Transaktion durchgeführt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Um eine Projektdefinition anzulegen, benötigen Sie die entsprechende</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Berechtigung.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Sie müssen beim Anlegen einer Projektdefinition ein Projektprofil</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>angeben, das zuvor im Customizing angelegt wurde.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Obligatorischer Importparameter ist PROJECT_DEFINITION_STRU.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Meldungen werden im Return-Parameter zurückgegeben. In der Dokumentation</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zu diesem Parameter finden Sie die Rückgabewerte und deren Bedeutungen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Weitere Informationen finden Sie in der Dokumentation unter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;ZH&gt;PS-Projektsystem-Projektstrukturplan&lt;/&gt;.</TDLINE>
+      </TLINE>
+      <TLINE/>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPS_2001_PROJECTDEF_CREATE   PROJECT_DEFINITION_STRU</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00042</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPS_2001_PROJECTDEF_CREATE   PROJECT_DEFINITION_STRU</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>In dieser Struktur werden die für das gesamte Projekt verbindlichen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Daten übergeben. Informationen zur Bedeutung der einzelnen Parameter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>finden Sie in der entsprechenden Datenelement-Dokumentation.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Für Währung und Zeiteinheit können Sie alternativ die SAP-interne</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Bezeichnung (PS_PWHIE bzw. PS_ZTEHT) oder den ISO-CODE (ISOCD bzw.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ISOCD_UNIT) verwenden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>LZ</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_DEFINITION,,&lt;DS:DE.PS_PSPID&gt;Projektdefinition&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>DESCRIPTION,,&lt;DS:DE.PS_POST1&gt;PS: Kurzbeschreibung (erste Textzeile)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>MASK_ID,,&lt;DS:DE.PS_KIMSK&gt;Auswahlmaske für Kurz-ID PSP-Elemente&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>RESPONSIBLE_NO,,&lt;DS:DE.PS_VERNR&gt;Nummer des Verantwortlichen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(Projektleiter)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>APPLICANT_NO,,&lt;DS:DE.PS_ASTNR&gt;Nummer des Antragstellers&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>COMP_CODE,,&lt;DS:DE.BUKRS&gt;Buchungskreis&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUS_AREA,,&lt;DS:DE.GSBER&gt;Geschäftsbereich&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CONTROLLING_AREA,,&lt;DS:DE.KOKRS&gt;Kostenrechnungskreis&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROFIT_CTR,,&lt;DS:DE.PRCTR&gt;Profit Center&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY,,&lt;DS:DE.PS_PWHIE&gt;Währung Projektstrukturplan</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(Projektdefinition)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_CURRENCY_ISO,,&lt;DS:DE.ISOCD&gt;Iso-Code Währung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_ASSIGNMENT,,&lt;DS:DE.PS_ZUORD&gt;Zuordnung Netzplan&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>START,,&lt;DS:DE.PS_PLFAZ&gt;Geplanter Starttermin für Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>FINISH,,&lt;DS:DE.PS_PLSEZ&gt;Geplanter Endtermin für Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLANT,,&lt;DS:DE.WERKS_D&gt;Werk&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CALENDAR,,&lt;DS:DE.FABKL&gt;Schlüssel des Fabrikkalenders&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_BASIC,,&lt;DS:DE.PS_VGPLF&gt;Planungsform für die Ecktermine im</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_FCST,,&lt;DS:DE.PS_EWPLF&gt;Planungsform für die Prognosetermine im</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Projekt&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT,,&lt;DS:DE.PS_ZTEHT&gt;Zeiteinheit Terminplanung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TIME_UNIT_ISO,,&lt;DS:DE.ISOCD_UNIT&gt;ISO-Code Maßeinheit&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>NETWORK_PROFILE,,&lt;DS:DE.PROFIDNZPL&gt;Netzplanprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_PROFILE,,&lt;DS:DE.PROFIDPROJ&gt;Projektprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>BUDGET_PROFILE,,&lt;DS:DE.BP_BPROFIL&gt;Budgetprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PROJECT_STOCK,,&lt;DS:DE.PS_BESTAND&gt;Projektbestandsführung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>OBJECTCLASS,,&lt;DS:DE.SCOPE_CV&gt;Objektklasse&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>STATISTICAL,,&lt;DS:DE.PS_XSTAT&gt;Statistisches PSP-Element (X)&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>TAXJURCODE,,&lt;DS:DE.TXJCD&gt;Tax Jurisdiction Code - Standort für</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Steuerrechnung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>INT_PROFILE,,&lt;DS:DE.PS_ZSCHM&gt;Zinsschema für Verzinsung von Projekten&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>WBS_SCHED_PROFILE,,&lt;DS:DE.PS_SCHDPRF&gt;Profil PSP-Terminierung&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>CSH_BDGT_PROFILE,,&lt;DS:DE.PSFM_PRF&gt;Finanzplan-Profil&lt;/&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T2</TDFORMAT>
+       <TDLINE>PLAN_PROFILE,,&lt;DS:DE.BP_PPROFIL&gt;Planprofil&lt;/&gt;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPS_2001_PROJECTDEF_CREATE   RETURN</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPS_2001_PROJECTDEF_CREATE   RETURN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Treten beim Anlegen der Projektdefinition Fehler auf, z.B. bei</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Konsistenzprüfungen oder wegen fehlender Berechtigungen oder Eingaben,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>so wird in dieser Tabelle die entsprechende Methode, das Objekt und die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Fehlernachricht ausgegeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U3</TDFORMAT>
+       <TDLINE>Struktur der Tabelle:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Methode,,Datentyp CHAR,,Feldlänge 32</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Objekt-Typ,,Datentyp CHAR,,Feldlänge 32</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>SAP-interner Objekt-Schlüssel,,Datentyp CHAR,,Feldlänge 90</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>SAP-externer Objekt-Schlüssel,,Datentyp CHAR,,Feldlänge 90</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Nachrichtenidentifikation,,Datentyp CHAR,,Feldlänge 20</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Nummer der Nachricht,,Datentyp CHAR,,Feldlänge 3</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Typ der Nachricht,,Datentyp CHAR,,Feldlänge 1</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>T1</TDFORMAT>
+       <TDLINE>Text der Nachricht,,Datentyp CHAR,,Feldlänge 72</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_ZFPS_2001_PROJECTDEF_CREATE>
   </asx:values>
  </asx:abap>
 </abapGit>

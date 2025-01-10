@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_NOTA_PM</FUNCNAME>
+     <SHORT_TEXT>Criar nota</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_WA_HEADER_NOTA</PARAMETER>
@@ -31,22 +32,23 @@
       <RSFDO>
        <PARAMETER>P_I_WA_HEADER_NOTA</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>Dados de Entrada para criação da nota</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Mensagens de erro</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZFPM_ALM_PM_NOTIF_CREATE</FUNCNAME>
+     <SHORT_TEXT>Create PM/CS Notification</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
@@ -129,82 +131,83 @@
       <RSFDO>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>Notification number (for external numbering)</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIF_TYPE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Notification Type</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFHEADER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Notification Header Data</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>SENDER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>Log. external system</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ORDERID</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
+       <STEXT>Order Number</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ADD_RIQS5</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
+       <STEXT>Campos adicionais para RIQS5</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFHEADER_EXPORT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
+       <STEXT>Notification Header Data</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTITEM</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
+       <STEXT>Work Table for Notification Item</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFCAUS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 009</INDEX>
+       <STEXT>Work Table for Causes</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFACTV</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 010</INDEX>
+       <STEXT>Work Table for Activities</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFTASK</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 011</INDEX>
+       <STEXT>Work Table for Tasks</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOTIFPARTNR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 012</INDEX>
+       <STEXT>Work Table for Partners</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>LONGTEXTS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 013</INDEX>
+       <STEXT>Work Table for Longtexts</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>KEY_RELATIONSHIPS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 014</INDEX>
+       <STEXT>Table with key relationships external - internal</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 015</INDEX>
+       <STEXT>Message Type: S Success, E Error, W Warning, I In</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZMAP2I_BAPI2080_NOTHDRI_RIQS5</FUNCNAME>
+     <SHORT_TEXT>bapi2080_nothdri -&gt; riqs5</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>BAPI2080_NOTHDRI</PARAMETER>
@@ -228,21 +231,1332 @@
       <RSFDO>
        <PARAMETER>BAPI2080_NOTHDRI</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ADD_RIQS5</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Campos adicionais para RIQS5</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RIQS5</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <LONGTEXTS_BAPI_CRIAR_NOTA_PM>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_NOTA_PM</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00041</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_NOTA_PM</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Netzplankopf (BOR-Objekttyp BUS2002001) anlegen. Bei jedem Aufruf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>dieses BAPIs kann nur ein Netzplan angelegt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Übergeben Sie die Daten des neuen Netzplans im Parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Interne Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Das Netzplanprofil ist das einzige Mussfeld. Der BAPI scheitert, falls</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>in der Schnittstelle eine externe Netzplannummer mitgegeben wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs wird die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer noch nicht ermittelt. Statt dessen steht im Protokoll in</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der Returntabelle ET_RETURN die temporäre Netzplannummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Verwenden Sie diese temporäre Netzplannummer, falls Sie noch vor dem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Verbuchen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>diesen Netzplankopf ändern (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgänge zu diesem Netzplan anlegen (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgänge ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgangselemente zu diesem Netzplan anlegen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgangselemente ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Statusänderungen zu diesem Netzplan durchgeführen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AL</TDFORMAT>
+       <TDLINE>Erst nach dem erfolgreichen Pre-Commit wird in dessen Protokoll die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>endgültige ermittelte Netzplannummer, zusammen mit der aktuell</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zurückgegeben temporären Nummer, angezeigt. Alle zu diesem Netzplankopf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>abhängigen Meldungen im Protokoll des Pre-Commit (Kopf ändern, NV</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>anlegen/ändern, VE anlegen/ändern) enthalten nur noch die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Nummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Externe Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Neben dem Netzplanprofil ist auch die Netzplannummer ein Mussfeld -</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ausnahme: die externe Netzplannummer wird via User Exit CNEX0012,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ableitung der Netzplannummer aus PSP-Element, ermittelt.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Der BAPI scheitert, falls keine oder eine bereits verwendete externe</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer interfaced oder im User Exit ermittelt wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs steht im Protokoll in der</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Returntabelle ET_RETURN bereits diese externe Netzplannummer. Scheitert</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der BAPI, wird die Sperre der externen Netzplannummer sofort wieder</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>aufgehoben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_NOTA_PM</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_NOTA_PM</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Create a network header (BOR object type BUS2002001). Only one network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>can be created each time this BAPI is called.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Transfer the data of the new network in parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Internal number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The network profile is the only required-entry field. The BAPI fails if</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>an external network number is entered in the interface.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>When the BAPI finishes successfully, the final network number has not</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>been determined yet. Instead, the log of the return table ET_RETURN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>contains a temporary network number.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Use this temporary network number, if you do any of the following</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>before carrying out the posting:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change this network header (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activities for this network (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activities created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activity elements for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activity elements that were created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Carry out status changes for this network (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>After the precommit is carried out successfully, the final network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>number along with the current temporary number are displayed in the log</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>of the precommit. All dependent messages for this network header in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>log of the precommit (change header, create/change network activities,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>create/change activity elements) contain the final number only.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>External number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>In addition to the network profile, the network number is also a</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>required-entry field. Exception: the external network number is</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>determined via user exit CNEX0012 &quot;Derive External Network Number from</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>WBS Number&quot;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The BAPI fails if no external network number, or one that is already</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>being used, is interfaced or determined in the user exit.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>If the BAPI finishes successfully, the log of the ET_RETURN return</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>table already contains this external network number. If the BAPI fails,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>the lock of the external network number is immediately lifted.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_NOTA_PM</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_NOTA_PM</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>ネットワークヘッダ (BOR オブジェクトタイプ BUS2002001) を登録します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI の 1 回の呼出しで登録されるネットワークはただ 1 つのみです。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>新しいネットワークのデータは、パラメータ I_NETWORK に渡されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号の内部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルのみが入力必須項目です。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI は、外部ネットワーク番号がインタフェースに入力されると</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了したときでも、最終のネットワーク番号はまだ設定されず、</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>リターンテーブル ET_RETURN のログに仮のネットワーク番号が格納されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>転記前に以下のいずれかを行う場合は、この仮ネットワーク番号を使用してく</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ださい。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークヘッダを変更する (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動を登録する (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動要素を登録する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動要素を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークのステータス変更を実行する (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>プリコミットが正常終了した後に、現在の仮のネットワーク番号をもつ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>最終ネットワーク番号がプリコミットログに表示されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>プリコミットログにある</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>このネットワークヘッダのすべての依存メッセージ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (変更ヘッダ、登録/変更ネットワーク活動、登録/変更活動エレメント)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> には最終番号だけが含まれます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号への外部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルと併せて、ネットワーク番号もまた必須入力項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>です。例外: 外部ネットワーク番号がユーザ Exit CNEX0012 &quot;WBS 番号からの</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>外部ネットワーク番号の導出&quot; により設定された場合</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ユーザ Exit とインタフェースに外部ネットワーク番号や既に使用されている</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ネットワーク番号を渡したり設定したりすると、この BAPI は異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了した場合には、ET_RETURN リターンテーブルのログには</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この外部ネットワーク番号が既に含まれています。BAPI が異常終了する場合に</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>は、外部ネットワーク番号のロックが瞬時に解除されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_NOTA_PM            P_I_WA_HEADER_NOTA</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_NOTA_PM            P_I_WA_HEADER_NOTA</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Datenfelder des neu anzulegenden Netzplans.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_NOTA_PM            P_I_WA_HEADER_NOTA</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_NOTA_PM            P_I_WA_HEADER_NOTA</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Data fields of the new network to be created.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_NOTA_PM            P_I_WA_HEADER_NOTA</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_NOTA_PM            P_I_WA_HEADER_NOTA</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>登録する新規ネットワークのデータ項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_BAPI_CRIAR_NOTA_PM>
+   <LONGTEXTS_ZFPM_ALM_PM_NOTIF_CREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0009</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00028</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00009</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Functionality</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>This BAPI enables you to create a new service notification. This allows</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>you to create certain fields from the notification header, items,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>causes, tasks, activities and also long texts for them. Partners can</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>also be maintained.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Notes</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Errors are returned in the parameter RETURN.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Technical note</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>The sort field must be filled in order to create items, causes, task or</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>activities. When creating a cause the sort field for the item must also</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>be filled.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>When creating a long text the fields OBJTYP and OBJKEY must be filled.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>OBJTYP can contain the following values:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>N1</TDFORMAT>
+       <TDLINE>QMEL - notification header</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>N1</TDFORMAT>
+       <TDLINE>QMFE - notification item</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>N1</TDFORMAT>
+       <TDLINE>QMUR - notification cause</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>N1</TDFORMAT>
+       <TDLINE>QMSM - notification task</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>N1</TDFORMAT>
+       <TDLINE>QMMA - notification activity</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>OBJKEY must contain the corresponding sort field for the above values.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>The combination of sort field item/cause, item/task or item/activity</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>must be unique within the same notification. If you leave the sort field</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>blank and OBJTYP = QMEL, the long text is created for the notification</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>header.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>An external reference key can be transferred by the field REFOBJECTKEY.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>The links between external reference keys &lt;-&gt; SAP keys are returned</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>within export table KEY_RELATIONSHIPS. If the fields SENDER,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>REFOBJECTTYPE and REFRELTYPE are filled, it is possible to create an</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>object link at notification header level.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      EXTERNAL_NUMBER</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      EXTERNAL_NUMBER</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Number of the service notification which should be created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      KEY_RELATIONSHIPS</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      KEY_RELATIONSHIPS</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s key relationships</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> which should be created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      LONGTEXTS</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      LONGTEXTS</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s texts which should be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFACTV</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFACTV</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s activities which should</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>be created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFCAUS</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFCAUS</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s causes which should be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFHEADER_EXPORT</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFHEADER_EXPORT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Structure which contains information about the Service notification</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>header (general data).</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFPARTNR</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFPARTNR</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s partners which should</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>be created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFTASK</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTIFTASK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s tasks which should be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTIF_TYPE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTIF_TYPE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Information about the type of the service notification.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      NOTITEM</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      NOTITEM</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains the service notification&apos;s items which should be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>created.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      ORDERID</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0004</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      ORDERID</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00004</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Field which contains information about the Order number.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      RETURN</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      RETURN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Table which contains information on the errors that occured during the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>processing.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZFPM_ALM_PM_NOTIF_CREATE      SENDER</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZFPM_ALM_PM_NOTIF_CREATE      SENDER</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>Description</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Information about Task determination Log. external system.</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_ZFPM_ALM_PM_NOTIF_CREATE>
   </asx:values>
  </asx:abap>
 </abapGit>

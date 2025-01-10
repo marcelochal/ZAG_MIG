@@ -216,6 +216,7 @@ CLASS lcl_file DEFINITION.
           ch_s_documentheader    TYPE bapiache09
           ch_t_accountgl         TYPE bapiacgl09_tab OPTIONAL
           ch_t_currencyamount    TYPE bapiaccr09_tab
+          ch_t_accountwt         TYPE bapiacwt09_tab  OPTIONAL
           ch_t_extension2        TYPE bapiparex_tab  OPTIONAL,
       document_post
         IMPORTING
@@ -228,6 +229,7 @@ CLASS lcl_file DEFINITION.
           ch_t_accountpayable    TYPE bapiacap09_tab OPTIONAL
           ch_t_accountgl         TYPE bapiacgl09_tab OPTIONAL
           ch_t_currencyamount    TYPE bapiaccr09_tab OPTIONAL
+          ch_t_accountwt         TYPE bapiacwt09_tab  OPTIONAL
           ch_t_extension2        TYPE bapiparex_tab  OPTIONAL,
       return_msg
         IMPORTING
@@ -240,7 +242,10 @@ CLASS lcl_file DEFINITION.
       write_header,
       get_object_type
         RETURNING
-          VALUE(r_result) TYPE lcl_file=>ty_serialize-objtype.
+          VALUE(r_result) TYPE lcl_file=>ty_serialize-objtype,
+      convert_field_date
+        CHANGING
+          ch_v_struc TYPE any.
 
   PRIVATE SECTION.
     DATA:
@@ -445,6 +450,13 @@ CLASS lcl_acc_payable DEFINITION INHERITING   FROM lcl_file.
           VALUE(im_s_data) TYPE ty_s_gl_balance
         RETURNING
           VALUE(r_result)  TYPE bapiacgl09,
+
+      fill_accountwt
+        IMPORTING
+          VALUE(im_s_data) TYPE ty_s_accounts_payable
+        RETURNING
+          VALUE(r_result)  TYPE bapiacwt09,
+
       define_debit_credit
         IMPORTING
           im_s_upload_data TYPE ty_s_accounts_payable
@@ -484,9 +496,9 @@ CLASS lcl_fmbudget DEFINITION INHERITING      FROM lcl_file.
   PUBLIC SECTION.
 
     TYPES: BEGIN OF ty_s_upload_layout.
-        INCLUDE TYPE ty_s_fmbudget.
-        INCLUDE TYPE ty_s_fmbudget_months.
-    TYPES: END OF ty_s_upload_layout.
+             INCLUDE TYPE ty_s_fmbudget.
+             INCLUDE TYPE ty_s_fmbudget_months.
+           TYPES: END OF ty_s_upload_layout.
 
     TYPES:
       ty_t_upload_data TYPE STANDARD TABLE OF ty_s_upload_layout WITH EMPTY KEY.
@@ -1189,6 +1201,7 @@ CLASS lcl_file IMPLEMENTATION.
           accountpayable    = ch_t_accountpayable
           accountgl         = ch_t_accountgl
           currencyamount    = ch_t_currencyamount
+          accountwt         = ch_t_accountwt
           extension2        = ch_t_extension2
           return            = ex_t_return.
 *      Performance Issue
@@ -1203,6 +1216,7 @@ CLASS lcl_file IMPLEMENTATION.
           accountpayable    = ch_t_accountpayable
           accountgl         = ch_t_accountgl
           currencyamount    = ch_t_currencyamount
+          accountwt         = ch_t_accountwt
           extension2        = ch_t_extension2
           return            = ex_t_return.
 
@@ -1282,6 +1296,7 @@ CLASS lcl_file IMPLEMENTATION.
         ch_s_documentheader = ls_documentheader
         ch_t_accountgl      = ch_t_accountgl
         ch_t_currencyamount = ch_t_currencyamount
+        ch_t_accountwt      = ch_t_accountwt
         ch_t_extension2     = ch_t_extension2.
 
     CALL METHOD me->return_msg
@@ -1860,12 +1875,15 @@ CLASS lcl_file IMPLEMENTATION.
       TRY.
           lo_worksheet =  lo_excel->get_worksheet_by_index( 1 ).
 
-
           lo_worksheet->get_table(
              EXPORTING
                iv_skipped_rows = 1
              IMPORTING
                et_table        = ch_s_converted_data ).
+
+          me->convert_field_date(
+             CHANGING
+               ch_v_struc      = ch_s_converted_data ).
 
         CATCH cx_root INTO go_error .
           MESSAGE go_error->get_longtext( ) TYPE 'E'
@@ -1891,6 +1909,10 @@ CLASS lcl_file IMPLEMENTATION.
 *              iv_skipped_cols = 0
               IMPORTING
                 et_table        = <fs_worksheet> ).
+
+            me->convert_field_date(
+              CHANGING
+                ch_v_struc = <fs_worksheet> ).
 
           CATCH cx_root INTO go_error .
 
@@ -2178,6 +2200,56 @@ CLASS lcl_file IMPLEMENTATION.
       MESSAGE 'Objetos apagados'(034) TYPE 'S'.
     ENDIF.
     WRITE: icon_yellow_light AS ICON TO icon_001.
+
+  ENDMETHOD.
+
+  METHOD convert_field_date.
+    DATA:
+     lv_cell_date  TYPE zexcel_cell_value.
+
+    FIELD-SYMBOLS <fs_table> TYPE STANDARD TABLE.
+
+    "'u' (structure) or 'h' (internal table)...
+    DESCRIBE FIELD ch_v_struc TYPE DATA(lv_type).
+
+    IF lv_type EQ 'h'. " (internal table)
+      ASSIGN ch_v_struc TO <fs_table>.
+      LOOP AT <fs_table> ASSIGNING FIELD-SYMBOL(<fs_struc>).
+        me->convert_field_date(
+          CHANGING
+            ch_v_struc = <fs_struc> ).
+      ENDLOOP.
+      RETURN.
+    ENDIF.
+
+    DO.
+      TRY.
+          ASSIGN COMPONENT syst-index OF STRUCTURE ch_v_struc TO FIELD-SYMBOL(<fs_comp>).
+          IF sy-subrc NE 0.
+            EXIT.
+          ELSE.
+            DESCRIBE FIELD <fs_comp> TYPE DATA(lv_desc_field).
+            IF lv_desc_field EQ 'D'.
+
+              IF <fs_comp> IS NOT INITIAL.
+
+                lv_cell_date = <fs_comp>.
+
+                CALL METHOD zcl_excel_common=>excel_string_to_date
+                  EXPORTING
+                    ip_value = lv_cell_date
+                  RECEIVING
+                    ep_value = <fs_comp>.
+              ELSE.
+                <fs_comp> = syst-datum.
+              ENDIF.
+            ENDIF.
+          ENDIF.
+
+        CATCH zcx_excel. " Exceptions for ABAP2XLSX
+        CATCH cx_root.
+      ENDTRY.
+    ENDDO.
 
   ENDMETHOD.
 
@@ -2959,6 +3031,19 @@ CLASS lcl_acc_payable IMPLEMENTATION.
 
   ENDMETHOD.
 
+  METHOD fill_accountwt.
+
+    r_result-itemno_acc   = '0000000001'.
+    r_result-wt_type      = im_s_data-wt_type.
+    r_result-wt_code      = im_s_data-wt_code.
+    r_result-bas_amt_lc   = im_s_data-qbshb.
+    r_result-awh_amt_lc   = im_s_data-qsfbt.
+    r_result-man_amt_lc   = im_s_data-qsshb.
+
+
+  ENDMETHOD.
+
+
   METHOD get_upload_data.
     r_result = me->upload_data.
   ENDMETHOD.
@@ -2978,10 +3063,12 @@ CLASS lcl_acc_payable IMPLEMENTATION.
     DATA:
       ls_accountpayable TYPE bapiacap09,
       ls_currencyamount TYPE bapiaccr09,
+      ls_accountwt      TYPE bapiacwt09,
       ls_documentheader TYPE bapiache09,
       ls_extension2     TYPE bapiparex,
       lt_accountpayable TYPE bapiacap09_tab,
       lt_currencyamount TYPE STANDARD TABLE OF bapiaccr09,
+      lt_accountwt      TYPE TABLE OF bapiacwt09,
       lt_extension2     TYPE bapiparex_t,
       lt_ref_doc        TYPE lty_t_doc_ecc,
       lv_itemno         TYPE posnr_acc VALUE IS INITIAL.
@@ -2997,7 +3084,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
       CLEAR:
         ls_accountpayable, ls_accountpayable,
         ls_documentheader, lt_accountpayable, lt_currencyamount,
-        lv_itemno, lt_extension2.
+        lv_itemno, lt_extension2, lt_accountwt, ls_accountwt.
 
       LOOP AT me->upload_data ASSIGNING FIELD-SYMBOL(<fs_upload_data>) USING KEY up_data_key
 
@@ -3007,7 +3094,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
 
         CLEAR:
           ls_accountpayable, ls_accountpayable, ls_currencyamount,
-          ls_documentheader, ls_extension2.
+          ls_documentheader, ls_extension2, ls_accountwt.
 
         CALL METHOD me->o_progress_ind->show
           EXPORTING
@@ -3078,6 +3165,20 @@ CLASS lcl_acc_payable IMPLEMENTATION.
           APPEND ls_extension2 TO lt_extension2.
         ENDIF.
 
+        IF <fs_upload_data>-wt_type IS NOT INITIAL.
+          ls_accountwt-itemno_acc   = lv_itemno.
+          ls_accountwt-wt_type      = <fs_upload_data>-wt_type.
+          ls_accountwt-wt_code      = <fs_upload_data>-wt_code.
+          ls_accountwt-bas_amt_tc   = <fs_upload_data>-qbshb.
+          ls_accountwt-awh_amt_tc   = <fs_upload_data>-qsfbt.
+          ls_accountwt-man_amt_tc   = <fs_upload_data>-qsshb.
+          ls_accountwt-bas_amt_ind  = 'X'.
+          ls_accountwt-man_amt_ind  = 'X'.
+        ENDIF.
+
+
+        APPEND ls_accountwt TO lt_accountwt.
+
       ENDLOOP.
 
       CALL METHOD me->document_post
@@ -3086,6 +3187,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
         CHANGING
           ch_t_accountpayable = lt_accountpayable
           ch_t_currencyamount = lt_currencyamount
+          ch_t_accountwt      = lt_accountwt
           ch_t_extension2     = lt_extension2.
     ENDLOOP.
 
@@ -3153,6 +3255,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
     DATA:
       ls_documentheader    TYPE bapiache09,
       ls_accountgl         TYPE bapiacgl09,
+      ls_accountwt         TYPE bapiacwt09,
       ls_currencyamount    TYPE bapiaccr09,
       ls_currencyamount_cp TYPE bapiaccr09.
 
@@ -3209,6 +3312,7 @@ CLASS lcl_acc_payable IMPLEMENTATION.
         ch_t_accountpayable = ch_t_accountpayable
         ch_s_documentheader = ls_documentheader
         ch_t_currencyamount = ch_t_currencyamount
+        ch_t_accountwt      = ch_t_accountwt
         ch_t_extension2     = ch_t_extension2.
 
     CALL METHOD me->return_msg

@@ -4,6 +4,7 @@
   <asx:values>
    <DEVC>
     <CTEXT>Objetos de migração de dados do Projeto AGIR</CTEXT>
+    <RESTRICTED>X</RESTRICTED>
    </DEVC>
   </asx:values>
  </asx:abap>

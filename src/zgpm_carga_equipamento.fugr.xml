@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_EQUIPAMENTO</FUNCNAME>
+     <SHORT_TEXT>Criar equipamento</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_EXTERNAL_NUMBER</PARAMETER>
@@ -81,73 +82,74 @@
       <RSFDO>
        <PARAMETER>P_I_EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>Nº equipamento</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_DATA_GENERAL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE + campos READ</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_DATA_SPECIFIC</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>PM: estrutura BAPI p/ITOBAPI_CREATE_EQ_ONLY + campos READ</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_DATA_FLEET</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>PM: estrutura BAPI para FLEET_IDENT e FLEET_INCLUDE</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_VALID_DATE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
+       <STEXT>Data na qual o loc.montagem do equipamento foi modificado</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_DATA_INSTALL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
+       <STEXT>PM: estrutura BAPI para montagem/desmontagem equipamentos</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
+       <STEXT>Tabela para campos Zs de equipamento</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_EQUIPMENT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 009</INDEX>
+       <STEXT>Nº equipamento</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_GENERAL_EXP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 010</INDEX>
+       <STEXT>PM: estrutura BAPI para ITOBAPI_CREATE + campos READ</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_SPECIFIC_EXP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 011</INDEX>
+       <STEXT>PM: estrutura BAPI p/ITOBAPI_CREATE_EQ_ONLY + campos READ</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_WA_DATA_FLEET_EXP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 012</INDEX>
+       <STEXT>PM: estrutura BAPI para FLEET_IDENT e FLEET_INCLUDE</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 013</INDEX>
+       <STEXT>Mensagens de erro</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>BAPI_ZEQUI_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>PM BAPI: Create Equipment</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
@@ -222,76 +224,2702 @@
       <RSFDO>
        <PARAMETER>EXTERNAL_NUMBER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>Number of Equipment to be Created (Initial =&gt; Internal Assignment)</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_GENERAL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>General Data for Technical Objects</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_SPECIFIC</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Equipment-Specific data</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_FLEET</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>Vehicle-Specific Data</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>VALID_DATE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
+       <STEXT>Valid-From Date for Equipment to be Created</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_INSTALL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
+       <STEXT>Installation Date for Equipment</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
+       <STEXT>PM: ITOB cmps.que podem ser criados só por APIs, só equis</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EQUIPMENT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
+       <STEXT>Number of Equipment Created</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_GENERAL_EXP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 009</INDEX>
+       <STEXT>General Data for Technical Objects</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_SPECIFIC_EXP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 010</INDEX>
+       <STEXT>Equipment-Specific data</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DATA_FLEET_EXP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 011</INDEX>
+       <STEXT>Vehicle-Specific Data</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 012</INDEX>
+       <STEXT>Return Parameter</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONIN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 013</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONOUT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 014</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <LONGTEXTS_BAPI_CRIAR_EQUIPAMENTO>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_EQUIPAMENTO</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00041</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_EQUIPAMENTO</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Netzplankopf (BOR-Objekttyp BUS2002001) anlegen. Bei jedem Aufruf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>dieses BAPIs kann nur ein Netzplan angelegt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Übergeben Sie die Daten des neuen Netzplans im Parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Interne Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Das Netzplanprofil ist das einzige Mussfeld. Der BAPI scheitert, falls</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>in der Schnittstelle eine externe Netzplannummer mitgegeben wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs wird die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer noch nicht ermittelt. Statt dessen steht im Protokoll in</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der Returntabelle ET_RETURN die temporäre Netzplannummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Verwenden Sie diese temporäre Netzplannummer, falls Sie noch vor dem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Verbuchen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>diesen Netzplankopf ändern (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgänge zu diesem Netzplan anlegen (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgänge ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgangselemente zu diesem Netzplan anlegen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgangselemente ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Statusänderungen zu diesem Netzplan durchgeführen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AL</TDFORMAT>
+       <TDLINE>Erst nach dem erfolgreichen Pre-Commit wird in dessen Protokoll die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>endgültige ermittelte Netzplannummer, zusammen mit der aktuell</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zurückgegeben temporären Nummer, angezeigt. Alle zu diesem Netzplankopf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>abhängigen Meldungen im Protokoll des Pre-Commit (Kopf ändern, NV</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>anlegen/ändern, VE anlegen/ändern) enthalten nur noch die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Nummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Externe Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Neben dem Netzplanprofil ist auch die Netzplannummer ein Mussfeld -</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ausnahme: die externe Netzplannummer wird via User Exit CNEX0012,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ableitung der Netzplannummer aus PSP-Element, ermittelt.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Der BAPI scheitert, falls keine oder eine bereits verwendete externe</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer interfaced oder im User Exit ermittelt wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs steht im Protokoll in der</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Returntabelle ET_RETURN bereits diese externe Netzplannummer. Scheitert</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der BAPI, wird die Sperre der externen Netzplannummer sofort wieder</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>aufgehoben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_EQUIPAMENTO</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_EQUIPAMENTO</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Create a network header (BOR object type BUS2002001). Only one network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>can be created each time this BAPI is called.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Transfer the data of the new network in parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Internal number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The network profile is the only required-entry field. The BAPI fails if</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>an external network number is entered in the interface.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>When the BAPI finishes successfully, the final network number has not</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>been determined yet. Instead, the log of the return table ET_RETURN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>contains a temporary network number.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Use this temporary network number, if you do any of the following</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>before carrying out the posting:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change this network header (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activities for this network (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activities created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activity elements for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activity elements that were created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Carry out status changes for this network (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>After the precommit is carried out successfully, the final network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>number along with the current temporary number are displayed in the log</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>of the precommit. All dependent messages for this network header in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>log of the precommit (change header, create/change network activities,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>create/change activity elements) contain the final number only.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>External number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>In addition to the network profile, the network number is also a</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>required-entry field. Exception: the external network number is</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>determined via user exit CNEX0012 &quot;Derive External Network Number from</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>WBS Number&quot;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The BAPI fails if no external network number, or one that is already</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>being used, is interfaced or determined in the user exit.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>If the BAPI finishes successfully, the log of the ET_RETURN return</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>table already contains this external network number. If the BAPI fails,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>the lock of the external network number is immediately lifted.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_EQUIPAMENTO</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_EQUIPAMENTO</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>ネットワークヘッダ (BOR オブジェクトタイプ BUS2002001) を登録します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI の 1 回の呼出しで登録されるネットワークはただ 1 つのみです。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>新しいネットワークのデータは、パラメータ I_NETWORK に渡されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号の内部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルのみが入力必須項目です。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI は、外部ネットワーク番号がインタフェースに入力されると</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了したときでも、最終のネットワーク番号はまだ設定されず、</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>リターンテーブル ET_RETURN のログに仮のネットワーク番号が格納されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>転記前に以下のいずれかを行う場合は、この仮ネットワーク番号を使用してく</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ださい。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークヘッダを変更する (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動を登録する (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動要素を登録する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動要素を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークのステータス変更を実行する (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>プリコミットが正常終了した後に、現在の仮のネットワーク番号をもつ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>最終ネットワーク番号がプリコミットログに表示されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>プリコミットログにある</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>このネットワークヘッダのすべての依存メッセージ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (変更ヘッダ、登録/変更ネットワーク活動、登録/変更活動エレメント)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> には最終番号だけが含まれます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号への外部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルと併せて、ネットワーク番号もまた必須入力項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>です。例外: 外部ネットワーク番号がユーザ Exit CNEX0012 &quot;WBS 番号からの</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>外部ネットワーク番号の導出&quot; により設定された場合</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ユーザ Exit とインタフェースに外部ネットワーク番号や既に使用されている</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ネットワーク番号を渡したり設定したりすると、この BAPI は異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了した場合には、ET_RETURN リターンテーブルのログには</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この外部ネットワーク番号が既に含まれています。BAPI が異常終了する場合に</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>は、外部ネットワーク番号のロックが瞬時に解除されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_BAPI_CRIAR_EQUIPAMENTO>
+   <LONGTEXTS_BAPI_ZEQUI_ZCREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0006</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00006</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Dieser Baustein dient zum Anlegen eines neuen Equipments.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_HINTS&apos; OBJECT DOKU ID TX LANGUAGE D</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Spezielle Hinweise zum Baustein BAPI_EQUI_CREATE:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Eine externe Nummernvergabe kann durch Setzen des Parameters</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>EXTERNAL_NUMBER erreicht werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Über den Parameter VALID_DATE kann das Gültig-Ab-Datum für das</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>anzulegende Equipment bestimmt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Über den Parameter DATA_INSTALL kann das anzulegende Equipment in einen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Technischen Platz oder ein übergeordnetes Equipment eingebaut werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Über den Parameter DATA_FLEET können fahrzeugspezifische Daten</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>mitgegeben werden. Diese Daten werden über den Parameter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>DATA_FLEET_EXP an den</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Aufrufer zurückgegeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0006</VERSION>
+      <TXTLINES>00011</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00006</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>This module is used for creating a new piece of equipment.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_HINTS&apos; OBJECT DOKU ID TX LANGUAGE E</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Special notes on the module BAPI_EQUI_CREATE:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>You can define external number assignment by setting the parameter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>EXTERNAL_NUMBER.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>The valid-from date for the piece of equipment to be created can be</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>determined using the parameter VALID_DATE.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>The parameter DATA_INSTALL can be used to install the piece of equipment</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>to be created in a functional location or a superior piece of equipment.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>The parameter DATA_FLEET can be used to enter vehicle-specific data.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>This data is returned to the caller via the parameter DATA_FLEET_EXP.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0004</VERSION>
+      <TXTLINES>00009</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00004</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>このモジュールは、新規設備を登録するために使用されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_HINTS&apos; OBJECT DOKU ID TX LANGUAGE JA</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>モジュール BAPI_EQUI_CREATE に関する注:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>パラメータ EXTERNAL_NUMBER を設定すると、外部番号割当を定義すること</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ができます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>パラメータ VALID_DATE では、登録する設備の有効開始日を</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>設定することができます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>パラメータ DATA_INSTALL では、登録する設備を</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>機能場所または上位設備に設置することができます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_FLEET</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_FLEET</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Diese Struktur beinhaltet fahrzeugspezifische Daten, die über einen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>BAPI-Aufruf angelegt werden können.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE BAPI_ITOB OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_FLEET</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_FLEET</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>This structure contains vehicle-specific data that can be created via a</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>BAPI call.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE BAPI_ITOB OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_FLEET_EXP</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_FLEET_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Ausgabestruktur der fahrzeugspezifischen Daten.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE BAPI_ITOB OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_FLEET_EXP</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_FLEET_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Output structure of vehicle-specific data.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE BAPI_ITOB OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_GENERAL</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_GENERAL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_GENERAL&apos; OBJECT DOKU ID TX LANGUAGE D</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_GENERAL</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_GENERAL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_GENERAL&apos; OBJECT DOKU ID TX LANGUAGE EN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_GENERAL</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_GENERAL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_GENERAL&apos; OBJECT DOKU ID TX LANGUAGE JA</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_GENERAL_EXP</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_GENERAL_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_GENERAL_EXP&apos; OBJECT DOKU ID TX LANGUAGE D</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_GENERAL_EXP</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_GENERAL_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_GENERAL_EXP&apos; OBJECT DOKU ID TX LANGUAGE EN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_GENERAL_EXP</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_GENERAL_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_GENERAL_EXP&apos; OBJECT DOKU ID TX LANGUAGE JA</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_INSTALL</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_INSTALL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Über diese Struktur kann das anzulegende Equipment in einen Technischen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Platz oder ein übergeordnetes Equipment eingebaut werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_INSTALL</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_INSTALL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>The equipment to be created can be installed at a functional location</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>or in a superior equipment using this structure.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_INSTALL</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_INSTALL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>この構造を使用して、登録する設備を機能場所、</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>または上位設備で設置することができます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_SPECIFIC&apos; OBJECT DOKU ID TX LANGUAGE D</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_SPECIFIC&apos; OBJECT DOKU ID TX LANGUAGE EN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_SPECIFIC&apos; OBJECT DOKU ID TX LANGUAGE JA</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC_EXP</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_SPECIFIC_EXP&apos; OBJECT DOKU ID TX LANGUAGE D</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC_EXP</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_SPECIFIC_EXP&apos; OBJECT DOKU ID TX LANGUAGE EN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC_EXP</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            DATA_SPECIFIC_EXP</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;ITOB_BAPI_DATA_SPECIFIC_EXP&apos; OBJECT DOKU ID TX LANGUAGE JA</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EQUIPMENT</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00004</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EQUIPMENT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Nummer des angelegten Equipments. Bei externer Nummernvergabe sollte</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>die Nummer den Wert des Import-Parameters EXTERNAL_NUMBER haben, bei</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>interner Nummernvergabe wurde die Nummer gemäß des zum Equipmenttyp</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>gehörigen internen Nummernkreises vergeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EQUIPMENT</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00005</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EQUIPMENT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Number of the piece of equipment created. In the case of external</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>number assignment, the number should have the value of the import</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>parameter EXTERNAL_NUMBER, while in the case of internal number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>assignment, the system assigns the internal number range according to</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>the equipment category.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EQUIPMENT</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00004</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EQUIPMENT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>登録設備の番号を表します。外部番号割当の場合、番号は</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>インポートパラメータ EXTERNAL_NUMBER の値です。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>内部番号割当の場合は、設備カテゴリに応じて、内部番号範囲が割り当て</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>られます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTENSIONIN</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00008</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTENSIONIN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Der Import-Parameter dient als Container, in welchem Kundenerweiterungen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>an das BAPI übergeben werden. Zur Auswertung der kundeneigenen Felder</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>steht Ihnen das Business Add-In (BAdI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;NP&gt;BADI_EAM_ITOB_BAPI_CUST_FIELDS&lt;/&gt; zur Verfügung. Mit dem BAdI können</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Sie kundeneigene Felder für Equipments auswerten.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Wenn mit diesem BAPI kundeneigene Felder zum Equipment aufnehmen wollen,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>müssen Sie diese Felder auch in der internen Struktur</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;NP&gt;ITOBAPI_CREATE_EQ&lt;/&gt; mittels Append-Technik hinzufügen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTENSIONIN</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00008</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTENSIONIN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>This import parameter serves as a container for transferring customer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>enhancements to the BAPI. Business Add-In (BAdI) &lt;NP&gt;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>=</TDFORMAT>
+       <TDLINE>BADI_EAM_ITOB_BAPI_CUST_FIELDS&lt;/&gt; is available for analyzing</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>customer-specific fields. You can use this BAdI to evaluate</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>customer-specific fields for equipment.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>If you wish to use this BAPI to add customer-specific fields to</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>equipment, you have to use the append technique to add these fields to</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>the internal structure &lt;NP&gt;ITOBAPI_CREATE_EQ&lt;/&gt;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTENSIONOUT</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00013</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTENSIONOUT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Der Export-Parameter dient als Container, in welchem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Kundenerweiterungen, die mit dem ExtensionIn-Parameter an das BAPI</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>übergeben worden sind, ausgelesen werden. Zur Auswertung der</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>kundeneigenen Felder steht Ihnen das Business Add-In</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&lt;NP&gt;BADI_EAM_ITOB_BAPI_CUST_FIELDS&lt;/&gt; zur Verfügung. Mit dem BAdI können</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Sie kundeneigene Felder für Instandhaltungs- und Servicemeldungen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>auswerten.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Wenn Sie kundeneigene Felder für das Equipment hinzufügen wollen und</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>hierfür die entsprechenden Tabellen erweitert haben, werden diese</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zusätzlichen Werte vom BAPI verarbeitet und im ExtensionOut-Parameter</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zurückgegeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Weitere Informationen finden sich in der BAPI-Dokumentation zum Thema</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Kundenerweiterungen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTENSIONOUT</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00011</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTENSIONOUT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>This export parameter serves as a container for reading customer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>enhancements that are transferred using the ExtensionIn parameter.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Business Add-In &lt;NP&gt;BADI_EAM_ITOB_BAPI_CUST_FIELDS&lt;/&gt; is available for</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>analyzing customer-specific fields. You can use this BAdI to evaluate</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>customer-specific fields for maintenance notifications and service</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>notifications.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>If you want to add customer-specific fields to the equipment and have</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>therefore extended the relevant tables, the BAPI processes these</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>additional values and returns them using the ExtensionOut parameter.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>For more information, see the BAPI documentation on customer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>enhancements.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTERNAL_NUMBER</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTERNAL_NUMBER</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Nummer des anzulegenden Equipments (bei externer Nummernvergabe).</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTERNAL_NUMBER</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTERNAL_NUMBER</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Number of the equipment to be created (for external number assignment).</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            EXTERNAL_NUMBER</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            EXTERNAL_NUMBER</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>登録する設備番号 (外部番号割当用)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            RETURN</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            RETURN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;BAPI_RETURN&apos; OBJECT DOKU ID TX LANGUAGE D</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            RETURN</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            RETURN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;BAPI_RETURN&apos; OBJECT DOKU ID TX LANGUAGE EN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            RETURN</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            RETURN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE &apos;BAPI_RETURN&apos; OBJECT DOKU ID TX LANGUAGE JA</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            VALID_DATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            VALID_DATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Über diesen Parameter kann das Gültig-Ab-Datum für das anzulegende</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Equipment bestimmt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            VALID_DATE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            VALID_DATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>You can use this parameter to determine the valid-from date for the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>piece of equipment to be created.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZEQUI_ZCREATE            VALID_DATE</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0002</VERSION>
+      <TXTLINES>00002</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZEQUI_ZCREATE            VALID_DATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00002</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>このパラメータを使用して、登録される設備の有効開始日を設定することが</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>できます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_BAPI_ZEQUI_ZCREATE>
   </asx:values>
  </asx:abap>
 </abapGit>

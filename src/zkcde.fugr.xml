@@ -43,27 +43,22 @@
       <RSFDO>
        <PARAMETER>I_FILENAME</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_SEPARATOR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_INTERN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>UPLOAD_CSV</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>UPLOAD_FILETYPE</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -126,52 +121,42 @@
       <RSFDO>
        <PARAMETER>I_PATH</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FILE_ID</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_DECIMAL_SEP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_JMT_TMJ</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_SEPARATOR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_APPL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_TEST</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_PROT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>XT_PROT_KPP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 009</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DIRECTORY_READ</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 010</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -202,7 +187,7 @@
      <TABLES>
       <RSTBL>
        <PARAMETER>INTERN</PARAMETER>
-       <DBSTRUCT>ZKCDE_CELLS</DBSTRUCT>
+       <DBSTRUCT>KCDE_CELLS</DBSTRUCT>
       </RSTBL>
      </TABLES>
      <EXCEPTION>
@@ -217,42 +202,34 @@
       <RSFDO>
        <PARAMETER>FILENAME</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_BEGIN_COL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_BEGIN_ROW</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_END_COL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_END_ROW</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INTERN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INCONSISTENT_PARAMETERS</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>UPLOAD_OLE</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 008</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -273,7 +250,7 @@
      <TABLES>
       <RSTBL>
        <PARAMETER>I_INTERN</PARAMETER>
-       <DBSTRUCT>ZKCDE_CELLS</DBSTRUCT>
+       <DBSTRUCT>KCDE_CELLS</DBSTRUCT>
       </RSTBL>
       <RSTBL>
        <PARAMETER>I_DATAR</PARAMETER>
@@ -300,42 +277,34 @@
       <RSFDO>
        <PARAMETER>I_AREA_SUBCLASS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_AREA_TABNAME</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_INTERN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_DATAR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_HEAD</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_KEY</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_R_H</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_MESG</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -361,17 +330,14 @@
       <RSFDO>
        <PARAMETER>I_APPL</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FILENAME</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_FILE_ID</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -418,37 +384,30 @@
       <RSFDO>
        <PARAMETER>I_PATH</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FILENAME</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_SEPARATOR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_DECIMAL_SEP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_JMT_TMJ</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_TEST</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_PROT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -501,42 +460,34 @@
       <RSFDO>
        <PARAMETER>I_PATH</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FILENAME</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_FILE_ID</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_SEPARATOR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_DECIMAL_SEP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_JMT_TMJ</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_SAVE_REC</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>XT_PROT_KPP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 008</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -581,42 +532,34 @@
       <RSFDO>
        <PARAMETER>I_PATH</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_PURE_PATH</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_DIRECTORY</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DOWNLOAD</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>UPLOAD</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXECUTE</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DIRECTORY_NOT_EXIST</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 007</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>DIRECTORY</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 008</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -651,27 +594,22 @@
       <RSFDO>
        <PARAMETER>I_FILE_ID</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_DECIMAL_SEP</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_JMT_TMJ</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>INTERN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_SENDER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -710,36 +648,213 @@
       <RSFDO>
        <PARAMETER>I_REPID</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_TEST</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>I_SENDER</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>OPEN_EIS</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CLOSE_EIS</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 005</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NO_SENDERSTRUCTURE</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 006</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>D</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>SSK</KEY>
+       <ENTRY>Senderstruktur</ENTRY>
+       <LENGTH>14</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>SSW</KEY>
+       <ENTRY>Wertebereich</ENTRY>
+       <LENGTH>12</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>Z02</KEY>
+       <ENTRY>Excel Bereich nicht korrekt definiert</ENTRY>
+       <LENGTH>37</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>P</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>SSK</KEY>
+       <ENTRY>Estrut.emiss.</ENTRY>
+       <LENGTH>14</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>SSW</KEY>
+       <ENTRY>Interv.vals.</ENTRY>
+       <LENGTH>12</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>Z02</KEY>
+       <ENTRY>Área Excel definida incorretamente</ENTRY>
+       <LENGTH>37</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>S</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>SSK</KEY>
+       <ENTRY>Estr.emisora</ENTRY>
+       <LENGTH>14</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>SSW</KEY>
+       <ENTRY>Ámbito val.</ENTRY>
+       <LENGTH>12</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>Z02</KEY>
+       <ENTRY>Ámbito Excel definido incorrectamente</ENTRY>
+       <LENGTH>37</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
+   <LONGTEXTS_ZCD_EXTERN_PP_CALL>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZCD_EXTERN_PP_CALL</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0003</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00018</TXTLINES>
+      <DOKSTATE>R</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZCD_EXTERN_PP_CALL</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00003</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Mit dem Funktionsbaustein KCD_EXTERN_PP_CALL kann der Planungsprozessor</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>von Externen Anwendungen über RFC Aufgerufen werden. Ein</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Erfassungslayout muß bei diesem Aufruf nicht existieren.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Es wird die Zieltabelle, eine Menge von Zellen und Strukturinformationen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ans SAP-System übergeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Die Struktuinformationen werden in den Tabellen I_DATAR, I_HEAD und</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>I_KEY übergeben. In I_DATAR steht im wesentlichen ein Koordinatentupel</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(OBEN Links; unten rechts) und das Zielfeld der Werte des Datenbereichs.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Über I_KEY und I_HEAD kann für Datenbereich angegeben werden, mit</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>welchen Merkmalswerten die Werte verknüpft werden sollen.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Bei I_KEY können Einzelne Zellen mit einem Datenbereich unabhängig von</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der Position der Zelle mit Daten verbunden werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Bei I_HEAD werden Zeilen oder Spalten mit dem Datenbereich verbunden</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>wobei jeweils die Daten mit in einer Zeile oder einer Spalte</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zusammengeführt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Über die Importparameter wird die Zieltabelle angegeben. z.B. EIS;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Aspekt. In der Tabelle I_INTERN werden Zellen: (Koordinaten (row; Col)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>und der Wert (Value)) übergeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_ZCD_EXTERN_PP_CALL>
   </asx:values>
  </asx:abap>
 </abapGit>

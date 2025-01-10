@@ -10,18 +10,13 @@
    </DD02V>
    <DD03P_TABLE>
     <DD03P>
-     <TABNAME>ZEPS_BAPI_BUS2002_NEW</TABNAME>
      <FIELDNAME>KOSTV</FIELDNAME>
-     <POSITION>0001</POSITION>
      <ROLLNAME>AUFKOSTV</ROLLNAME>
      <ADMINFIELD>0</ADMINFIELD>
      <COMPTYPE>E</COMPTYPE>
     </DD03P>
     <DD03P>
-     <TABNAME>ZEPS_BAPI_BUS2002_NEW</TABNAME>
      <FIELDNAME>.INCLUDE</FIELDNAME>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <POSITION>0002</POSITION>
      <ADMINFIELD>0</ADMINFIELD>
      <PRECFIELD>BAPI_BUS2002_NEW</PRECFIELD>
      <MASK>      S</MASK>
@@ -29,6 +24,15 @@
      <COMPTYPE>S</COMPTYPE>
     </DD03P>
    </DD03P_TABLE>
+   <I18N_LANGS>
+    <LANGU>P</LANGU>
+   </I18N_LANGS>
+   <DD02_TEXTS>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>Estrutura de dados: modificar cabeçalho do diagrama de rede</DDTEXT>
+    </item>
+   </DD02_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -11,6 +11,10 @@
     <item>/README.md</item>
     <item>/package.json</item>
     <item>/.travis.yml</item>
+    <item>/src/zgps_bapis_migracao.fugr.lzgps_bapis_migracaotop.abap</item>
+    <item>/src/zgps_bapis_migracao.fugr.lzgps_bapis_migracaotop.xml</item>
+    <item>/src/zmig_cargard1.para.xml</item>
+    <item>/src/zmig_cargard2.para.xml</item>
    </IGNORE>
   </DATA>
  </asx:values>

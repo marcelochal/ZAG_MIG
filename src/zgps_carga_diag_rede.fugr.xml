@@ -9,6 +9,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE</FUNCNAME>
+     <SHORT_TEXT>Criar diagrama de rede</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>P_I_WA_NETWORK</PARAMETER>
@@ -36,28 +37,29 @@
       <RSFDO>
        <PARAMETER>P_I_WA_NETWORK</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>BAPI Structure Network: Create</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_WA_CAMPOS_ZS</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Ampliação do cliente para diagrama de rede (CI_AUFK)</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_I_TESTRUN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Passar p/modo de simulação em BAPIs de escrita</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>P_E_TI_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>Mensagens de erro</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>BAPI_ZBUS2002_ZCREATE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Create Network Header Using BAPI</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
@@ -84,27 +86,28 @@
       <RSFDO>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>BAPI Structure Network: Create</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_RETURN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Return Parameter</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONIN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Reference Structure for BAPI Parameters EXTENSIONIN/EXTENSIONOUT</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONOUT</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>Reference Structure for BAPI Parameters EXTENSIONIN/EXTENSIONOUT</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZCN2002_ZNETWORK_ZCREATE</FUNCNAME>
+     <SHORT_TEXT>Create Network Header Using BAPI</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
@@ -133,27 +136,28 @@
       <RSFDO>
        <PARAMETER>I_NEW_NETWORK</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>BAPI Structure Network: Create</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_NPLNR</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Network Number</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EXTENSIONIN</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 003</INDEX>
+       <STEXT>Reference Structure for BAPI Parameters ExtensionIn/ExtensionOut</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NETWORK_NOT_CREATED</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
+       <STEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZMAP2I_ZBUS2002_NEW_TO_CAUFVD</FUNCNAME>
+     <SHORT_TEXT>DE-EN-LANG-SWITCH-NO-TRANSLATION</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>BAPI_BUS2002_NEW</PARAMETER>
@@ -177,21 +181,1955 @@
       <RSFDO>
        <PARAMETER>BAPI_BUS2002_NEW</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 001</INDEX>
+       <STEXT>Data Structure: Create Network Header</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>CAUFVD</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
+       <STEXT>Dialog Structure for Order Headers and Items</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ERROR_CONVERTING_KEYS</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <LONGTEXTS_BAPI_CRIAR_DIAGRAMA_DE_REDE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_DIAGRAMA_DE_REDE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00041</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Netzplankopf (BOR-Objekttyp BUS2002001) anlegen. Bei jedem Aufruf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>dieses BAPIs kann nur ein Netzplan angelegt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Übergeben Sie die Daten des neuen Netzplans im Parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Interne Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Das Netzplanprofil ist das einzige Mussfeld. Der BAPI scheitert, falls</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>in der Schnittstelle eine externe Netzplannummer mitgegeben wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs wird die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer noch nicht ermittelt. Statt dessen steht im Protokoll in</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der Returntabelle ET_RETURN die temporäre Netzplannummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Verwenden Sie diese temporäre Netzplannummer, falls Sie noch vor dem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Verbuchen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>diesen Netzplankopf ändern (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgänge zu diesem Netzplan anlegen (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgänge ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgangselemente zu diesem Netzplan anlegen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgangselemente ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Statusänderungen zu diesem Netzplan durchgeführen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AL</TDFORMAT>
+       <TDLINE>Erst nach dem erfolgreichen Pre-Commit wird in dessen Protokoll die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>endgültige ermittelte Netzplannummer, zusammen mit der aktuell</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zurückgegeben temporären Nummer, angezeigt. Alle zu diesem Netzplankopf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>abhängigen Meldungen im Protokoll des Pre-Commit (Kopf ändern, NV</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>anlegen/ändern, VE anlegen/ändern) enthalten nur noch die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Nummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Externe Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Neben dem Netzplanprofil ist auch die Netzplannummer ein Mussfeld -</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ausnahme: die externe Netzplannummer wird via User Exit CNEX0012,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ableitung der Netzplannummer aus PSP-Element, ermittelt.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Der BAPI scheitert, falls keine oder eine bereits verwendete externe</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer interfaced oder im User Exit ermittelt wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs steht im Protokoll in der</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Returntabelle ET_RETURN bereits diese externe Netzplannummer. Scheitert</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der BAPI, wird die Sperre der externen Netzplannummer sofort wieder</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>aufgehoben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_DIAGRAMA_DE_REDE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Create a network header (BOR object type BUS2002001). Only one network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>can be created each time this BAPI is called.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Transfer the data of the new network in parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Internal number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The network profile is the only required-entry field. The BAPI fails if</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>an external network number is entered in the interface.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>When the BAPI finishes successfully, the final network number has not</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>been determined yet. Instead, the log of the return table ET_RETURN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>contains a temporary network number.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Use this temporary network number, if you do any of the following</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>before carrying out the posting:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change this network header (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activities for this network (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activities created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activity elements for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activity elements that were created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Carry out status changes for this network (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>After the precommit is carried out successfully, the final network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>number along with the current temporary number are displayed in the log</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>of the precommit. All dependent messages for this network header in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>log of the precommit (change header, create/change network activities,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>create/change activity elements) contain the final number only.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>External number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>In addition to the network profile, the network number is also a</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>required-entry field. Exception: the external network number is</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>determined via user exit CNEX0012 &quot;Derive External Network Number from</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>WBS Number&quot;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The BAPI fails if no external network number, or one that is already</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>being used, is interfaced or determined in the user exit.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>If the BAPI finishes successfully, the log of the ET_RETURN return</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>table already contains this external network number. If the BAPI fails,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>the lock of the external network number is immediately lifted.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_DIAGRAMA_DE_REDE</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>ネットワークヘッダ (BOR オブジェクトタイプ BUS2002001) を登録します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI の 1 回の呼出しで登録されるネットワークはただ 1 つのみです。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>新しいネットワークのデータは、パラメータ I_NETWORK に渡されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号の内部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルのみが入力必須項目です。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI は、外部ネットワーク番号がインタフェースに入力されると</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了したときでも、最終のネットワーク番号はまだ設定されず、</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>リターンテーブル ET_RETURN のログに仮のネットワーク番号が格納されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>転記前に以下のいずれかを行う場合は、この仮ネットワーク番号を使用してく</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ださい。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークヘッダを変更する (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動を登録する (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動要素を登録する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動要素を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークのステータス変更を実行する (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>プリコミットが正常終了した後に、現在の仮のネットワーク番号をもつ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>最終ネットワーク番号がプリコミットログに表示されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>プリコミットログにある</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>このネットワークヘッダのすべての依存メッセージ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (変更ヘッダ、登録/変更ネットワーク活動、登録/変更活動エレメント)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> には最終番号だけが含まれます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号への外部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルと併せて、ネットワーク番号もまた必須入力項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>です。例外: 外部ネットワーク番号がユーザ Exit CNEX0012 &quot;WBS 番号からの</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>外部ネットワーク番号の導出&quot; により設定された場合</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ユーザ Exit とインタフェースに外部ネットワーク番号や既に使用されている</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ネットワーク番号を渡したり設定したりすると、この BAPI は異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了した場合には、ET_RETURN リターンテーブルのログには</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この外部ネットワーク番号が既に含まれています。BAPI が異常終了する場合に</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>は、外部ネットワーク番号のロックが瞬時に解除されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_DIAGRAMA_DE_REDE   P_I_WA_NETWORK</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE   P_I_WA_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Datenfelder des neu anzulegenden Netzplans.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_DIAGRAMA_DE_REDE   P_I_WA_NETWORK</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE   P_I_WA_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Data fields of the new network to be created.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_CRIAR_DIAGRAMA_DE_REDE   P_I_WA_NETWORK</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_CRIAR_DIAGRAMA_DE_REDE   P_I_WA_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>登録する新規ネットワークのデータ項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_BAPI_CRIAR_DIAGRAMA_DE_REDE>
+   <LONGTEXTS_BAPI_ZBUS2002_ZCREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00041</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Netzplankopf (BOR-Objekttyp BUS2002001) anlegen. Bei jedem Aufruf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>dieses BAPIs kann nur ein Netzplan angelegt werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Übergeben Sie die Daten des neuen Netzplans im Parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Interne Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Das Netzplanprofil ist das einzige Mussfeld. Der BAPI scheitert, falls</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>in der Schnittstelle eine externe Netzplannummer mitgegeben wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs wird die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer noch nicht ermittelt. Statt dessen steht im Protokoll in</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der Returntabelle ET_RETURN die temporäre Netzplannummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Verwenden Sie diese temporäre Netzplannummer, falls Sie noch vor dem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Verbuchen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>diesen Netzplankopf ändern (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgänge zu diesem Netzplan anlegen (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgänge ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Vorgangselemente zu diesem Netzplan anlegen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>gerade zu diesem Netzplan angelegte Vorgangselemente ändern</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Statusänderungen zu diesem Netzplan durchgeführen</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AL</TDFORMAT>
+       <TDLINE>Erst nach dem erfolgreichen Pre-Commit wird in dessen Protokoll die</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>endgültige ermittelte Netzplannummer, zusammen mit der aktuell</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>zurückgegeben temporären Nummer, angezeigt. Alle zu diesem Netzplankopf</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>abhängigen Meldungen im Protokoll des Pre-Commit (Kopf ändern, NV</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>anlegen/ändern, VE anlegen/ändern) enthalten nur noch die endgültige</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Nummer.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Externe Nummernvergabe der Netzplannummer</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Neben dem Netzplanprofil ist auch die Netzplannummer ein Mussfeld -</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ausnahme: die externe Netzplannummer wird via User Exit CNEX0012,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Ableitung der Netzplannummer aus PSP-Element, ermittelt.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Der BAPI scheitert, falls keine oder eine bereits verwendete externe</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Netzplannummer interfaced oder im User Exit ermittelt wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Bei erfolgreicher Beendigung des BAPIs steht im Protokoll in der</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Returntabelle ET_RETURN bereits diese externe Netzplannummer. Scheitert</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>der BAPI, wird die Sperre der externen Netzplannummer sofort wieder</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>aufgehoben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE/>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Create a network header (BOR object type BUS2002001). Only one network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>can be created each time this BAPI is called.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Transfer the data of the new network in parameter I_NETWORK.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>Internal number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The network profile is the only required-entry field. The BAPI fails if</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>an external network number is entered in the interface.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>When the BAPI finishes successfully, the final network number has not</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>been determined yet. Instead, the log of the return table ET_RETURN</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>contains a temporary network number.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>Use this temporary network number, if you do any of the following</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>before carrying out the posting:</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change this network header (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activities for this network (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activities created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Create activity elements for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Change activity elements that were created for this network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>(BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>Carry out status changes for this network (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>After the precommit is carried out successfully, the final network</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>number along with the current temporary number are displayed in the log</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>of the precommit. All dependent messages for this network header in the</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>log of the precommit (change header, create/change network activities,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>create/change activity elements) contain the final number only.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>External number assignment of the network number</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>In addition to the network profile, the network number is also a</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>required-entry field. Exception: the external network number is</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>determined via user exit CNEX0012 &quot;Derive External Network Number from</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>WBS Number&quot;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>The BAPI fails if no external network number, or one that is already</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>being used, is interfaced or determined in the user exit.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>If the BAPI finishes successfully, the log of the ET_RETURN return</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>table already contains this external network number. If the BAPI fails,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>the lock of the external network number is immediately lifted.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0023</VERSION>
+      <TXTLINES>00039</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00023</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>ネットワークヘッダ (BOR オブジェクトタイプ BUS2002001) を登録します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI の 1 回の呼出しで登録されるネットワークはただ 1 つのみです。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>新しいネットワークのデータは、パラメータ I_NETWORK に渡されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号の内部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルのみが入力必須項目です。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この BAPI は、外部ネットワーク番号がインタフェースに入力されると</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了したときでも、最終のネットワーク番号はまだ設定されず、</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>リターンテーブル ET_RETURN のログに仮のネットワーク番号が格納されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>転記前に以下のいずれかを行う場合は、この仮ネットワーク番号を使用してく</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ださい。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークヘッダを変更する (BAPI_BUS2002_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動を登録する (BAPI_BUS2002_ACT_CREATE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACT_CHANGE_MULTI)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに活動要素を登録する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CREATE_M)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークに登録済の活動要素を変更する</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (BAPI_BUS2002_ACTELEM_CHANGE)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B2</TDFORMAT>
+       <TDLINE>このネットワークのステータス変更を実行する (BAPI_BUS2002_SET_STATUS)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>プリコミットが正常終了した後に、現在の仮のネットワーク番号をもつ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>最終ネットワーク番号がプリコミットログに表示されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>プリコミットログにある</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>このネットワークヘッダのすべての依存メッセージ</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> (変更ヘッダ、登録/変更ネットワーク活動、登録/変更活動エレメント)</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE> には最終番号だけが含まれます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>B1</TDFORMAT>
+       <TDLINE>ネットワーク番号への外部番号割当</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ネットワークプロファイルと併せて、ネットワーク番号もまた必須入力項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>です。例外: 外部ネットワーク番号がユーザ Exit CNEX0012 &quot;WBS 番号からの</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>外部ネットワーク番号の導出&quot; により設定された場合</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>ユーザ Exit とインタフェースに外部ネットワーク番号や既に使用されている</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>ネットワーク番号を渡したり設定したりすると、この BAPI は異常終了します。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/</TDFORMAT>
+       <TDLINE>BAPI が正常終了した場合には、ET_RETURN リターンテーブルのログには</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>この外部ネットワーク番号が既に含まれています。BAPI が異常終了する場合に</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>は、外部ネットワーク番号のロックが瞬時に解除されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_MRP_APPLICABLE OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_NOT_AUTO_COSTING OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_ET_RETURN OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>/:</TDFORMAT>
+       <TDLINE>INCLUDE CNIF_PI_BAPI_HINTS OBJECT DOKU ID TX</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF</TDLINE>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         EXTENSIONIN</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00004</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         EXTENSIONIN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Daten für Kundenerweiterungen werden mit Hilfe des Containers</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&quot;ExtensionIn&quot;, wie in dem BAPI-Programmierleitfaden beschrieben,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>importiert. Eine Weiterbearbeitung der Daten erfolgt in dem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>entsprechenden BADI.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         EXTENSIONIN</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         EXTENSIONIN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Data for customer enhancements is imported using the container</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&quot;ExtensionIn&quot;, as described in the BAPI Programming Guide. Further</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>processing of the data takes place in the relevant BAdI.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         EXTENSIONIN</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         EXTENSIONIN</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>カスタマ拡張のデータは、BAPI プログラミングガイドに説明されているように</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>、コンテナ &quot;ExtensionIn&quot; を使用してインポートされます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>データの追加処理は関連 BAdI を使用して実行されます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         EXTENSIONOUT</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         EXTENSIONOUT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Kundenerweiterungsdaten werden mit Hilfe des Containers &quot;ExtensionOut&quot;,</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>wie in dem BAPI-Programmierleitfaden beschrieben, exportiert. Eine</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Beschaffung der Daten erfolgt in dem entsprechenden BADI.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         EXTENSIONOUT</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         EXTENSIONOUT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Customer enhancement data is exported using the container</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>&quot;ExtensionOut&quot;, as described in the BAPI Programming Guide. Procurement</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>of the data takes place in the corresponding BAdI.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         EXTENSIONOUT</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00003</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         EXTENSIONOUT</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>カスタマ拡張のデータは、BAPI プログラミングガイドに説明されているように</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>、コンテナ &quot;ExtensionOut&quot; を使用してエクスポートされます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>データの入手は関連 BAdI を使用して行われます。</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         I_NEW_NETWORK</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         I_NEW_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Datenfelder des neu anzulegenden Netzplans.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         I_NEW_NETWORK</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         I_NEW_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Data fields of the new network to be created.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>BAPI_ZBUS2002_ZCREATE         I_NEW_NETWORK</OBJECT>
+      <LANGU>J</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>BAPI_ZBUS2002_ZCREATE         I_NEW_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>J</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>登録する新規ネットワークのデータ項目</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_BAPI_ZBUS2002_ZCREATE>
+   <LONGTEXTS_ZCN2002_ZNETWORK_ZCREATE>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZCN2002_ZNETWORK_ZCREATE</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0007</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00014</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZCN2002_ZNETWORK_ZCREATE</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00007</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FUNCTIONALITY&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Anlegen eines neuen Netzplankopfes (BOR-Objekt BUS2002).</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;EXAMPLE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Daten des neuen Netzplans werden dem Parameter I_NETWORK übergeben.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Dabei ist zu beachten, dass mindestens das Netzplanprofil angegeben</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>werden muss. Im Falle eines Netzplans mit interner Nummerierung ist</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>dieses das einzige Mussfeld.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Meldungen aus der Anwendung und eine passende</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Erfolgs-/Misserfolgsmeldung werden vom BAPI im Parameter Return an den</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Aufrufer zurückgeliefert.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;HINTS&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Der Aufruf des BAPIs kann solang wiederholt werden, bis mit der Methode</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Precommit der Objekte ProjectDefinitionPI, WBSPI und NetworkPI und</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>BAPIService.Commit eine LUW (Logical Unit of Work) abgeschlossen wird.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Die Precommit-Methode darf im LUW nur einmalig und direkt vor dem</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>BAPIService.Commit angewendet werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Bei jedem Aufruf dieses BAPI&apos;s kann nur ein Netzplan bearbeitet werden.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;FURTHER_SOURCES_OF_INF&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>FU</ID>
+      <OBJECT>ZCN2002_ZNETWORK_ZCREATE      I_NEW_NETWORK</OBJECT>
+      <LANGU>D</LANGU>
+      <TYP>T</TYP>
+      <VERSION>0001</VERSION>
+      <MASTERLANG>X</MASTERLANG>
+      <TXTLINES>00001</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZCN2002_ZNETWORK_ZCREATE      I_NEW_NETWORK</TDNAME>
+      <TDID>FU</TDID>
+      <TDSPRAS>D</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00001</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;MEANING&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+       <TDLINE>Datenfelder des neu anzulegenden Netzplans.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;RANGE&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>U1</TDFORMAT>
+       <TDLINE>&amp;DEFAULT&amp;</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>AS</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
+   </LONGTEXTS_ZCN2002_ZNETWORK_ZCREATE>
   </asx:values>
  </asx:abap>
 </abapGit>

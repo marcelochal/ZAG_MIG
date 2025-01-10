@@ -9,12 +9,7 @@ TYPES:
     count_err TYPE numdel,             " Número de entradas de tabelas eliminadas
   END OF ty_s_table_list,
 
-*  BEGIN OF   ty_s_mara,
-*    matnr TYPE mara-matnr,  " Nº do material
-*    kzwsm TYPE mara-kzwsm,  " Utilização/categorias de unidades de medida
-*  END OF ty_s_mara,
-
-  ty_t_table_list TYPE TABLE OF ty_s_table_list WITH UNIQUE SORTED KEY key_01           COMPONENTS tab.
+  ty_t_table_list TYPE TABLE OF ty_s_table_list WITH UNIQUE SORTED KEY key_01 COMPONENTS tab.
 
 TABLES:
   ampl,   " Tabela das peças de fabricante admitidas                    01
@@ -75,12 +70,12 @@ TABLES:
   pgmi,   " Product Group/Member Allocation                             56
   pgzu,   " Product Group/Member Quantity Conversions                   57
   cdhdr,  " Cabeçalho do documento de modificação                       58
-  cdpos,  "                                                             59
-  stxh,   "                                                             60
-  stxl,   "                                                             61
-  nriv,   "                                                             62
-  t001,   "                                                             63
-  drad.   "                                                             64
+  cdpos,  " Change document items                                       59
+  stxh,   " STXD SAPscript text file header                             60
+  stxl,   " STXD SAPscript text file lines                              61
+  nriv,   " Number Range Intervals                                      62
+  t001,   " Company Codes                                               63
+  drad.   " Document-Object Link                                        64
 
 
 SELECTION-SCREEN SKIP 2.
@@ -199,8 +194,6 @@ ENDCLASS.
 **********************************************************************
 START-OF-SELECTION.
 
-*  CHECK p_test IS INITIAL.
-
   CREATE OBJECT o_prog_ind
     EXPORTING
       im_v_total = 64.
@@ -214,8 +207,6 @@ START-OF-SELECTION.
   ID 'S_ADMI_FCD' FIELD 'RSET'.
   IF sy-subrc NE 0.
     MESSAGE e203(cz).
-*  LEAVE.
-*  LEAVE TO TRANSACTION '    '.
   ENDIF.
 
 * ch zu 3.0D - A função não é permitida no cliente produtivo
@@ -797,6 +788,12 @@ FORM f_set_fieldcatalog   CHANGING ch_t_fcat TYPE slis_t_fieldcat_alv.
 
   LOOP AT ch_t_fcat ASSIGNING FIELD-SYMBOL(<fs_fcat>).
     CASE <fs_fcat>-fieldname.
+      WHEN 'COUNT'.
+        <fs_fcat>-just = 'C'.
+        <fs_fcat>-outputlen = 08.
+      WHEN 'TAB'.
+        <fs_fcat>-just = 'L'.
+        <fs_fcat>-outputlen = 14.
       WHEN 'COUNT_DEL' OR 'COUNT'.
         <fs_fcat>-just = 'L'.
         <fs_fcat>-outputlen = 14.

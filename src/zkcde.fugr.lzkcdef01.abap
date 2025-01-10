@@ -9,7 +9,7 @@
 *  -->  p1        text
 *  <--  p2        text
 *----------------------------------------------------------------------*
-FORM SEPARATED_TO_INTERN_CONVERT TABLES I_TAB       TYPE  KCDU_SRECS
+FORM SEPARATED_TO_INTERN_CONVERT TABLES I_TAB       TYPE KCDU_SRECS
                                         I_INTERN    TYPE KCDE_INTERN
                                  USING  I_SEPARATOR TYPE C.
 
